@@ -67,43 +67,51 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
 
 ## Debugging
 
-nib can help facilitate remote debugging of a running container. In order to make this work there are a couple of steps you'll need to take first.
+nib can help facilitate remote debugging of a running byebug server inside of a rails application. In order to make this work there are a couple of steps you'll need to take first.
 
-**Gemfile**
+Add the `byebug` gem to your Gemfile if it's not already present.
+
 ```ruby
+# Gemfile
 gem 'byebug'
 ```
 
-**config/envrionments/development.rb**
+Enable byebug server for development. This will default the port to 9005 but that can be overridden by setting the `RUBY_DEBUG_PORT` environment variable (see below).
+
 ```ruby
+# config/envrionments/development.rb
 require 'byebug/core'
 Byebug.start_server '0.0.0.0', (ENV.fetch 'RUBY_DEBUG_PORT', 9005).to_i
 ```
 
-**docker-compose.yml**
+Expose the desired port and specify the `RUBY_DEBUG_PORT` environment variable (overrides the default).
+
 ```yml
+# docker-compose.yml
 web:
   ...
   ports:
-    - "9005:9005"
+    - "3001:3001"
   environment:
-    - "RUBY_DEBUG_PORT=9005"
+    - "RUBY_DEBUG_PORT=3001"
 ```
 
-**.nib**
+Tell nib what port you are using.
+
 ```json
+// .nib
 {
   "services": [
     {
        "name": "web",
-       "ruby_debug_port": "9005"
+       "ruby_debug_port": "3001"
     }
   ]
 }
 ```
 
-Once all of this is in place and the web service is up and running (`nib up`) you can use the `debug` command to attach to the remote debugger:
+Once all of this is in place and the web service is up and running (`nib up`) you can use the `debug` command to attach to the remote debugger.
 
 ```sh
-nib debug web
+> nib debug web
 ```
