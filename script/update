@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source "/bin/script/_help"
+
+docker pull technekes/nib:latest
