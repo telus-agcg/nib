@@ -36,6 +36,19 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
       --virtualbox-disk-size 40000
     ```
 
+    For better performance in file sharing with the host, automated dnsmasq support (*.docker) and filesystem events we recommend trying [dinghy](https://github.com/codekitchen/dinghy).
+
+    ```bash
+    brew tap codekitchen/dinghy
+    brew install dinghy
+
+    dinghy create \
+      --provider virtualbox \
+      --memory=$(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
+      --cpus=$(echo $(bc -l <<< $(sysctl -n hw.ncpu)/2) | sed "s/\..*$//") \
+      --disk=40000
+    ```
+
     Altertantively you can create a VM based on [xhyve](https://github.com/mist64/xhyve) a [Type 1 hypervisor](https://allysonjulian.com/setting-up-docker-with-xhyve/#creatingthexhyvedockermachine). Follow the instruction for installing the docker-machine xhyve driver [here](https://github.com/zchee/docker-machine-driver-xhyve#install). Then create a VM using that driver like so.
 
     ```bash
