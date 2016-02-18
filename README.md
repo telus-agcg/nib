@@ -143,3 +143,35 @@ Once all of this is in place and the web service is up and running (`nib up`) yo
 ```sh
 > nib debug web
 ```
+
+## Development
+
+While making changes to `nib` it can be helpful to run a development version to test out commands (what, no tests?!). One way to accomplish this is by building the image and creating an extra alias for the local copy.
+
+Make a change and build:
+
+```
+cd /path/to/technekes/nib
+# make some changes
+docker build --tag nibdev:latest .
+```
+
+Development alias:
+
+```sh
+alias nibdev='
+  docker run \
+    -it \
+    --rm \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e "DOCKER_HOST_URL=$DOCKER_HOST" \
+    nibdev:latest'
+```
+
+Try out your command:
+
+```sh
+nibdev shell web
+```
