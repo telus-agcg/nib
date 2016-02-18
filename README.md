@@ -70,13 +70,28 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
         --rm \
         -v $(pwd):$(pwd) \
         -w $(pwd) \
-        -v ~/.ssh/#{YOUR_GIT_KEY}:/root/.ssh/id_rsa:ro \
+        -v ~/.docker/config.json:/root/.docker/config.json:ro \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -e "DOCKER_HOST_URL=$DOCKER_HOST" \
         technekes/nib'
     ```
 
 1. Start a new bash session and run `nib help` to see the available commands (there may be a brief pause as the image is pulled from docker hub)
+
+## Updates
+
+To get the latest version of `nib` use the `update` command. This just pulls the latest version of `technekes/nib:latest` from the Docker Hub. NOTE: This repo is currently private and requires you to be a member of the Technekes Organization on the Docker Hub and that you have logged in on your local machine with `docker login`.
+
+```sh
+❯ nib update
+latest: Pulling from technekes/nib
+03e1855d4f31: Already exists
+a3ed95caeb02: Already exists
+8bfa9c6cbe2e: Already exists
+48868f5a50c8: Already exists
+Digest: sha256:47a8796f7f4f35fef13c67f14e275273927130c9bad72a09822aa4723bbdffa2
+Status: Image is up to date for technekes/nib:latest
+```
 
 ## Debugging
 
