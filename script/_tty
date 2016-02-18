@@ -30,12 +30,8 @@ local_history_file="${local_history_path}/shell_history"
 mkdir -p $local_history_path
 touch $local_history_file
 
-image=$(compose_image_name $SERVICE)
-
-docker run \
-  -e HISTFILE=/root/.shell_history \
-  -v $local_history_file:/root/.shell_history \
-  -it \
+docker-compose run \
   --rm \
-  $image \
+  -e HISTFILE=/usr/src/app/tmp/shell_history \
+  $SERVICE \
   /bin/sh -c "${SCRIPT}"
