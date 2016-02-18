@@ -22,13 +22,14 @@ DIR=/bin/script
 source "$DIR/common"
 source "$DIR/_help"
 
-ENVIRONMENT="development"
 SERVICE="$1"
 
 local_history_path="${PWD}/tmp"
-local_history_file="${local_history_path}/shell_history"
+
 mkdir -p $local_history_path
-touch $local_history_file
+
+touch "${local_history_path}/shell_history"
+touch "${local_history_path}/irb_history"
 
 docker-compose run \
   --rm \
