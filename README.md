@@ -20,28 +20,18 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
 ## Install
 
 1. Install the [dockertoolbox](https://www.docker.com/docker-toolbox)
-1. Create a virtual machine with `docker-machine`. This will create a VirtualBox based VM with the following attributes.
+1. Create a virtual machine with `docker-machine`. For better performance in file sharing with the host, automated dnsmasq support (*.docker) and filesystem events we recommend trying [dinghy](https://github.com/codekitchen/dinghy).
 
-    | Resource  | Allocation            |
-    |-----------|-----------------------|
-    | Memory    | 1/2 System Memory     |
-    | CPU Count | 1/2 System Core Count |
-    | Disk Size | 40 GB                 |
-
-    ```bash
-    docker-machine create default \
-      --driver virtualbox \
-      --virtualbox-memory $(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
-      --virtualbox-cpu-count $(echo $(bc -l <<< $(sysctl -n hw.ncpu)/2) | sed "s/\..*$//") \
-      --virtualbox-disk-size 40000
-    ```
-
-    For better performance in file sharing with the host, automated dnsmasq support (*.docker) and filesystem events we recommend trying [dinghy](https://github.com/codekitchen/dinghy).
+    Dinghy can be installed via a brew tap (assumes you already have [Homebrew](http://brew.sh/) installed).
 
     ```bash
     brew tap codekitchen/dinghy
     brew install dinghy
+    ```
 
+    Now create a new docker machine using the dinghy cli.
+
+    ```bash
     dinghy create \
       --provider virtualbox \
       --memory=$(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
@@ -49,17 +39,29 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
       --disk=40000
     ```
 
-    Altertantively you can create a VM based on [xhyve](https://github.com/mist64/xhyve) a [Type 1 hypervisor](https://allysonjulian.com/setting-up-docker-with-xhyve/#creatingthexhyvedockermachine). Follow the instruction for installing the docker-machine xhyve driver [here](https://github.com/zchee/docker-machine-driver-xhyve#install). Then create a VM using that driver like so.
+    This will create a VirtualBox based VM with the following attributes.
+
+    | Resource  | Allocation            |
+    |-----------|-----------------------|
+    | Memory    | 1/2 System Memory     |
+    | CPU Count | 1/2 System Core Count |
+    | Disk Size | 40 GB                 |
+
+
+    This creates a new docker-machine by the name of `dinghy`. In order to have the additional services started (nfs, dnsmasq etc) you will need to use the dinghy cli to start the machine.
 
     ```bash
-    docker-machine create default \
-      --driver xhyve \
-      --xhyve-experimental-nfs-share \
-      --xhyve-memory-size $(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
-      --xhyve-cpu-count $(echo $(bc -l <<< $(sysctl -n hw.ncpu)/2) | sed "s/\..*$//") \
-      --xhyve-disk-size 40000
-
+    dinghy up
+    # provide password (required by nfs service)
     ```
+
+    In order to point your docker client at the new machine you'll need to set some environment variables.
+
+    ```bash
+    eval $(dinghy shellinit)
+    ```
+
+    This will need to be executed per shell session. If you're using docker regularly you should consider adding this to your profile file of choice (`.bashrc`, `.zshrc` etc).
 
 1. Copy the alias below into your shell configuration and provide a value for "YOUR_GIT_KEY" (this will allow the `nib` tool to access git repos on your behalf)
 
