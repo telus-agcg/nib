@@ -1,20 +1,51 @@
 # nib
 
-A tool to aid development in a `docker-compose` environment. Currently supports a workflow where a single `docker-compose.yml` sits over one or more applications.
+A tool to aid development in a `docker-compose` environment. Currently supports a workflow where a single `docker-compose.yml` sits over one or more applications. Therefore the `nib` commands must be issued from the working directory of the `docker-compose.yml`
 
-The `nib` commands must be issued from the working directory of the `docker-compose.yml`
+Currently `nib` is tailored towards Ruby/Rails development. Some commands like `nib console` are expecting a Ruby like environment (`rails console` or `pry` etc) however it will fall down to a script/console (executable file) where a custom script can be defined. Other commands like `nib rake` or `nib guard` are clearly meant for Ruby developers.
 
-In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file that lists application level services available within `docker-compose.yml` with the following format:
+## Usage
 
-```json
-{
-  "services": [
-    {
-       "name": "my_app_service_name",
-       "ruby_debug_port": "3001"
-    }
-  ]
-}
+`nib` can ultimately be used as a replacement for `docker-compose` because it will delegate all commands it does not recognize to `docker-compose`. From there you can take advantage of the additional commands with a similar workflow. For example:
+
+```sh
+> nib shell web
+root@fd80bbc4ab5a:/usr/src/app#
+```
+
+Will start up a container for the `web` service and drop you into an interactive shell session (bash, ash or sh). In addition nib will hook up a history file for your shell session (relative to the current project). This means that you will be able to use the history (up arrow) in future shell sessions, something that is not available with vanilla docker/docker-compose!
+
+For additional commands review the help system.
+
+```sh
+> nib help
+Usage: nib COMMAND [OPTIONS] [arg...]
+
+Run docker/compose commands on apps relative to the current directory
+
+Options:
+  -h, --help      Print usage
+      --version   Print version information
+
+Commands:
+    attach        Attach an interactive shell session to a running container
+    bootstrap     Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)
+    console       Start a REPL session for the given service
+    debug         Connect to a running byebug server for a given service
+    rake          Run the rake command for the given service
+    restart       Restart a running container
+    run           Wraps normal 'docker-compose run' to ensure that --rm is always passed
+    shell         Start a shell session in a one-off service container
+    update        Download the latest version of the nib tool
+
+Run 'nib COMMAND --help' for more information on a command.
+
+Note:
+  Unrecognized commands will be delegate to docker-compose
+
+  For example the following are equivalent:
+    nib start
+    docker-compose start
 ```
 
 ## Install
@@ -24,14 +55,14 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
 
     Dinghy can be installed via a brew tap (assumes you already have [Homebrew](http://brew.sh/) installed).
 
-    ```bash
+    ```sh
     brew tap codekitchen/dinghy
     brew install dinghy
     ```
 
     Now create a new docker machine using the dinghy cli.
 
-    ```bash
+    ```sh
     dinghy create \
       --provider virtualbox \
       --memory=$(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
@@ -64,15 +95,16 @@ In addition to a `docker-compose.yml` the `nib` tool expects a `.nib` JSON file 
     This will need to be executed per shell session. If you're using docker regularly you should consider adding this to your profile file of choice (`.bashrc`, `.zshrc` etc).
 
 1. Copy the alias below into your shell configuration and provide a value for "YOUR_GIT_KEY" (this will allow the `nib` tool to access git repos on your behalf)
+1. The most convenient way to us nib is by creating an alias or shell function. Here is an alias you can add to your profile that will make `nib` appear as a command. Note, in order for the `nib update` command (download the latest version) to work
 
-    ```bash
+    ```sh
     alias nib='
       docker run \
         -it \
         --rm \
         -v $(pwd):$(pwd) \
         -w $(pwd) \
-        -v ~/.docker/config.json:/root/.docker/config.json:ro \
+        -v $HOME/.docker/config.json:/root/.docker/config.json:ro \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -e "DOCKER_HOST_URL=$DOCKER_HOST" \
         technekes/nib'
@@ -126,7 +158,7 @@ web:
     - "RUBY_DEBUG_PORT=3001"
 ```
 
-Tell nib what port you are using.
+Tell nib what port you are using by adding a configuration file (`.nib` JSON) specifying the service name and port.
 
 ```json
 // .nib
@@ -177,3 +209,13 @@ Try out your command:
 ```sh
 nibdev shell web
 ```
+
+## Contributing
+
+`nib` is work of several contributors. You're encouraged to submit pull requests, propose features and discuss issues.
+
+See [CONTRIBUTING](CONTRIBUTING.md).
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
