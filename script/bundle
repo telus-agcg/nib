@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source "/bin/script/common"
+source "/bin/script/_help"
+
+service=$(normalize $1)
+
+shift
+
+docker-compose run --rm $service bundle $@
