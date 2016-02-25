@@ -29,9 +29,11 @@ Options:
 
 Commands:
     attach        Attach an interactive shell session to a running container
+    bundle        Run bundle for the given service
     bootstrap     Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)
     console       Start a REPL session for the given service
     debug         Connect to a running byebug server for a given service
+    rails         Run the rails command for the given service
     rake          Run the rake command for the given service
     restart       Restart a running container
     run           Wraps normal 'docker-compose run' to ensure that --rm is always passed
