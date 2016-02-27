@@ -16,7 +16,7 @@ IRB.conf[:AUTO_INDENT] = true
 # irb history
 IRB.conf[:EVAL_HISTORY] = 10
 IRB.conf[:SAVE_HISTORY] = 1000
-IRB.conf[:HISTORY_FILE] = \"/usr/src/app/irb_history\"
+IRB.conf[:HISTORY_FILE] = \"/usr/src/app/tmp/irb_history\"
 "
 
 SCRIPT="

@@ -28,9 +28,6 @@ local_history_path="${PWD}/tmp"
 
 mkdir -p $local_history_path
 
-touch "${local_history_path}/shell_history"
-touch "${local_history_path}/irb_history"
-
 docker-compose run \
   --rm \
   -e HISTFILE=/usr/src/app/tmp/shell_history \
