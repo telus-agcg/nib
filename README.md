@@ -97,7 +97,7 @@ Note:
     This will need to be executed per shell session. If you're using docker regularly you should consider adding this to your profile file of choice (`.bashrc`, `.zshrc` etc).
 
 1. Copy the alias below into your shell configuration and provide a value for "YOUR_GIT_KEY" (this will allow the `nib` tool to access git repos on your behalf)
-1. The most convenient way to us nib is by creating an alias or shell function. Here is an alias you can add to your profile that will make `nib` appear as a command. Note, in order for the `nib update` command (download the latest version) to work
+1. The most convenient way to use nib is by creating an alias or shell function. Here is an alias you can add to your profile that will make `nib` appear as a command. Note, in order for the `nib update` command (download the latest version) to work
 
     ```sh
     alias nib='
