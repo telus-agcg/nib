@@ -1,7 +1,7 @@
 FROM debian:latest
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV COMPOSE_VERSION 1.6.0
+ENV COMPOSE_VERSION 1.7.0
 
 RUN apt-get update -q && \
   apt-get install -y -q --no-install-recommends curl ca-certificates jq git ssh && \
