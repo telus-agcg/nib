@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "/bin/script/_common"
+source "/bin/script/common"
 source "/bin/script/_help"
 
 service=$(normalize $1)
