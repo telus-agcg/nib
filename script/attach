@@ -1,7 +1,0 @@
-#!/bin/bash
-source "/bin/script/common"
-source "/bin/script/_help"
-
-service=$(normalize $1)
-
-docker-compose exec $service /bin/bash

@@ -20,7 +20,8 @@ RUN apt-get update -q && \
     `find / -regex '.*\.py[co]'`
 
 RUN mkdir -p /bin
-COPY . /bin
 
-ENTRYPOINT ["/bin/nib"]
+COPY bin /usr/local/bin
+
+ENTRYPOINT ["nib"]
 CMD ["--help"]
