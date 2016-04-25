@@ -1,0 +1,6 @@
+version: '2'
+
+# used to faciliate update
+services:
+  nib:
+    image: technekes/nib:latest
