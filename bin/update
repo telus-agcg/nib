@@ -2,4 +2,14 @@
 
 source "/usr/local/bin/_help"
 
-docker pull technekes/nib:latest
+COMPOSE_PATH=/tmp/docker-compose.yml
+
+cat << COMPOSE > $COMPOSE_PATH
+version: '2'
+
+services:
+  nib:
+    image: technekes/nib:latest
+COMPOSE
+
+docker-compose -f $COMPOSE_PATH pull
