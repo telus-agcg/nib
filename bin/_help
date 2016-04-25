@@ -1,0 +1,72 @@
+#!/bin/bash
+#
+# Checks first argument for help or version option
+#
+#/* vim: set filetype=sh : */
+
+source "/usr/local/bin/_common"
+
+print_common_usage() {
+  echo "Usage: nib ${1} [SERVICE]"
+}
+
+print_help_options() {
+  echo "Options:
+  -h, --help      Print usage
+      --version   Print version information
+"
+}
+
+print_services() {
+  echo "  " $(printf -- '%s\n' $(services))
+}
+
+print_command_instructions() {
+  echo "  " $(printf -- '%s\n' "${COMMANDS[@]}" | grep $COMMAND | awk -F '|' '{print $3}')
+}
+
+show_common_help() {
+  echo "$(print_common_usage $COMMAND)
+
+$(print_command_instructions)
+
+Services:
+$(print_services)"
+}
+
+COMMANDS=(
+  "attach|        |Attach an interactive shell session to a running container"
+  "bundle|        |Run bundle for the given service"
+  "bootstrap|     |Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)"
+  "console|       |Start a REPL session for the given service"
+  "debug|         |Connect to a running byebug server for a given service"
+  "rails|         |Run the rails command for the given service"
+  "rake|          |Run the rake command for the given service"
+  "restart|       |Restart a running container"
+  "run|           |Wraps normal 'docker-compose run' to ensure that --rm is always passed"
+  "shell|         |Start a shell session in a one-off service container"
+  "update|        |Download the latest version of the nib tool"
+)
+
+print_commands() {
+  echo "Commands:"
+  for COMMAND in "${COMMANDS[@]}"; do
+    echo "    ${COMMAND//|/}"
+  done
+}
+
+case $1 in
+  -h|--help|help)
+    if [ -n "$(type -t show_help)" ]; then
+      show_help
+    else
+      show_common_help
+    fi
+
+    exit 0
+    ;;
+  --version|version)
+    cat VERSION
+    exit 0
+    ;;
+esac

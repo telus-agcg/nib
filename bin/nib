@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+#/* vim: set filetype=sh : */
+
+show_help() {
+  echo "Usage: nib COMMAND [OPTIONS] [arg...]
+
+Run docker/compose commands on apps relative to the current directory
+
+$(print_help_options)
+
+$(print_commands)
+
+Run 'nib COMMAND --help' for more information on a command.
+
+Note:
+  Unrecognized commands will be delegate to docker-compose
+
+  For example the following are equivalent:
+    nib start
+    docker-compose start"
+}
+
+DIR=/usr/local/bin
+source "$DIR/_help"
+
+if [[ $# -eq 0 ]] ; then
+    show_help
+    exit 0
+fi
+
+if [ ! -f "$DIR/$1" ]; then
+    docker-compose $@
+else
+    $DIR/$@
+fi

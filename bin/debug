@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# Fire up the debug script for a given service
+#
+#/* vim: set filetype=sh : */
+
+show_help() {
+  echo "debug USAGE:
+
+  Conect to a running byebug server for a given service
+    > The byebug server must be running inside of the rails service
+    > The service and ruby_debug_port must be defined in .nib
+    > The debug port must be exposed by the service
+  "
+}
+
+source "/usr/local/bin/_help"
+
+ruby_debug_port() {
+  PORT=$(
+    cat .nib | \
+    jq -r ".services[] | select(.name==\"$1\") | .ruby_debug_port"
+  )
+
+  if [ -z "$PORT" ] || [ "null" == "$PORT" ]; then
+    exit 1
+  else
+    echo $PORT
+  fi
+}
+
+if [ -z "$1" ]; then
+  show_help
+elif [ ! -f .nib ]; then
+  echo "The .nib file is missing; cannot determine ruby_debug_port"
+  show_help
+else
+  SERVICE=$1
+  HOST=$(echo $DOCKER_HOST_URL | sed -E -e 's/(tcp:\/\/|:([0-9]{4}))//g')
+  RUBY_DEBUG_PORT=$(ruby_debug_port $SERVICE)
+
+  if [ $? == 1 ]; then
+    echo "The service is not defined in .nib or the ruby_debug_port is missing"
+    show_help
+    exit 1
+  fi
+
+  echo "Connecting to byebug server $HOST:$RUBY_DEBUG_PORT..."
+
+  docker-compose run \
+    --rm \
+    --no-deps \
+    $SERVICE \
+    byebug -R $HOST:$RUBY_DEBUG_PORT
+fi

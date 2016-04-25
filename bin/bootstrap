@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Bootstrap apps or specific app
+#
+#/* vim: set filetype=sh : */
+
+set -e
+
+DIR=/usr/local/bin
+source "$DIR/_common"
+
+ARG=$(normalize "$1")
+
+if [ "$ARG" == 'apps' ]; then
+  $DIR/bootstrap-apps
+elif contains_element $ARG $(services); then
+  $DIR/bootstrap-apps "$ARG"
+else
+  fancy_echo "Not sure what to do with ${1}."
+
+  echo "Usage examples:
+
+    # Bootstraps all apps
+    > nib bootstrap apps
+
+    # Bootstraps a specific app
+    > nib bootstrap talk
+  "
+fi

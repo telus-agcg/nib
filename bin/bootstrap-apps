@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+source "/usr/local/bin/_common"
+
+bootstrap_app() {
+  docker-compose run --rm $(normalize "$1") script/bootstrap
+}
+
+if [ $# -eq 0 ]; then
+  for SERVICE in $(services); do
+    fancy_echo "Bootstrapping the ${SERVICE} service"
+    bootstrap_app "$SERVICE"
+  done
+else
+  fancy_echo "Bootstrapping the ${1} service"
+  bootstrap_app "$1"
+fi

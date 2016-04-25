@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Start a repl for the given container
+#
+#/* vim: set filetype=sh : */
+
+show_help() {
+  echo "$(print_common_usage "$COMMAND")
+
+$(print_command_instructions)
+
+Options:
+  -e, --env   Environment name (default: development)
+  -h          Print usage
+
+Services:
+$(print_services)"
+}
+
+source "/usr/local/bin/_common"
+source "/usr/local/bin/_help"
+
+SERVICE="$1"
+
+local_history_path="${PWD}/tmp"
+
+mkdir -p $local_history_path
+
+docker-compose run \
+  --rm \
+  -e HISTFILE=/usr/src/app/tmp/shell_history \
+  $SERVICE \
+  /bin/sh -c "${SCRIPT}"
