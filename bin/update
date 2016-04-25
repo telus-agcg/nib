@@ -2,4 +2,6 @@
 
 source "/usr/local/bin/_help"
 
-docker pull technekes/nib:latest
+docker-compose \
+  -f /usr/src/nib/docker-compose.yml \
+  pull nib

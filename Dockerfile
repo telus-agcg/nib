@@ -22,6 +22,7 @@ RUN apt-get update -q && \
 RUN mkdir -p /bin
 
 COPY bin /usr/local/bin
+COPY config /usr/src/nib
 
 ENTRYPOINT ["nib"]
 CMD ["--help"]
