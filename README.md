@@ -116,7 +116,7 @@ Note:
 
 ## Updates
 
-To get the latest version of `nib` use the `update` command. This just pulls the latest version of `technekes/nib:latest` from the Docker Hub. NOTE: This repo is currently private and requires you to be a member of the Technekes Organization on the Docker Hub and that you have logged in on your local machine with `docker login`.
+To get the latest version of `nib` use the `update` command. This just pulls the latest version of `technekes/nib:latest` from the Docker Hub. 
 
 ```sh
 ❯ nib update
