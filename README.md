@@ -37,6 +37,7 @@ Commands:
     rake          Run the rake command for the given service
     restart       Restart a running container
     rspec         Runs the rspec command for the given service
+    rubocop       Runs the rubocop command for the given service
     run           Wraps normal 'docker-compose run' to ensure that --rm is always passed
     shell         Start a shell session in a one-off service container
     update        Download the latest version of the nib tool
