@@ -22,14 +22,14 @@ IRB.conf[:HISTORY_FILE] = \"/usr/src/app/tmp/irb_history\"
 SCRIPT="
   echo '${IRBRC}' > /root/.irbrc
 
-  if hash rails 2>/dev/null ; then
-    rails console
-  elif hash pry 2>/dev/null ; then
-    pry -r ./config/boot.rb
-  elif hash bundle 2>/dev/null ; then
-    bundle console
-  else
+  if [ -f script/console ]; then
     script/console
+  else
+    if hash pry 2>/dev/null ; then
+      bundle config console pry
+    fi
+
+    bundle console
   fi
 "
 
