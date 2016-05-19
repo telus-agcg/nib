@@ -107,7 +107,7 @@ Note:
         --rm \
         -v $(pwd):$(pwd) \
         -w $(pwd) \
-        -v $HOME/.docker/config.json:/root/.docker/config.json:ro \
+        -v $HOME/.docker:/root/.docker:ro \
         -v /var/run/docker.sock:/var/run/docker.sock \
         -e "DOCKER_HOST_URL=$DOCKER_HOST" \
         technekes/nib'
@@ -202,6 +202,7 @@ alias nibdev='
     --rm \
     -v $(pwd):$(pwd) \
     -w $(pwd) \
+    -v $HOME/.docker:/root/.docker:ro \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -e "DOCKER_HOST_URL=$DOCKER_HOST" \
     nibdev:latest'
