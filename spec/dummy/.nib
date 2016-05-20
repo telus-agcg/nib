@@ -1,0 +1,8 @@
+{
+  "services": [
+    {
+       "name": "web",
+       "ruby_debug_port": "3001"
+    }
+  ]
+}

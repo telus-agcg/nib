@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+
+gem 'actionpack'
+gem 'railties'
+gem 'tzinfo'
+
+gem 'pry-byebug'
