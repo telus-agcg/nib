@@ -1,10 +1,5 @@
 #!/bin/bash
 
-source "/usr/local/bin/_common"
-source "/usr/local/bin/_help"
+COMMAND="rspec"
 
-service=$(normalize $1)
-
-shift
-
-docker-compose run --rm $service rspec $@
+source "/usr/local/bin/_standard_command"
