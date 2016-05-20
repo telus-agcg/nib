@@ -29,14 +29,20 @@ ruby_debug_port() {
   fi
 }
 
+SERVICE=$1
+
+if [ -z "$DOCKER_HOST_URL" ]; then
+  HOST=$(ip route | awk 'NR==1 {print $3}')
+else
+  HOST=$(echo $DOCKER_HOST_URL | sed -E -e 's/(tcp:\/\/|:([0-9]{4}))//g')
+fi
+
 if [ -z "$1" ]; then
   show_help
 elif [ ! -f .nib ]; then
   echo "The .nib file is missing; cannot determine ruby_debug_port"
   show_help
 else
-  SERVICE=$1
-  HOST=$(echo $DOCKER_HOST_URL | sed -E -e 's/(tcp:\/\/|:([0-9]{4}))//g')
   RUBY_DEBUG_PORT=$(ruby_debug_port $SERVICE)
 
   if [ $? == 1 ]; then
