@@ -55,7 +55,7 @@ version() {
 }
 
 check_for_updates() {
-  LATEST=$(curl --silent https://raw.githubusercontent.com/technekes/nib/master/VERSION)
+  LATEST=$(curl --silent https://raw.githubusercontent.com/technekes/nib/latest/VERSION)
   NIB_VERSION=$(version)
 
   if [ "$NIB_VERSION" != "$LATEST" ]; then
