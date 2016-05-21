@@ -50,6 +50,21 @@ COMMANDS=(
   "update|        |Download the latest version of the nib tool"
 )
 
+version() {
+  echo $(cat /usr/local/bin/VERSION)
+}
+
+check_for_updates() {
+  LATEST=$(curl --silent https://raw.githubusercontent.com/technekes/nib/master/VERSION)
+  NIB_VERSION=$(version)
+
+  if [ "$NIB_VERSION" != "$LATEST" ]; then
+    echo ""
+    echo "An update avaiable is available for nib: $LATEST"
+    echo "Use 'nib update' to pull the latest version"
+  fi
+}
+
 print_commands() {
   echo "Commands:"
   for COMMAND in "${COMMANDS[@]}"; do
@@ -65,10 +80,13 @@ case $1 in
       show_common_help
     fi
 
+    check_for_updates
     exit 0
     ;;
   --version|version)
-    cat VERSION
+    version
+
+    check_for_updates
     exit 0
     ;;
 esac
