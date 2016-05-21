@@ -40,7 +40,7 @@ COMMANDS=(
   "bundle|        |Run bundle for the given service"
   "console|       |Start a REPL session for the given service"
   "debug|         |Connect to a running byebug server for a given service"
-  "guard"         "Run the guard command for the given service"
+  "guard|         |Run the guard command for the given service"
   "rails|         |Run the rails command for the given service"
   "rake|          |Run the rake command for the given service"
   "rspec|         |Runs the rspec command for the given service"
