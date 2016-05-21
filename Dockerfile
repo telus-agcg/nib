@@ -1,6 +1,6 @@
 FROM debian:latest
 
-ENV COMPOSE_VERSION 1.7.0
+ENV COMPOSE_VERSION 1.7.1
 
 RUN \
   apt-get update -q && \
