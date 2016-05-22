@@ -162,20 +162,6 @@ web:
     - "RUBY_DEBUG_PORT=3001"
 ```
 
-Tell nib what port you are using by adding a configuration file (`.nib` JSON) specifying the service name and port.
-
-```json
-// .nib
-{
-  "services": [
-    {
-       "name": "web",
-       "ruby_debug_port": "3001"
-    }
-  ]
-}
-```
-
 Once all of this is in place and the web service is up and running (`nib up`) you can use the `debug` command to attach to the remote debugger.
 
 ```sh

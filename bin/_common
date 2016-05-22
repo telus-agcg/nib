@@ -7,12 +7,22 @@ NC='\033[0m' # No Color
 
 COMMAND=`basename "$0"`
 
-repos() {
-  echo $(cat .nib | jq -r '.services | map(.repository) | unique | .[]')
+compose_json() {
+  cat docker-compose.yml | yaml2json
+}
+
+compose_version2() {
+  grep -q "version.*2" docker-compose.yml
 }
 
 services() {
-  echo $(cat .nib | jq -r '.services[] | .name')
+  prefix=""
+
+  if compose_version2 ; then
+    prefix=".services | "
+  fi
+
+  echo $(compose_json | jq "${prefix}keys")
 }
 
 fancy_echo() {

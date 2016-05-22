@@ -15,12 +15,24 @@ show_help() {
 }
 
 source "/usr/local/bin/_help"
+source "/usr/local/bin/_common"
 
 ruby_debug_port() {
-  PORT=$(
-    cat .nib | \
-    jq -r ".services[] | select(.name==\"$1\") | .ruby_debug_port"
+  PREFIX=""
+
+  if compose_version2 ; then
+    PREFIX=".services"
+  fi
+
+  DEBUG_SETTING=$(
+    compose_json | \
+      jq "${PREFIX}.$1.environment" | \
+      grep "RUBY_DEBUG_PORT" | \
+      tr ':' '=' | \
+      tr '[,"]' ' '
   )
+
+  PORT="${DEBUG_SETTING#*=}"
 
   if [ -z "$PORT" ] || [ "null" == "$PORT" ]; then
     exit 1
@@ -39,14 +51,11 @@ fi
 
 if [ -z "$1" ]; then
   show_help
-elif [ ! -f .nib ]; then
-  echo "The .nib file is missing; cannot determine ruby_debug_port"
-  show_help
 else
   RUBY_DEBUG_PORT=$(ruby_debug_port $SERVICE)
 
   if [ $? == 1 ]; then
-    echo "The service is not defined in .nib or the ruby_debug_port is missing"
+    echo "The service is not defined or the ruby_debug_port is missing"
     show_help
     exit 1
   fi
