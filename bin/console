@@ -19,8 +19,13 @@ IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = \"/usr/src/app/tmp/irb_history\"
 "
 
+PRYRC="
+Pry.config.history.file = \"/usr/src/app/tmp/irb_history\"
+"
+
 SCRIPT="
   echo '${IRBRC}' > /root/.irbrc
+  echo '${PRYRC}' > /root/.pryrc
 
   if [ -f script/console ]; then
     script/console
