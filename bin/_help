@@ -22,7 +22,7 @@ print_services() {
 }
 
 print_command_instructions() {
-  echo "  " $(printf -- '%s\n' "${COMMANDS[@]}" | grep $COMMAND | awk -F '|' '{print $3}')
+  echo "  " $(printf -- '%s\n' "${COMMANDS[@]}" | grep "${COMMAND}|" | awk -F '|' '{print $3}')
 }
 
 show_common_help() {
