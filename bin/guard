@@ -1,5 +1,0 @@
-#!/bin/bash
-
-COMMAND="guard"
-
-source "/usr/local/bin/_standard_command"

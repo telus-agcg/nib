@@ -1,0 +1,67 @@
+[
+  {
+    "name": "attach",
+    "type": "custom",
+    "description": "Attach an interactive shell session to a running container"
+  },
+  {
+    "name": "bootstrap",
+    "type": "custom",
+    "description": "Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)"
+  },
+  {
+    "name": "bundle",
+    "type": "wrap",
+    "description": "Run bundle for the given service"
+  },
+  {
+    "name": "console",
+    "type": "custom",
+    "description": "Start a REPL session for the given service"
+  },
+  {
+    "name": "debug",
+    "type": "custom",
+    "description": "Connect to a running byebug server for a given service"
+  },
+  {
+    "name": "guard",
+    "type": "wrap",
+    "description": "Run the guard command for the given service"
+  },
+  {
+    "name": "rails",
+    "type": "wrap",
+    "description": "Run the rails command for the given service"
+  },
+  {
+    "name": "rake",
+    "type": "wrap",
+    "description": "Run the rake command for the given service"
+  },
+  {
+    "name": "rspec",
+    "type": "wrap",
+    "description": "Runs the rspec command for the given service"
+  },
+  {
+    "name": "rubocop",
+    "type": "wrap",
+    "description": "Runs the rubocop command for the given service"
+  },
+  {
+    "name": "run",
+    "type": "custom",
+    "description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed"
+  },
+  {
+    "name": "shell",
+    "type": "custom",
+    "description": "Start a shell session in a one-off service container"
+  },
+  {
+    "name": "update",
+    "type": "custom",
+    "description": "Download the latest version of the nib tool"
+  }
+]

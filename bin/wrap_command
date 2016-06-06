@@ -2,8 +2,11 @@
 
 source "/usr/local/bin/_common"
 
-service=$(normalize $1)
+COMMAND=$1
 
+service=$(normalize $2)
+
+shift
 shift
 
 docker-compose run --rm $service $COMMAND $@

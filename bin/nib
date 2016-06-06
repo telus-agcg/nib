@@ -24,13 +24,25 @@ Note:
 DIR=/usr/local/bin
 source "$DIR/_help"
 
+is_wrapped_command() {
+  query=".[] | select( .name == \"$1\" ) | select( .type == \"wrap\" )"
+
+  if [[ $(cat $DIR/config/commands.json | jq -r "$query") ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 if [[ $# -eq 0 ]] ; then
-    show_help
-    exit 0
+  show_help
+  exit 0
 fi
 
 if [ ! -f "$DIR/$1" ]; then
-    docker-compose $@
+  docker-compose $@
+elif is_wrapped_command $1 ; then
+  $DIR/wrap_command $@
 else
-    $DIR/$@
+  $DIR/$@
 fi

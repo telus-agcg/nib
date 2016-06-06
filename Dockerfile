@@ -13,6 +13,7 @@ RUN \
   rm /var/cache/apk/* && \
   rm -rf `find / -regex '.*\.py[co]' -or -name apk`
 
+COPY config /usr/local/bin/config
 COPY bin /usr/local/bin
 COPY VERSION /usr/local/bin
 

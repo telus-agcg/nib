@@ -1,5 +1,0 @@
-#!/bin/bash
-
-COMMAND="bundle"
-
-source "/usr/local/bin/_standard_command"
