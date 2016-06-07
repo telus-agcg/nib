@@ -23,7 +23,7 @@ print_services() {
 
 print_command_instructions() {
   echo $(commands_json) | \
-    jq -r '.[] | select(.name == "attach") | .description'
+    jq -r ".[] | select(.name == \"$COMMAND\") | .description"
 }
 
 show_common_help() {
