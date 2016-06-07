@@ -15,6 +15,11 @@
     "description": "Run bundle for the given service"
   },
   {
+    "name": "codeclimate",
+    "type": "custom",
+    "description": "Run codeclimate againt the current working directory"
+  },
+  {
     "name": "console",
     "type": "custom",
     "description": "Start a REPL session for the given service"

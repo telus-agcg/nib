@@ -1,0 +1,26 @@
+#!/bin/bash
+
+source "/usr/local/bin/_help"
+
+COMPOSE_PATH=/tmp/docker-compose.yml
+
+cat << COMPOSE > $COMPOSE_PATH
+version: '2'
+
+services:
+  codeclimate:
+    image: codeclimate/codeclimate
+    # entrypoint: /bin/ash
+    environment:
+      - CODECLIMATE_CODE=$PWD
+    volumes:
+      - $PWD:/code
+      - $PWD:$PWD
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/cc:/tmp/cc
+COMPOSE
+
+# Discard service name because codeclimate is run on local path
+shift
+
+docker-compose -f $COMPOSE_PATH run --rm codeclimate "$@"
