@@ -22,7 +22,8 @@ print_services() {
 }
 
 print_command_instructions() {
-  echo "  " $(printf -- '%s\n' "${COMMANDS[@]}" | grep "${COMMAND}|" | awk -F '|' '{print $3}')
+  echo $(commands_json) | \
+    jq -r ".[] | select(.name == \"$COMMAND\") | .description"
 }
 
 show_common_help() {
@@ -33,22 +34,6 @@ $(print_command_instructions)
 Services:
 $(print_services)"
 }
-
-COMMANDS=(
-  "attach|        |Attach an interactive shell session to a running container"
-  "bootstrap|     |Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)"
-  "bundle|        |Run bundle for the given service"
-  "console|       |Start a REPL session for the given service"
-  "debug|         |Connect to a running byebug server for a given service"
-  "guard|         |Run the guard command for the given service"
-  "rails|         |Run the rails command for the given service"
-  "rake|          |Run the rake command for the given service"
-  "rspec|         |Runs the rspec command for the given service"
-  "rubocop|       |Runs the rubocop command for the given service"
-  "run|           |Wraps normal 'docker-compose run' to ensure that --rm is always passed"
-  "shell|         |Start a shell session in a one-off service container"
-  "update|        |Download the latest version of the nib tool"
-)
 
 version() {
   echo $(cat /usr/local/bin/VERSION)
@@ -66,10 +51,11 @@ check_for_updates() {
 }
 
 print_commands() {
+  template='"\(.name) \"\(.description)\" "'
+
   echo "Commands:"
-  for COMMAND in "${COMMANDS[@]}"; do
-    echo "    ${COMMAND//|/}"
-  done
+  echo "$(echo $(commands_json) | jq -j ".[] | ${template}")" | \
+    xargs printf "  %-19s %-s\n"
 }
 
 case $1 in

@@ -7,6 +7,10 @@ NC='\033[0m' # No Color
 
 COMMAND=`basename "$0"`
 
+commands_json() {
+  cat /usr/local/bin/config/commands.json
+}
+
 compose_json() {
   cat docker-compose.yml | yaml2json
 }
