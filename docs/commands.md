@@ -7,6 +7,7 @@ Name | Description
 `attach` | Attach an interactive shell session to a running container
 `bootstrap` | Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)
 `bundle` | Run bundle for the given service
+`codeclimate` | Run codeclimate againt the current working directory
 `console` | Start a REPL session for the given service
 `debug` | Connect to a running byebug server for a given service
 `guard` | Run the guard command for the given service
