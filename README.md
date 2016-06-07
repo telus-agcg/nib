@@ -15,41 +15,10 @@ root@fd80bbc4ab5a:/usr/src/app#
 
 Will start up a container for the `web` service and drop you into an interactive shell session (bash, ash or sh). In addition nib will hook up a history file for your shell session (relative to the current project). This means that you will be able to use the history (up arrow) in future shell sessions, something that is not available with vanilla docker/docker-compose!
 
-For additional commands review the help system.
+For additional information and a list of [supported commands](./docs/commands.md) review the help system.
 
 ```sh
 > nib help
-Usage: nib COMMAND [OPTIONS] [arg...]
-
-Run docker/compose commands on apps relative to the current directory
-
-Options:
-  -h, --help      Print usage
-      --version   Print version information
-
-Commands:
-    attach        Attach an interactive shell session to a running container
-    bootstrap     Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)
-    bundle        Run bundle for the given service
-    console       Start a REPL session for the given service
-    debug         Connect to a running byebug server for a given service
-    guard         Run the guard command for the given service
-    rails         Run the rails command for the given service
-    rake          Run the rake command for the given service
-    rspec         Runs the rspec command for the given service
-    rubocop       Runs the rubocop command for the given service
-    run           Wraps normal 'docker-compose run' to ensure that --rm is always passed
-    shell         Start a shell session in a one-off service container
-    update        Download the latest version of the nib tool
-
-Run 'nib COMMAND --help' for more information on a command.
-
-Note:
-  Unrecognized commands will be delegate to docker-compose
-
-  For example the following are equivalent:
-    nib start
-    docker-compose start
 ```
 
 ## Install
@@ -199,6 +168,19 @@ Try out your command:
 
 ```sh
 nibdev shell web
+```
+
+## Generating Docs
+
+If you have added a new command you will want to regenerate the [commands document](./docs/commands.md). The following command should get that done:
+
+```sh
+docker run \
+  --rm \
+  -v $PWD:/usr/src/app \
+  -w /usr/src/app \
+  --entrypoint=./update_docs.sh \
+  technekes/nib
 ```
 
 ## Contributing
