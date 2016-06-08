@@ -5,3 +5,6 @@ gem 'railties'
 gem 'tzinfo'
 
 gem 'pry-byebug'
+gem 'rspec'
+gem 'rubocop'
+gem 'guard'
