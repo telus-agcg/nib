@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+      args:
+        HOST_PATH: $PWD
+    volumes:
+      - $PWD:$PWD
+      - /var/run/docker.sock:/var/run/docker.sock

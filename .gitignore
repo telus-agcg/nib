@@ -1,2 +1,5 @@
 keys/*
 .DS_Store
+spec/examples.txt
+spec/dummy/tmp
+spec/dummy/log

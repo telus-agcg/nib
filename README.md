@@ -170,6 +170,15 @@ Try out your command:
 nibdev shell web
 ```
 
+## Running Specs
+
+This project includes [rspec](http://rspec.info/) and [serverspec](http://serverspec.org/) to help facilitate execution of automated tests. Running the tests is as simple as:
+
+```sh
+nib build # the first time (you are using `nib` right?)
+nib rspec app
+```
+
 ## Generating Docs
 
 If you have added a new command you will want to regenerate the [commands document](./docs/commands.md). The following command should get that done:

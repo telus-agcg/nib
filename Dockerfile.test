@@ -1,0 +1,27 @@
+FROM ruby:alpine
+
+ENV COMPOSE_VERSION 1.7.1
+ARG HOST_PATH
+
+RUN \
+  apk add --update \
+    bash \
+    curl \
+    docker \
+    jq \
+    py-pip \
+    py-yaml && \
+  pip install -U docker-compose==${COMPOSE_VERSION} &&\
+  rm /var/cache/apk/* && \
+  rm -rf `find / -regex '.*\.py[co]' -or -name apk`
+
+WORKDIR $HOST_PATH
+
+COPY Gemfile* $HOST_PATH/
+RUN bundle install
+
+COPY . $HOST_PATH
+
+COPY spec/bin/nibtest /usr/local/bin
+
+CMD rspec spec
