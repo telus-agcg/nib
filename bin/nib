@@ -37,12 +37,10 @@ is_wrapped_command() {
 if [[ $# -eq 0 ]] ; then
   show_help
   exit 0
-fi
-
-if [ ! -f "$DIR/$1" ]; then
-  docker-compose $@
+elif [ -f "$DIR/$1" ]; then
+  $DIR/$@
 elif is_wrapped_command $1 ; then
   $DIR/wrap_command $@
 else
-  $DIR/$@
+  docker-compose $@
 fi
