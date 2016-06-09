@@ -1,23 +1,30 @@
+require 'pty'
+
 RSpec.describe 'console' do
-  pending
+  def tty
+    PTY.spawn('cd spec/dummy && nibtest console web') do |stdout, stdin, pid|
+      stdout.eof?
+
+      yield(stdout, stdin)
+
+      stdin.puts 'exit'
+
+      Process.waitpid(pid, 0)
+
+      stdin.close
+      stdout.close
+    end
+  end
+
+  it 'starts a pry session and accepts input' do
+    tty do |stdout, stdin|
+      # ideally we do not have to write a message at all, we simply want to
+      # check for a prompt. however if we do not perform a #puts here then
+      # stdout.gets hangs indefinitely.
+      stdin.puts 'puts "foo"'
+
+      expect(stdout.gets).to match(/puts \"foo\"/)
+      expect(stdout.gets).to match(/pry\(main\)>/)
+    end
+  end
 end
-
-# TODO: how to test a long running process that expect a tty
-# RSpec.describe 'console' do
-#   around do |example|
-#     # start console
-#     cmd = 'cd spec/dummy && nibtest console web'
-#     `setsid sh -c 'exec "#{cmd}" <> /dev/tty2 >&0 2>&1'`
-
-#     sleep 5
-
-#     example.run
-
-#     puts `docker ps`
-#     # TODO: stop console
-#   end
-
-#   context command("docker-compose exec web /bin/bash 'ps x; exit'") do
-#     its(:stdout) { should match(/pry/) }
-#   end
-# end
