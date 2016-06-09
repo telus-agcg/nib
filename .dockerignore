@@ -2,14 +2,11 @@
 .gitignore
 .rspec
 CONTRIBUTING.md
-Gemfile
 README.md
 release.sh
 update_docs.sh
 Dockerfile
-Gemfile.lock
 docker-compose.yml
-spec
 Dockerfile.test
 LICENSE
 docs
