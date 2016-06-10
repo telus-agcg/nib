@@ -1,10 +1,5 @@
 [
   {
-    "name": "attach",
-    "type": "custom",
-    "description": "Attach an interactive shell session to a running container"
-  },
-  {
     "name": "bootstrap",
     "type": "custom",
     "description": "Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)"
@@ -28,6 +23,11 @@
     "name": "debug",
     "type": "custom",
     "description": "Connect to a running byebug server for a given service"
+  },
+  {
+    "name": "exec",
+    "type": "custom",
+    "description": "Attach an interactive shell session to a running container"
   },
   {
     "name": "guard",
