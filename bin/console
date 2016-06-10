@@ -27,13 +27,27 @@ SCRIPT="
   echo '${IRBRC}' > /root/.irbrc
   echo '${PRYRC}' > /root/.pryrc
 
+  has_pry=false
+  has_boot=false
+
+  if hash pry 2>/dev/null ; then
+    has_pry=true
+  fi
+
+  if [ -f config/boot.rb ]; then
+    has_boot=true
+  fi
+
   if [ -f script/console ]; then
     script/console
+  elif [ \"\$has_boot\" = true ] && [ \"\$has_pry\" = true ]; then
+    pry -r ./config/boot
+  elif [ \"\$has_boot\" = true ]; then
+    irb -r ./config/boot
+  elif [ \"\$has_pry\" = true ]; then
+    bundle config console pry
+    bundle console
   else
-    if hash pry 2>/dev/null ; then
-      bundle config console pry
-    fi
-
     bundle console
   fi
 "

@@ -1,0 +1,5 @@
+# typically this file is used to rquire additional project resources. to
+# simulate that we are including a class here that should be in context when
+# this file is required
+class Foo
+end
