@@ -1,29 +1,31 @@
 #!/bin/bash
-#
-# Bootstrap apps or specific app
-#
-#/* vim: set filetype=sh : */
 
-set -e
+source "/usr/local/bin/_common"
+source "/usr/local/bin/_help"
 
-DIR=/usr/local/bin
-source "$DIR/_common"
+service=$(normalize $1)
 
-ARG=$(normalize "$1")
+shift
 
-if [ "$ARG" == 'apps' ]; then
-  $DIR/bootstrap-apps
-elif contains_element $ARG $(services); then
-  $DIR/bootstrap-apps "$ARG"
-else
-  fancy_echo "Not sure what to do with ${1}."
+SCRIPT="
+  if [ -f script/bootstrap.before ]; then
+    script/bootstrap.before
+  fi
 
-  echo "Usage examples:
+  if [ -f script/bootstrap ]; then
+    script/bootstrap
+  else
+    gem install bundler
+    bundle install --jobs 4
+    rake db:create db:migrate
+  fi
 
-    # Bootstraps all apps
-    > nib bootstrap apps
+  if [ -f script/bootstrap.after ]; then
+    script/bootstrap.after
+  fi
+"
 
-    # Bootstraps a specific app
-    > nib bootstrap talk
-  "
-fi
+docker-compose run \
+  --rm \
+  $service \
+  /bin/sh -c "$SCRIPT"
