@@ -1,7 +1,7 @@
-cmd = 'cd spec/dummy; nibtest bootstrap web'
+cmd = 'cd spec/dummy/rails; nibtest bootstrap web'
 
 RSpec.describe 'bootstrap' do
-  let(:script_path) { './spec/dummy/script' }
+  let(:script_path) { './spec/dummy/rails/script' }
 
   context 'bootstrap script' do
     context 'exists' do

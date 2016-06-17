@@ -18,7 +18,7 @@ RSpec.describe 'console' do
   end
 
   context 'rails' do
-    let(:spec_dir) { './spec/dummy' }
+    let(:spec_dir) { './spec/dummy/rails' }
 
     context 'script console override' do
       let(:script_file) { "#{spec_dir}/script/console" }
@@ -41,14 +41,14 @@ RSpec.describe 'console' do
     end
 
     context 'is rails' do
-      describe command('cd spec/dummy && nibtest console web') do
+      describe command('cd spec/dummy/rails && nibtest console web') do
         its(:stdout) { should match(/rails/) }
       end
     end
   end
 
   context 'sinatra' do
-    let(:spec_dir) { './spec/dummy-sinatra' }
+    let(:spec_dir) { './spec/dummy/sinatra' }
 
     context 'has pry' do
       it 'starts a pry session and accepts input' do
