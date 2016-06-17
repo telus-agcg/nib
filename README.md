@@ -17,7 +17,7 @@ root@fd80bbc4ab5a:/usr/src/app#
 1. `nib` will also hook up a history file for your shell session (relative to the current project). This means that you will be able to use the history (up arrow) in future shell sessions, something that is not available with vanilla docker/docker-compose!
 1. Finally `nib` will ensure that the container is removed after you finish with the shell session
 
-Some commands can have their behavior changed relative to a particiulair project. As an example - `nib console` expects a Ruby like environment (`rails console` or `pry` etc) by default but it can be augmented by adding a custom script on the host system (`$pwd/script/console`)
+Some commands can have their behavior changed relative to a particiulair project. As an example - `nib console` expects a Ruby like environment (`rails console` or `pry` etc) by default but it can be augmented by adding a custom script on the host system (`$pwd/bin/console`)
 
 Other commands like `nib rake` or `nib guard` behave as expected without the option to change the behavior.
 

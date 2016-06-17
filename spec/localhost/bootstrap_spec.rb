@@ -1,18 +1,18 @@
 cmd = 'cd spec/dummy/rails; nibtest bootstrap web'
 
 RSpec.describe 'bootstrap' do
-  let(:script_path) { './spec/dummy/rails/script' }
+  let(:bin_path) { './spec/dummy/rails/bin' }
 
-  context 'bootstrap script' do
+  context 'bootstrap binstub' do
     context 'exists' do
-      let(:script_file) { "#{script_path}/bootstrap" }
+      let(:binstub) { "#{bin_path}/bootstrap" }
 
       around(:each) do |example|
-        File.rename script_file, "#{script_file}.stub"
+        File.rename binstub, "#{binstub}.stub"
 
         example.run
 
-        File.rename "#{script_file}.stub", script_file
+        File.rename "#{binstub}.stub", binstub
       end
 
       describe command(cmd) do
@@ -35,16 +35,16 @@ RSpec.describe 'bootstrap' do
   end
 
   %i(before after).each do |hook|
-    context "#{hook} script" do
+    context "#{hook} binstub" do
       context 'exists' do
-        let(:script_file) { "#{script_path}/bootstrap.#{hook}" }
+        let(:binstub) { "#{bin_path}/bootstrap.#{hook}" }
 
         around(:each) do |example|
-          File.rename "#{script_file}.stub", script_file
+          File.rename "#{binstub}.stub", binstub
 
           example.run
 
-          File.rename script_file, "#{script_file}.stub"
+          File.rename binstub, "#{binstub}.stub"
         end
 
         describe command(cmd) do

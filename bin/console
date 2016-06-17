@@ -38,8 +38,8 @@ SCRIPT="
     has_boot=true
   fi
 
-  if [ -f script/console ]; then
-    script/console
+  if [ -f bin/console ]; then
+    bin/console
   elif hash rails 2>/dev/null ; then
     rails console
   elif [ \"\$has_boot\" = true ] && [ \"\$has_pry\" = true ]; then

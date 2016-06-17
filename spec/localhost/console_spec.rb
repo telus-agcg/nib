@@ -20,15 +20,15 @@ RSpec.describe 'console' do
   context 'rails' do
     let(:spec_dir) { './spec/dummy/rails' }
 
-    context 'script console override' do
-      let(:script_file) { "#{spec_dir}/script/console" }
+    context 'binstub console override' do
+      let(:binstub) { "#{spec_dir}/bin/console" }
 
       around(:each) do |example|
-        File.rename "#{script_file}.stub", script_file
+        File.rename "#{binstub}.stub", binstub
 
         example.run
 
-        File.rename script_file, "#{script_file}.stub"
+        File.rename binstub, "#{binstub}.stub"
       end
 
       it 'starts an irb session and accepts input' do
