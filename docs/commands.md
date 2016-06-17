@@ -4,7 +4,6 @@ The following commands are available:
 
 Name | Description
 ---- | -----------
-`bootstrap` | Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)
 `bundle` | Run bundle for the given service
 `codeclimate` | Run codeclimate againt the current working directory
 `console` | Start a REPL session for the given service
@@ -16,5 +15,6 @@ Name | Description
 `rspec` | Runs the rspec command for the given service
 `rubocop` | Runs the rubocop command for the given service
 `run` | Wraps normal 'docker-compose run' to ensure that --rm is always passed
+`setup` | Runs application specific setup for the given service
 `shell` | Start a shell session in a one-off service container
 `update` | Download the latest version of the nib tool
