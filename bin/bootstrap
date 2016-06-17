@@ -1,31 +1,8 @@
 #!/bin/bash
 
-source "/usr/local/bin/_common"
-source "/usr/local/bin/_help"
-
-service=$(normalize $1)
-
-shift
-
-SCRIPT="
-  if [ -f bin/bootstrap.before ]; then
-    bin/bootstrap.before
-  fi
-
-  if [ -f bin/bootstrap ]; then
-    bin/bootstrap
-  else
-    gem install bundler
-    bundle install --jobs 4
-    rake db:create db:migrate
-  fi
-
-  if [ -f bin/bootstrap.after ]; then
-    bin/bootstrap.after
-  fi
+echo "
+  NOTE: The bootstrap command has been renamed setup and will be
+        removed from nib in the near futureb.
 "
 
-docker-compose run \
-  --rm \
-  $service \
-  /bin/sh -c "$SCRIPT"
+/usr/local/bin/setup $@

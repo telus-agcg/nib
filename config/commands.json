@@ -1,10 +1,5 @@
 [
   {
-    "name": "bootstrap",
-    "type": "custom",
-    "description": "Runs the bootstrap script for the requested app (or all apps if 'apps' is specified)"
-  },
-  {
     "name": "bundle",
     "type": "wrap",
     "description": "Run bundle for the given service"
@@ -58,6 +53,11 @@
     "name": "run",
     "type": "custom",
     "description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed"
+  },
+  {
+    "name": "setup",
+    "type": "custom",
+    "description": "Runs application specific setup for the given service"
   },
   {
     "name": "shell",
