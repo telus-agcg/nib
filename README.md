@@ -1,19 +1,25 @@
 # nib
 
-A tool to aid development in a `docker-compose` environment. Currently supports a workflow where a single `docker-compose.yml` sits over one or more applications. Therefore the `nib` commands must be issued from the working directory of the `docker-compose.yml`
-
-Currently `nib` is tailored towards Ruby/Rails development. Some commands like `nib console` are expecting a Ruby like environment (`rails console` or `pry` etc) however it will fall down to a script/console (executable file) where a custom script can be defined. Other commands like `nib rake` or `nib guard` are clearly meant for Ruby developers.
+`nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
 
 ## Usage
 
-`nib` can ultimately be used as a replacement for `docker-compose` because it will delegate all commands it does not recognize to `docker-compose`. From there you can take advantage of the additional commands with a similar workflow. For example:
+`nib` can be used as a replacement for `docker-compose` any commands that it does not recognize will be delegated to `docker-compose`.
+
+The commands provided by `nib` are intended to provide a convenient and practical workflow for development, for example:
 
 ```sh
 > nib shell web
 root@fd80bbc4ab5a:/usr/src/app#
 ```
 
-Will start up a container for the `web` service and drop you into an interactive shell session (bash, ash or sh). In addition nib will hook up a history file for your shell session (relative to the current project). This means that you will be able to use the history (up arrow) in future shell sessions, something that is not available with vanilla docker/docker-compose!
+1. `nib` will start up a container for the `web` service and drop you into an interactive shell session (`bash`, `ash` or `sh`) depending on which shell is available.
+1. `nib` will also hook up a history file for your shell session (relative to the current project). This means that you will be able to use the history (up arrow) in future shell sessions, something that is not available with vanilla docker/docker-compose!
+1. Finally `nib` will ensure that the container is removed after you finish with the shell session
+
+Some commands can have their behavior changed relative to a particiulair project. As an example - `nib console` expects a Ruby like environment (`rails console` or `pry` etc) by default but it can be augmented by adding a custom script on the host system (`$pwd/script/console`)
+
+Other commands like `nib rake` or `nib guard` behave as expected without the option to change the behavior.
 
 For additional information and a list of [supported commands](./docs/commands.md) review the help system.
 
@@ -23,52 +29,7 @@ For additional information and a list of [supported commands](./docs/commands.md
 
 ## Install
 
-1. Install the [dockertoolbox](https://www.docker.com/docker-toolbox)
-1. Create a virtual machine with `docker-machine`. For better performance in file sharing with the host, automated dnsmasq support (*.docker) and filesystem events we recommend trying [dinghy](https://github.com/codekitchen/dinghy).
-
-    Dinghy can be installed via a brew tap (assumes you already have [Homebrew](http://brew.sh/) installed).
-
-    ```sh
-    brew tap codekitchen/dinghy
-    brew install dinghy
-    ```
-
-    Now create a new docker machine using the dinghy cli.
-
-    ```sh
-    dinghy create \
-      --provider virtualbox \
-      --memory=$(bc -l <<< $(sysctl hw.memsize | awk '{print $2}')/2/1024/1024 | sed "s/\..*$//") \
-      --cpus=$(echo $(bc -l <<< $(sysctl -n hw.ncpu)/2) | sed "s/\..*$//") \
-      --disk=40000
-    ```
-
-    This will create a VirtualBox based VM with the following attributes.
-
-    | Resource  | Allocation            |
-    |-----------|-----------------------|
-    | Memory    | 1/2 System Memory     |
-    | CPU Count | 1/2 System Core Count |
-    | Disk Size | 40 GB                 |
-
-
-    This creates a new docker-machine by the name of `dinghy`. In order to have the additional services started (nfs, dnsmasq etc) you will need to use the dinghy cli to start the machine.
-
-    ```bash
-    dinghy up
-    # provide password (required by nfs service)
-    ```
-
-    In order to point your docker client at the new machine you'll need to set some environment variables.
-
-    ```bash
-    eval $(dinghy shellinit)
-    ```
-
-    This will need to be executed per shell session. If you're using docker regularly you should consider adding this to your profile file of choice (`.bashrc`, `.zshrc` etc).
-
-1. Copy the alias below into your shell configuration and provide a value for "YOUR_GIT_KEY" (this will allow the `nib` tool to access git repos on your behalf)
-1. The most convenient way to use nib is by creating an alias or shell function. Here is an alias you can add to your profile that will make `nib` appear as a command. Note, in order for the `nib update` command (download the latest version) to work
+1. The most convenient way to use nib is by creating an alias or shell function. Here is an alias you can add to your profile that will make `nib` appear as a command.
 
     ```sh
     alias nib='
@@ -87,7 +48,7 @@ For additional information and a list of [supported commands](./docs/commands.md
 
 ## Updates
 
-To get the latest version of `nib` use the `update` command. This just pulls the latest version of `technekes/nib:latest` from the Docker Hub. 
+To get the latest version of `nib` use the `update` command. This just pulls the latest version of `technekes/nib:latest` from the Docker Hub.
 
 ```sh
 ❯ nib update
