@@ -2,71 +2,85 @@
   {
     "name": "bundle",
     "type": "wrap",
-    "description": "Run bundle for the given service"
+    "short_description": "Run bundle for the given service",
+    "long_description": ""
   },
   {
     "name": "codeclimate",
     "type": "custom",
-    "description": "Run codeclimate againt the current working directory"
+    "short_description": "Run codeclimate againt the current working directory",
+    "long_description": ""
   },
   {
     "name": "console",
     "type": "custom",
-    "description": "Start a REPL session for the given service"
+    "short_description": "Start a REPL session for the given service",
+    "long_description": "This command will try to detect the applications environment (ie. rails console or bundle console)\nand start the most appropriate REPL possible. It's possible to directly override this behaviour by\nsupplying an executable file at $pwd/bin/console."
   },
   {
     "name": "debug",
     "type": "custom",
-    "description": "Connect to a running byebug server for a given service"
+    "short_description": "Connect to a running byebug server for a given service",
+    "long_description": ""
   },
   {
     "name": "exec",
     "type": "custom",
-    "description": "Attach an interactive shell session to a running container"
+    "short_description": "Attach an interactive shell session to a running container",
+    "long_description": ""
   },
   {
     "name": "guard",
     "type": "wrap",
-    "description": "Run the guard command for the given service"
+    "short_description": "Run the guard command for the given service",
+    "long_description": ""
   },
   {
     "name": "rails",
     "type": "wrap",
-    "description": "Run the rails command for the given service"
+    "short_description": "Run the rails command for the given service",
+    "long_description": ""
   },
   {
     "name": "rake",
     "type": "wrap",
-    "description": "Run the rake command for the given service"
+    "short_description": "Run the rake command for the given service",
+    "long_description": ""
   },
   {
     "name": "rspec",
     "type": "wrap",
-    "description": "Runs the rspec command for the given service"
+    "short_description": "Runs the rspec command for the given service",
+    "long_description": ""
   },
   {
     "name": "rubocop",
     "type": "wrap",
-    "description": "Runs the rubocop command for the given service"
+    "short_description": "Runs the rubocop command for the given service",
+    "long_description": ""
   },
   {
     "name": "run",
     "type": "custom",
-    "description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed"
+    "short_description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed",
+    "long_description": ""
   },
   {
     "name": "setup",
     "type": "custom",
-    "description": "Runs application specific setup for the given service"
+    "short_description": "Runs application specific setup for the given service",
+    "long_description": "By default the setup command will execute 'bundle install && rake db:create db:migrate'.\n\nThis behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.\nAdditionally the setup process can be augmented by providing either $pwd/bin/setup.before or\n$pwd/bin/setup.after. This allows for extending the default behavior without having to redefine it."
   },
   {
     "name": "shell",
     "type": "custom",
-    "description": "Start a shell session in a one-off service container"
+    "short_description": "Start a shell session in a one-off service container",
+    "long_description": ""
   },
   {
     "name": "update",
     "type": "custom",
-    "description": "Download the latest version of the nib tool"
+    "short_description": "Download the latest version of the nib tool",
+    "long_description": ""
   }
 ]

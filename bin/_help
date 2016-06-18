@@ -22,8 +22,12 @@ print_services() {
 }
 
 print_command_instructions() {
-  echo $(commands_json) | \
-    jq -r ".[] | select(.name == \"$COMMAND\") | .description"
+  template="
+    select(.name == \"$COMMAND\") |
+    \"\(.short_description)\n\n\(.long_description)\"
+  "
+
+  echo $(commands_json) | jq -r ".[] | $template"
 }
 
 show_common_help() {
@@ -51,10 +55,21 @@ check_for_updates() {
 }
 
 print_commands() {
-  template='"\(.name) \"\(.description)\" "'
+  extended_commands_json="$(
+    echo $(commands_json) | \
+      jq 'map(. + {
+        extra_help: (
+          if (.long_description) == ""
+          then ""
+          else ". See ''nib \(.name) --help'' for more detail" end
+        )
+      })'
+  )"
+
+  template='"\(.name) \"\(.short_description)\(.extra_help)\" "'
 
   echo "Commands:"
-  echo "$(echo $(commands_json) | jq -j ".[] | ${template}")" | \
+  echo "$(echo $extended_commands_json:| jq -j ".[] | ${template}")" | \
     xargs printf "  %-19s %-s\n"
 }
 
