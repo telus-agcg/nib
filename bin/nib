@@ -7,7 +7,9 @@ show_help() {
 
 Run docker/compose commands on apps relative to the current directory
 
-$(print_help_options)
+Options:
+  -h, --help      Print usage
+      --version   Print version information
 
 $(print_commands)
 

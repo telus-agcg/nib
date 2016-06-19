@@ -3,84 +3,98 @@
     "name": "bundle",
     "type": "wrap",
     "short_description": "Run bundle for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "codeclimate",
     "type": "custom",
     "short_description": "Run codeclimate againt the current working directory",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "console",
     "type": "custom",
     "short_description": "Start a REPL session for the given service",
-    "long_description": "This command will try to detect the applications environment (ie. rails console or bundle console)\nand start the most appropriate REPL possible. It's possible to directly override this behaviour by\nsupplying an executable file at $pwd/bin/console."
+    "long_description": "This command will try to detect the applications environment (ie. rails console or bundle console)\nand start the most appropriate REPL possible. It's possible to directly override this behaviour by\nsupplying an executable file at $pwd/bin/console.",
+    "options": []
   },
   {
     "name": "debug",
     "type": "custom",
     "short_description": "Connect to a running byebug server for a given service",
-    "long_description": "This command requires a little extra setup.\n\n  > The byebug server must be running inside of a web service\n   > The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service\n    > The debug port must be exposed by the service"
+    "long_description": "This command requires a little extra setup.\n\n  > The byebug server must be running inside of a web service\n   > The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service\n    > The debug port must be exposed by the service",
+    "options": []
   },
   {
     "name": "exec",
     "type": "custom",
     "short_description": "Attach an interactive shell session to a running container",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "guard",
     "type": "wrap",
     "short_description": "Run the guard command for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "rails",
     "type": "wrap",
     "short_description": "Run the rails command for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "rake",
     "type": "wrap",
     "short_description": "Run the rake command for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "rspec",
     "type": "wrap",
     "short_description": "Runs the rspec command for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "rubocop",
     "type": "wrap",
     "short_description": "Runs the rubocop command for the given service",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "run",
     "type": "custom",
     "short_description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "setup",
     "type": "custom",
     "short_description": "Runs application specific setup for the given service",
-    "long_description": "By default the setup command will execute 'bundle install && rake db:create db:migrate'.\n\nThis behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.\nAdditionally the setup process can be augmented by providing either $pwd/bin/setup.before or\n$pwd/bin/setup.after. This allows for extending the default behavior without having to redefine it."
+    "long_description": "By default the setup command will execute 'bundle install && rake db:create db:migrate'.\n\nThis behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.\nAdditionally the setup process can be augmented by providing either $pwd/bin/setup.before or\n$pwd/bin/setup.after. This allows for extending the default behavior without having to redefine it.",
+    "options": []
   },
   {
     "name": "shell",
     "type": "custom",
     "short_description": "Start a shell session in a one-off service container",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   },
   {
     "name": "update",
     "type": "custom",
     "short_description": "Download the latest version of the nib tool",
-    "long_description": ""
+    "long_description": "",
+    "options": []
   }
 ]

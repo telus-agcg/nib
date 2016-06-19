@@ -7,14 +7,16 @@
 source "/usr/local/bin/_common"
 
 print_common_usage() {
-  echo "Usage: nib ${1} [SERVICE]"
+  echo "Usage: nib $COMMAND [SERVICE]"
 }
 
 print_help_options() {
-  echo "Options:
-  -h, --help      Print usage
-      --version   Print version information
-"
+  if [ "$(echo $(command_json) | jq '.options | length')" -ne 0 ]; then
+    template=".options[] | \"  \(.flag)    \(.description)\n\""
+
+    echo -e "\nOptions:"
+    echo -e "$(echo $(command_json) | jq -r "$template")\n "
+  fi
 }
 
 print_services() {
@@ -22,19 +24,16 @@ print_services() {
 }
 
 print_command_instructions() {
-  template="
-    select(.name == \"$COMMAND\") |
-    \"\(.short_description)\n\n\(.long_description)\"
-  "
+  template="\"\(.short_description)\n\n\(.long_description)\""
 
-  echo $(commands_json) | jq -r ".[] | $template"
+  echo $(command_json) | jq -r "$template"
 }
 
 show_common_help() {
-  echo "$(print_common_usage $COMMAND)
+  echo "$(print_common_usage)
 
 $(print_command_instructions)
-
+$(print_help_options)
 Services:
 $(print_services)"
 }
