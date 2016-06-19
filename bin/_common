@@ -11,6 +11,10 @@ commands_json() {
   cat /usr/local/bin/config/commands.json
 }
 
+command_json() {
+  echo $(commands_json) | jq -r ".[] | select(.name == \"$COMMAND\")"
+}
+
 compose_json() {
   cat docker-compose.yml | yaml2json
 }
