@@ -4,16 +4,6 @@
 #
 #/* vim: set filetype=sh : */
 
-show_help() {
-  echo "debug USAGE:
-
-  Conect to a running byebug server for a given service
-    > The byebug server must be running inside of the rails service
-    > The service and ruby_debug_port must be defined in .nib
-    > The debug port must be exposed by the service
-  "
-}
-
 source "/usr/local/bin/_help"
 source "/usr/local/bin/_common"
 
