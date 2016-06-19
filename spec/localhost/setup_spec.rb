@@ -1,11 +1,11 @@
-cmd = 'cd spec/dummy/rails; nibtest bootstrap web'
+cmd = 'cd spec/dummy/rails; nibtest setup web'
 
-RSpec.describe 'bootstrap' do
+RSpec.describe 'setup' do
   let(:bin_path) { './spec/dummy/rails/bin' }
 
-  context 'bootstrap binstub' do
+  context 'setup binstub' do
     context 'exists' do
-      let(:binstub) { "#{bin_path}/bootstrap" }
+      let(:binstub) { "#{bin_path}/setup" }
 
       around(:each) do |example|
         File.rename binstub, "#{binstub}.stub"
@@ -28,7 +28,7 @@ RSpec.describe 'bootstrap' do
 
     context 'does not exist' do
       describe command(cmd) do
-        its(:stdout) { should match(/hello from bootstrap proper/) }
+        its(:stdout) { should match(/hello from setup proper/) }
         its(:exit_status) { should eq 0 }
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe 'bootstrap' do
   %i(before after).each do |hook|
     context "#{hook} binstub" do
       context 'exists' do
-        let(:binstub) { "#{bin_path}/bootstrap.#{hook}" }
+        let(:binstub) { "#{bin_path}/setup.#{hook}" }
 
         around(:each) do |example|
           File.rename "#{binstub}.stub", binstub
@@ -48,14 +48,14 @@ RSpec.describe 'bootstrap' do
         end
 
         describe command(cmd) do
-          its(:stdout) { should match(/hello from bootstrap\.#{hook}/) }
+          its(:stdout) { should match(/hello from setup\.#{hook}/) }
           its(:exit_status) { should eq 0 }
         end
       end
 
       context 'does not exist' do
         describe command(cmd) do
-          its(:stdout) { should_not match(/hello from bootstrap\.#{hook}/) }
+          its(:stdout) { should_not match(/hello from setup\.#{hook}/) }
           its(:exit_status) { should eq 0 }
         end
       end

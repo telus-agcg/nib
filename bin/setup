@@ -8,20 +8,20 @@ service=$(normalize $1)
 shift
 
 SCRIPT="
-  if [ -f bin/bootstrap.before ]; then
-    bin/bootstrap.before
+  if [ -f bin/setup.before ]; then
+    bin/setup.before
   fi
 
-  if [ -f bin/bootstrap ]; then
-    bin/bootstrap
+  if [ -f bin/setup ]; then
+    bin/setup
   else
     gem install bundler
     bundle install --jobs 4
     rake db:create db:migrate
   fi
 
-  if [ -f bin/bootstrap.after ]; then
-    bin/bootstrap.after
+  if [ -f bin/setup.after ]; then
+    bin/setup.after
   fi
 "
 
