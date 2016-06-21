@@ -9,4 +9,10 @@ service=$(normalize $2)
 shift
 shift
 
-docker-compose run --rm $service $COMMAND $@
+service_options="$(echo $(command_json) | jq -r '.service_options')"
+
+docker-compose run \
+  --rm \
+  $service_options \
+  $service \
+  $COMMAND $@

@@ -4,77 +4,88 @@
     "type": "wrap",
     "short_description": "Run bundle for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": "--no-deps"
   },
   {
     "name": "codeclimate",
     "type": "custom",
     "short_description": "Run codeclimate againt the current working directory",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": "--no-deps"
   },
   {
     "name": "console",
     "type": "custom",
     "short_description": "Start a REPL session for the given service",
     "long_description": "This command will try to detect the applications environment (ie. rails console or bundle console)\nand start the most appropriate REPL possible. It's possible to directly override this behaviour by\nsupplying an executable file at $pwd/bin/console.",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "debug",
     "type": "custom",
     "short_description": "Connect to a running byebug server for a given service",
     "long_description": "This command requires a little extra setup.\n\n  > The byebug server must be running inside of a web service\n   > The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service\n    > The debug port must be exposed by the service",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "exec",
     "type": "custom",
     "short_description": "Attach an interactive shell session to a running container",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "guard",
     "type": "wrap",
     "short_description": "Run the guard command for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "rails",
     "type": "wrap",
     "short_description": "Run the rails command for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "rake",
     "type": "wrap",
     "short_description": "Run the rake command for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "rspec",
     "type": "wrap",
     "short_description": "Runs the rspec command for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "rubocop",
     "type": "wrap",
     "short_description": "Runs the rubocop command for the given service",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": "--no-deps"
   },
   {
     "name": "run",
     "type": "custom",
     "short_description": "Wraps normal 'docker-compose run' to ensure that --rm is always passed",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "setup",
@@ -88,13 +99,15 @@
     "type": "custom",
     "short_description": "Start a shell session in a one-off service container",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   },
   {
     "name": "update",
     "type": "custom",
     "short_description": "Download the latest version of the nib tool",
     "long_description": "",
-    "options": []
+    "options": [],
+    "service_options": ""
   }
 ]
