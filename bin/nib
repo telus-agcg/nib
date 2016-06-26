@@ -1,46 +1,130 @@
-#!/bin/bash
-#
-#/* vim: set filetype=sh : */
+#!/usr/bin/env ruby
 
-show_help() {
-  echo "Usage: nib COMMAND [OPTIONS] [arg...]
+require 'gli'
+require 'nib'
 
-Run docker/compose commands on apps relative to the current directory
+include GLI::App
 
-$(print_help_options)
+program_desc 'A docker-compose wrapper geared towards Ruby/Rails development'
 
-$(print_commands)
+version Nib::VERSION
 
-Run 'nib COMMAND --help' for more information on a command.
+subcommand_option_handling :normal
+arguments :strict
 
-Note:
-  Unrecognized commands will be delegate to docker-compose
+pre do |global, command, options, args|
+  # Pre logic here
+  # Return true to proceed; false to abort and not call the
+  # chosen command
+  # Use skips_pre before a command to skip this block
+  # on that command only
+  true
+end
 
-  For example the following are equivalent:
-    nib start
-    docker-compose start"
-}
+post do |global, command, options, args|
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
 
-DIR=/usr/local/bin
-source "$DIR/_help"
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
 
-is_wrapped_command() {
-  query=".[] | select( .name == \"$1\" ) | select( .type == \"wrap\" )"
+desc 'Run bundle for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :bundle do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :bundle))
+  end
+end
 
-  if [[ $(cat $DIR/config/commands.json | jq -r "$query") ]]; then
-    return 0
-  else
-    return 1
-  fi
-}
+desc 'Run bundle for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :codeclimate do |c|
+  c.action do |global, options, args|
+    Nib::CodeClimate.execute(options, args)
+  end
+end
 
-if [[ $# -eq 0 ]] ; then
-  show_help
-  exit 0
-elif [ -f "$DIR/$1" ]; then
-  $DIR/$@
-elif is_wrapped_command $1 ; then
-  $DIR/wrap_command $@
-else
-  docker-compose $@
-fi
+# TODO: console
+# TODO: debug
+
+desc 'Attach an interactive shell session to a running container'
+arg :service
+arg :command, %i(optional multiple)
+command :exec do |c|
+  c.action do |global, options, args|
+    Nib::Exec.execute(options, args)
+  end
+end
+
+desc 'Run the guard command for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :guard do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :guard))
+  end
+end
+
+desc 'Run the rails command for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :rails do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :rails))
+  end
+end
+
+desc 'Run the rake command for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :rake do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :rake))
+  end
+end
+
+desc 'Runs the rspec command for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :rspec do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :rspec))
+  end
+end
+
+desc 'Runs the rubocop command for the given service'
+arg :service
+arg :command, %i(optional multiple)
+command :rubocop do |c|
+  c.action do |global, options, args|
+    Nib::WrapCommand.execute(options, args.insert(1, :rubocop))
+  end
+end
+
+desc 'Wraps normal \'docker-compose run\' to ensure that --rm is always passed'
+arg :service
+arg :command, %i(optional multiple)
+command :run do |c|
+  c.action do |global, options, args|
+    Nib::Run.execute(options, args)
+  end
+end
+
+# TODO: setup
+# TODO: shell
+
+desc 'Download the latest version of the nib tool'
+command :update do |c|
+  c.action do |global, options, args|
+    Nib::Update.execute(options, args)
+  end
+end
+
+exit run(ARGV)
