@@ -9,12 +9,10 @@ source "/usr/local/bin/_help"
 
 SERVICE="$1"
 
-local_history_path="${PWD}/tmp"
-
-mkdir -p $local_history_path
+mkdir -p "${PWD}/tmp"
 
 docker-compose run \
   --rm \
-  -e HISTFILE=/usr/src/app/tmp/shell_history \
+  -e HISTFILE=./tmp/shell_history \
   $SERVICE \
   /bin/sh -c "${SCRIPT}"
