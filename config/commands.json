@@ -27,7 +27,7 @@
     "name": "debug",
     "type": "custom",
     "short_description": "Connect to a running byebug server for a given service",
-    "long_description": "This command requires a little extra setup.\n\n  > The byebug server must be running inside of a web service\n   > The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service\n    > The debug port must be exposed by the service",
+    "long_description": "This command requires a little extra setup.\n\n  The byebug server must be running inside of a web service\n   The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service\n    The debug port must be exposed by the service",
     "options": [],
     "service_options": ""
   },

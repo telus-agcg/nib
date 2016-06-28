@@ -31,7 +31,11 @@ supplying an executable file at $pwd/bin/console.
 
 Connect to a running byebug server for a given service
 
+This command requires a little extra setup.
 
+  The byebug server must be running inside of a web service
+   The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service
+    The debug port must be exposed by the service
 
 
 ### `exec`
