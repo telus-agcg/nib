@@ -1,21 +1,8 @@
 require 'pty'
 require 'expect'
 
-RSpec.describe 'console' do
-  def tty
-    PTY.spawn("cd #{spec_dir} && nibtest console web") do |stdout, stdin, pid|
-      stdin.sync = true
-
-      yield(stdout, stdin)
-
-      stdin.puts 'exit'
-
-      Process.waitpid(pid, 0)
-
-      stdin.close
-      stdout.close
-    end
-  end
+RSpec.describe 'console', :interactive do
+  let(:command) { "cd #{spec_dir} && nibtest console web" }
 
   context 'rails' do
     let(:spec_dir) { './spec/dummy/rails' }
@@ -32,7 +19,7 @@ RSpec.describe 'console' do
       end
 
       it 'starts an irb session and accepts input' do
-        tty do |stdout, stdin|
+        tty(command) do |stdout, stdin|
           stdout.expect(/irb/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts \"foo\"/)
@@ -52,7 +39,7 @@ RSpec.describe 'console' do
 
     context 'has pry' do
       it 'starts a pry session and accepts input' do
-        tty do |stdout, stdin|
+        tty(command) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts \"foo\"/)
@@ -72,7 +59,7 @@ RSpec.describe 'console' do
       end
 
       it 'loads classes required by boot' do
-        tty do |stdout, stdin|
+        tty(command) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'Foo' }
 
           expect(stdout.gets).to match(/\(main\)> Foo/)
