@@ -130,7 +130,14 @@ command :setup do |c|
   end
 end
 
-# TODO: shell
+desc 'Start a shell session in a one-off service container'
+arg :service
+arg :command, %i(optional multiple)
+command :shell do |c|
+  c.action do |global, options, args|
+    Nib::Shell.execute(options, args)
+  end
+end
 
 desc 'Download the latest version of the nib tool'
 command :update do |c|

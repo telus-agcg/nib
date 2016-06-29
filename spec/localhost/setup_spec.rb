@@ -19,7 +19,6 @@ RSpec.describe 'setup' do
         its(:stdout) do
           should match(/Fetching: bundler-/)
           should match(/Bundle complete!/)
-          should match(/No Rakefile found/)
         end
 
         its(:exit_status) { should eq 0 }
