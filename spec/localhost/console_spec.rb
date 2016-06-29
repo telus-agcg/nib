@@ -62,7 +62,7 @@ RSpec.describe 'console', :interactive do
         tty(command) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'Foo' }
 
-          expect(stdout.gets).to match(/\(main\)> Foo/)
+          expect(stdout.gets).to match(/Foo/)
         end
       end
     end

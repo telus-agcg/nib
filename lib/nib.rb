@@ -1,6 +1,7 @@
 require 'nib/version'
 
 require 'nib/code_climate'
+require 'nib/console'
 require 'nib/exec'
 require 'nib/run'
 require 'nib/setup'

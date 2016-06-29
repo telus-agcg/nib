@@ -51,7 +51,18 @@ command :codeclimate do |c|
   end
 end
 
-# TODO: console
+desc 'Start a REPL session for the given service'
+long_desc 'This command will try to detect the applications environment (ie. rails console or bundle console)
+and start the most appropriate REPL possible. It\'s possible to directly override this behaviour by
+supplying an executable file at $pwd/bin/console.'
+arg :service
+arg :command, %i(optional multiple)
+command :console do |c|
+  c.action do |global, options, args|
+    Nib::Console.execute(options, args)
+  end
+end
+
 # TODO: debug
 
 desc 'Attach an interactive shell session to a running container'
