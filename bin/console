@@ -4,8 +4,6 @@
 #
 #/* vim: set filetype=sh : */
 
-echo $PWD
-
 IRBRC="
 require \"rubygems\"
 require \"irb/completion\"
