@@ -68,7 +68,7 @@ print_commands() {
   template='"\(.name) \"\(.short_description)\(.extra_help)\" "'
 
   echo "Commands:"
-  echo "$(echo $extended_commands_json:| jq -j ".[] | ${template}")" | \
+  echo "$(echo $extended_commands_json | jq -j ".[] | ${template}")" | \
     xargs printf "  %-19s %-s\n"
 }
 
