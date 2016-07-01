@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nib (0.0.1)
+    nib (1.0.0.beta1)
       gli (= 2.14.0)
 
 GEM

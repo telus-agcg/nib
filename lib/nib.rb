@@ -1,5 +1,6 @@
 require 'nib/version'
 
+require 'nib/check_for_update'
 require 'nib/code_climate'
 require 'nib/console'
 require 'nib/debug'
