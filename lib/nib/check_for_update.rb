@@ -4,7 +4,7 @@ class Nib::CheckForUpdate
 
     puts <<~MESSAGE
 
-    An update avaiable is available for nib: #{latest}
+    An update is available for nib: #{latest}
     Use 'nib update' to pull the latest version
     MESSAGE
   end
