@@ -3,7 +3,7 @@ class Nib::Exec
     service = args.shift
     command = args.join(' ')
 
-    action = command.empty? ? '' : "-c \"#{command}\""
+    action = command.empty? ? '' : "-c '#{command}'"
 
     entrypoint = "
       if hash bash 2>/dev/null ; then
@@ -21,6 +21,8 @@ class Nib::Exec
         #{service} \
         /bin/sh -c "#{entrypoint}"
     SCRIPT
+
+    puts script
 
     system(script)
   end
