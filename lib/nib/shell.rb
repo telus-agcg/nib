@@ -13,7 +13,7 @@ class Nib::Shell
     service = args.shift
     command = "/bin/sh -c \"#{SCRIPT}\""
 
-    system('mkdir', '-p', "${PWD}/tmp")
+    system('mkdir', '-p', './tmp')
 
     script = <<~SCRIPT
       docker-compose \
