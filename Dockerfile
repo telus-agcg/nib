@@ -4,6 +4,7 @@ ENV COMPOSE_VERSION 1.7.1
 
 RUN \
   apk add --update \
+    openssl \
     py-pip \
     py-yaml && \
   pip install -U docker-compose==${COMPOSE_VERSION} && \
