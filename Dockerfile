@@ -10,17 +10,21 @@ RUN \
   rm /var/cache/apk/* && \
   rm -rf `find / -regex '.*\.py[co]' -or -name apk`
 
-WORKDIR /usr/src/app
+# RUN gem install nib
 
-COPY Gemfile* /usr/src/app/
-COPY lib/nib/version.rb /usr/src/app/lib/nib/version.rb
-COPY nib.gemspec /usr/src/app
+# this is not ideal because these files will remain as part of the image,
+# we should explore a build pipline that compile the gem first and then leaves
+# an artifact to be installed by the next step in the process
+COPY . /usr/src/app
 
 RUN \
-  gem install bundler && \
-  bundle install -j4
-
-COPY . /usr/src/app
+  cd /usr/src/app && \
+  rake build && \
+  cp -r pkg /usr/local/pkg && \
+  cd /usr/local/pkg && \
+  gem install nib* && \
+  rm -rf /usr/src/app && \
+  rm -rf /usr/local/pkg
 
 ENTRYPOINT ["nib"]
 CMD ["--help"]
