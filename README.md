@@ -149,8 +149,7 @@ docker run \
   --rm \
   -v $PWD:/usr/src/app \
   -w /usr/src/app \
-  --entrypoint=./update_docs.sh \
-  technekes/nib
+  ruby:alpine bin/update_docs
 ```
 
 ## Contributing
