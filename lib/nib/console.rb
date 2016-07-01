@@ -1,5 +1,5 @@
 class Nib::Console
-  IRBRC="
+  IRBRC=<<~'IRB'
     require \"rubygems\"
     require \"irb/completion\"
     require \"irb/ext/save-history\"
@@ -10,13 +10,13 @@ class Nib::Console
     IRB.conf[:EVAL_HISTORY] = 10
     IRB.conf[:SAVE_HISTORY] = 1000
     IRB.conf[:HISTORY_FILE] = \"#{Dir.pwd}/tmp/irb_history\"
-  "
+  IRB
 
-  PRYRC="Pry.config.history.file = \"#{Dir.pwd}/tmp/irb_history\""
+  PRYRC='Pry.config.history.file = \"#{Dir.pwd}/tmp/irb_history\"'
 
-  SCRIPT="
-    echo '${IRBRC}' > /root/.irbrc
-    echo '${PRYRC}' > /root/.pryrc
+  SCRIPT=<<~SH
+    echo '#{IRBRC}' > /root/.irbrc
+    echo '#{PRYRC}' > /root/.pryrc
     has_pry=false
     has_boot=false
     if hash pry 2>/dev/null ; then
@@ -29,17 +29,17 @@ class Nib::Console
       bin/console
     elif hash rails 2>/dev/null ; then
       rails console
-    elif [ \"\$has_boot\" = true ] && [ \"\$has_pry\" = true ]; then
+    elif [ \\$has_boot = true ] && [ \\$has_pry = true ]; then
       pry -r ./config/boot
-    elif [ \"\$has_boot\" = true ]; then
+    elif [ \\$has_boot = true ]; then
       irb -r ./config/boot
-    elif [ \"\$has_pry\" = true ]; then
+    elif [ \\$has_pry = true ]; then
       bundle config console pry
       bundle console
     else
       bundle console
     fi
-  "
+  SH
 
   def self.execute(_, args)
     service = args.shift
