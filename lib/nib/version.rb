@@ -1,3 +1,3 @@
 module Nib
-  VERSION = '1.0.0.beta1'.freeze
+  VERSION = File.read('./VERSION').freeze
 end

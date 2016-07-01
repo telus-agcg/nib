@@ -13,7 +13,7 @@ spec = Gem::Specification.new do |s|
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
 
-  s.files = Dir['lib/**/*.rb']
+  s.files = Dir['lib/**/*.rb'] | ['VERSION']
   s.require_paths << 'lib'
   s.bindir = 'bin'
   s.executables << 'nib'
