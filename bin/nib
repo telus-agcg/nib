@@ -63,7 +63,18 @@ command :console do |c|
   end
 end
 
-# TODO: debug
+desc 'Connect to a running byebug server for a given service'
+long_desc 'This command requires a little extra setup.
+
+- The byebug server must be running inside of a web service
+- The RUBY_DEBUG_PORT must be defined in docker-compose.yml for the service
+- The debug port must be exposed by the service'
+arg :service
+command :debug do |c|
+  c.action do |global, options, args|
+    Nib::Debug.execute(options, args)
+  end
+end
 
 desc 'Attach an interactive shell session to a running container'
 arg :service

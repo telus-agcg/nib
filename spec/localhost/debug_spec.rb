@@ -2,7 +2,7 @@ require 'expect'
 
 RSpec.describe 'debug', :interactive, :running_rails_server do
   let(:spec_dir) { './spec/dummy/rails' }
-  let(:command)  { "pwd && cd #{spec_dir} && nibtest debug web" }
+  let(:command)  { "cd #{spec_dir} && nibtest debug web" }
 
   it 'connects to a running debug server' do
     tty(command) do |stdout, _|
