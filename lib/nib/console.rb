@@ -27,7 +27,7 @@ class Nib::Console
     fi
     if [ -f bin/console ]; then
       bin/console
-    elif hash rails 2>/dev/null ; then
+    elif [ -f bin/rails ]; then
       rails console
     elif [ \\$has_boot = true ] && [ \\$has_pry = true ]; then
       pry -r ./config/boot
