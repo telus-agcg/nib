@@ -47,7 +47,7 @@ command :bundle do |c|
   end
 end
 
-desc 'Run bundle for the given service'
+desc 'Run codeclimate checks on the given service'
 arg :service
 arg :command, %i(optional multiple)
 command :codeclimate do |c|

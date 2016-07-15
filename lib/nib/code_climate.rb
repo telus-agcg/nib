@@ -1,7 +1,12 @@
 require 'tempfile'
 
 class Nib::CodeClimate
-  def self.execute(_, _)
+  def self.execute(_, args)
+    # Discard service name because codeclimate is run on local path
+    args.shift
+
+    command = args.join(' ')
+
     config = <<~CONFIG
       version: '2'
 
@@ -26,7 +31,8 @@ class Nib::CodeClimate
         -f #{compose.path} \
         run \
         --rm \
-        codeclimate "$@"
+        codeclimate \
+        #{command}
     SCRIPT
 
     system(script)
