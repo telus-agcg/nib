@@ -1,6 +1,7 @@
 #! /bin/sh
 
 docker run \
+  --name nibtest \
   -it \
   --rm \
   -v $(pwd):$(pwd) \
