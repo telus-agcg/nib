@@ -11,6 +11,8 @@ version Nib::VERSION
 
 subcommand_option_handling :normal
 arguments :strict
+autocomplete_commands false
+preserve_argv true
 
 GLI::Commands::Help.skips_post = false
 
@@ -32,9 +34,16 @@ post do |global, command, options, args|
   end
 end
 
+# return false to skip default error handling
 on_error do |exception|
-  # Error logic here
-  # return false to skip default error handling
+  case exception
+  when GLI::UnknownCommand
+    # delegate unknown commands over to `docker-compose`
+    `docker-compose #{ARGV.join(' ')}`
+
+    false
+  end
+
   true
 end
 
