@@ -39,7 +39,7 @@ on_error do |exception|
   case exception
   when GLI::UnknownCommand
     # delegate unknown commands over to `docker-compose`
-    `docker-compose #{ARGV.join(' ')}`
+    system("docker-compose #{ARGV.join(' ')}")
 
     false
   end
