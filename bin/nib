@@ -43,9 +43,9 @@ on_error do |exception|
     system("docker-compose #{ARGV.join(' ')}")
 
     false
+  else
+    true
   end
-
-  true
 end
 
 desc 'Run bundle for the given service'
