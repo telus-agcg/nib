@@ -1,0 +1,8 @@
+- type: parallel
+  steps:
+    - name: unit specs
+      service: app
+      command: rake rspec:unit
+    # - name: integration specs
+    #   service: app
+    #   command: rake rspec:integration

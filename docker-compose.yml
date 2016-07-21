@@ -5,8 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.test
-      args:
-        HOST_PATH: $PWD
+    working_dir: $PWD
     volumes:
       - $PWD:$PWD
       - /var/run/docker.sock:/var/run/docker.sock

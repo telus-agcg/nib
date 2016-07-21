@@ -1,0 +1,7 @@
+app:
+  build:
+    context: .
+    dockerfile: Dockerfile.test
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
