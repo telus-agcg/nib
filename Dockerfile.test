@@ -1,7 +1,5 @@
 FROM ruby:alpine
 
-ARG HOST_PATH
-
 ENV COMPOSE_VERSION 1.7.1
 
 RUN \
@@ -13,18 +11,16 @@ RUN \
   rm /var/cache/apk/* && \
   rm -rf `find / -regex '.*\.py[co]' -or -name apk`
 
-WORKDIR $HOST_PATH
-
-COPY Gemfile* $HOST_PATH/
-COPY VERSION $HOST_PATH/VERSION
-COPY lib/nib/version.rb $HOST_PATH/lib/nib/version.rb
-COPY nib.gemspec $HOST_PATH
+COPY Gemfile* ./
+COPY VERSION ./VERSION
+COPY lib/nib/version.rb ./lib/nib/version.rb
+COPY nib.gemspec ./nib.gemspec
 
 RUN \
   gem install bundler && \
   bundle install -j4
 
-COPY . $HOST_PATH
+COPY . .
 
 COPY spec/bin/nibtest /usr/local/bin
 
