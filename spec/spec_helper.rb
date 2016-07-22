@@ -1,4 +1,5 @@
 require 'pry'
+require 'nib'
 
 Dir['./spec/support/**/*.rb'].each { |f| require f }
 
