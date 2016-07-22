@@ -13,6 +13,8 @@ RUN \
   rm /var/cache/apk/* && \
   rm -rf `find / -regex '.*\.py[co]' -or -name apk`
 
+WORKDIR /usr/src/app
+
 COPY Gemfile* ./
 COPY VERSION ./VERSION
 COPY lib/nib/version.rb ./lib/nib/version.rb
