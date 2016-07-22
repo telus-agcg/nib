@@ -1,10 +1,7 @@
 .git
 .gitignore
-.rspec
 CONTRIBUTING.md
 README.md
-release.sh
-update_docs.sh
 Dockerfile
 docker-compose.yml
 Dockerfile.test
