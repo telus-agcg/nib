@@ -1,3 +1,7 @@
+# BETA
+
+Note, the code on this branch (master) is currently in beta. If you are looking for the stable version (v0.4.3, tagged latest on Docker Hub) please see the [0-4-3-stable branch](https://github.com/technekes/nib/tree/0-4-3-stable).
+
 # nib
 
 `nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
@@ -149,8 +153,7 @@ docker run \
   --rm \
   -v $PWD:/usr/src/app \
   -w /usr/src/app \
-  --entrypoint=./update_docs.sh \
-  technekes/nib
+  ruby:alpine bin/update_docs
 ```
 
 ## Contributing

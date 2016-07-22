@@ -1,0 +1,13 @@
+require 'nib/version'
+
+require 'nib/check_for_update'
+require 'nib/unrecognized_help'
+require 'nib/code_climate'
+require 'nib/console'
+require 'nib/debug'
+require 'nib/exec'
+require 'nib/run'
+require 'nib/setup'
+require 'nib/shell'
+require 'nib/update'
+require 'nib/wrap_command'

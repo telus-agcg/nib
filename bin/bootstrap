@@ -1,8 +1,0 @@
-#!/bin/bash
-
-echo "
-  NOTE: The bootstrap command has been renamed setup and will be
-        removed from nib in the near futureb.
-"
-
-/usr/local/bin/setup $@

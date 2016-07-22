@@ -1,4 +1,5 @@
 keys/*
+tmp/*
 .DS_Store
 spec/examples.txt
 spec/dummy/**/tmp

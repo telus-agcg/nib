@@ -6,17 +6,18 @@ RSpec.describe 'console', :interactive do
 
   context 'rails' do
     let(:spec_dir) { './spec/dummy/rails' }
+    let(:binstub) { "#{spec_dir}/bin/#{type}" }
+
+    around(:each) do |example|
+      File.rename "#{binstub}.stub", binstub
+
+      example.run
+
+      File.rename binstub, "#{binstub}.stub"
+    end
 
     context 'binstub console override' do
-      let(:binstub) { "#{spec_dir}/bin/console" }
-
-      around(:each) do |example|
-        File.rename "#{binstub}.stub", binstub
-
-        example.run
-
-        File.rename binstub, "#{binstub}.stub"
-      end
+      let(:type) { :console }
 
       it 'starts an irb session and accepts input' do
         tty(command) do |stdout, stdin|
@@ -28,8 +29,14 @@ RSpec.describe 'console', :interactive do
     end
 
     context 'is rails' do
-      describe command('cd spec/dummy/rails && nibtest console web') do
-        its(:stdout) { should match(/rails/) }
+      let(:type) { :rails }
+
+      it 'detects rails and starts an interactive rails console' do
+        tty(command) do |stdout, stdin|
+          stdout.expect(/rails/, 5) { stdin.puts 'puts "foo"' }
+
+          expect(stdout.gets).to match(/puts \"foo\"/)
+        end
       end
     end
   end
@@ -62,7 +69,7 @@ RSpec.describe 'console', :interactive do
         tty(command) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'Foo' }
 
-          expect(stdout.gets).to match(/\(main\)> Foo/)
+          expect(stdout.gets).to match(/Foo/)
         end
       end
     end
