@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    command: rackup -p 3000 -o 0.0.0.0
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    environment:
+      SECRET_KEY_BASE: who-cares-this-is-a-dummy-app
+      RUBY_DEBUG_PORT: 3001
