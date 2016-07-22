@@ -1,16 +1,3 @@
 class Nib::Run
-  def self.execute(_, args)
-    service = args.shift
-    command = args.join(' ')
-
-    script = <<~SCRIPT
-      docker-compose \
-        run \
-        --rm \
-        #{service} \
-        #{command}
-    SCRIPT
-
-    system(script)
-  end
+  include Nib::Command
 end

@@ -1,4 +1,6 @@
 class Nib::Shell
+  include Nib::Command
+
   SCRIPT="
     if hash bash 2>/dev/null ; then
       bash
@@ -9,13 +11,13 @@ class Nib::Shell
     fi
   "
 
-  def self.execute(_, args)
-    service = args.shift
-    command = "/bin/sh -c \"#{SCRIPT}\""
-
+  def execute
     system('mkdir', '-p', './tmp')
+    super
+  end
 
-    script = <<~SCRIPT
+  def script
+    @script ||= <<~SCRIPT
       docker-compose \
         run \
         --rm \
@@ -23,7 +25,11 @@ class Nib::Shell
         #{service} \
         #{command}
     SCRIPT
+  end
 
-    system(script)
+  private
+
+  def command
+    "/bin/sh -c \"#{SCRIPT}\""
   end
 end

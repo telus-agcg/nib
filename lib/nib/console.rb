@@ -1,4 +1,6 @@
 class Nib::Console
+  include Nib::Command
+
   IRBRC=<<~'IRB'
     require \"rubygems\"
     require \"irb/completion\"
@@ -41,13 +43,13 @@ class Nib::Console
     fi
   SH
 
-  def self.execute(_, args)
-    service = args.shift
-    command = "/bin/sh -c \"#{SCRIPT}\""
-
+  def execute
     system('mkdir', '-p', './tmp')
+    super
+  end
 
-    script = <<~SCRIPT
+  def script
+    @script ||= <<~SCRIPT
       docker-compose \
         run \
         --rm \
@@ -55,7 +57,11 @@ class Nib::Console
         #{service} \
         #{command}
     SCRIPT
+  end
 
-    system(script)
+  private
+
+  def command
+    "/bin/sh -c \"#{SCRIPT}\""
   end
 end

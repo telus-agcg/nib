@@ -1,11 +1,21 @@
 class Nib::Exec
-  def self.execute(_, args)
-    service = args.shift
-    command = args.join(' ')
+  include Nib::Command
 
-    action = command.empty? ? '' : "-c '#{command}'"
+  def script
+    @script ||= <<~SCRIPT
+      docker-compose \
+        exec \
+        #{service} \
+        /bin/sh -c "#{entrypoint}"
+    SCRIPT
+  end
 
-    entrypoint = "
+  def action
+    command.to_s.empty? ? '' : "-c '#{command}'"
+  end
+
+  def entrypoint
+    "
       if hash bash 2>/dev/null ; then
         bash #{action}
       elif hash ash 2>/dev/null ; then
@@ -14,16 +24,5 @@ class Nib::Exec
         sh #{action}
       fi
     "
-
-    script = <<~SCRIPT
-      docker-compose \
-        exec \
-        #{service} \
-        /bin/sh -c "#{entrypoint}"
-    SCRIPT
-
-    puts script
-
-    system(script)
   end
 end

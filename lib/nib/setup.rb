@@ -1,4 +1,6 @@
 class Nib::Setup
+  include Nib::Command
+
   SCRIPT="
     if [ -f bin/setup.before ]; then
       bin/setup.before
@@ -16,18 +18,9 @@ class Nib::Setup
     fi
   "
 
-  def self.execute(_, args)
-    service = args.shift
-    command = "/bin/sh -c \"#{SCRIPT}\""
+  private
 
-    script = <<~SCRIPT
-      docker-compose \
-        run \
-        --rm \
-        #{service} \
-        #{command}
-    SCRIPT
-
-    system(script)
+  def command
+    "/bin/sh -c \"#{SCRIPT}\""
   end
 end

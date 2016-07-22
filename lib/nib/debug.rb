@@ -1,24 +1,18 @@
 require 'yaml'
 
 class Nib::Debug
-  attr_reader :service
-
-  def self.execute(_, args)
-    new(args.shift).execute
-  end
-
-  def initialize(service)
-    @service = service
-  end
+  include Nib::Command
 
   def execute
     raise 'RUBY_DEBUG_PORT not specified. See "nib debug help"' unless port
 
-    command = "byebug -R #{host}:#{port}"
-
     puts "Connecting to server via:\n> #{command}"
 
-    script = <<~SCRIPT
+    super
+  end
+
+  def script
+    @script ||= <<~SCRIPT
       docker-compose \
         run \
         --rm \
@@ -26,11 +20,13 @@ class Nib::Debug
         #{service} \
         #{command}
     SCRIPT
-
-    system(script)
   end
 
   private
+
+  def command
+    "byebug -R #{host}:#{port}"
+  end
 
   def host
     if ENV.key?('DOCKER_HOST_URL') && ENV['DOCKER_HOST_URL'] != ''
@@ -38,6 +34,10 @@ class Nib::Debug
     else
       `ip route | awk 'NR==1 {print $3}'`.chomp
     end
+  end
+
+  def compose_file
+    @compose_file ||= File.read('docker-compose.yml')
   end
 
   def port
@@ -49,7 +49,7 @@ class Nib::Debug
       (?<port>\d+)    # capture numeric value of the port
     }x                # x allows for multiple lines and comments
 
-    File.read('docker-compose.yml').match(regexp)&.send(:[], :port)
+    compose_file.match(regexp)&.send(:[], :port)
   end
 end
 

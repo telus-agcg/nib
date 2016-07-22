@@ -1,9 +1,22 @@
 RSpec.describe Nib::Run do
-  subject { described_class }
+  let(:service) { 'web' }
+  let(:command) { 'puma' }
+
+  subject { described_class.new(service, command) }
 
   it 'inserts the --rm arg' do
-    expect(subject).to receive(:system).with(/--rm/)
-
-    subject.execute(nil, [])
+    expect(subject.script).to match(
+      /
+        docker-compose
+        .*
+        run
+        .*
+        --rm
+        .*
+        #{service}
+        .*
+        #{command}
+      /x
+    )
   end
 end

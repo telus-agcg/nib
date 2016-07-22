@@ -53,7 +53,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :bundle do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :bundle))
+    Nib::Run.execute(options, args.insert(1, :bundle))
   end
 end
 
@@ -105,7 +105,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :guard do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :guard))
+    Nib::Run.execute(options, args.insert(1, :guard))
   end
 end
 
@@ -114,7 +114,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rails do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :rails))
+    Nib::Run.execute(options, args.insert(1, :rails))
   end
 end
 
@@ -123,7 +123,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rake do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :rake))
+    Nib::Run.execute(options, args.insert(1, :rake))
   end
 end
 
@@ -132,7 +132,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rspec do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :rspec))
+    Nib::Run.execute(options, args.insert(1, :rspec))
   end
 end
 
@@ -141,7 +141,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rubocop do |c|
   c.action do |global, options, args|
-    Nib::WrapCommand.execute(options, args.insert(1, :rubocop))
+    Nib::Run.execute(options, args.insert(1, :rubocop))
   end
 end
 

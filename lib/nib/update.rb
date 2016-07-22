@@ -1,26 +1,31 @@
 require 'tempfile'
 
 class Nib::Update
-  def self.execute(_, _)
-    config = <<~CONFIG
+  include Nib::Command
+
+  def script
+    @script ||= <<~SCRIPT
+      docker-compose \
+        -f #{compose_file.path} \
+        pull
+    SCRIPT
+  end
+
+  private
+
+  def config
+    <<~CONFIG
       version: '2'
 
       services:
         nib:
           image: technekes/nib:latest
     CONFIG
+  end
 
-    compose = Tempfile.open('compose') do |file|
+  def compose_file
+    @compose_file ||= Tempfile.open('compose') do |file|
       file.tap { |f| f.write(config) }
     end
-
-    script = <<~SCRIPT
-      docker-compose \
-        -f #{compose.path} \
-        pull
-    SCRIPT
-
-    system(script)
   end
 end
-
