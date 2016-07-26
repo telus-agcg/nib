@@ -2,7 +2,7 @@ RSpec.describe Nib::Update do
   subject { described_class.new(nil, []) }
 
   before do
-    allow(subject).to receive(:system)
+    allow(subject).to receive(:exec)
   end
 
   it 'runs a docker-compose pull' do

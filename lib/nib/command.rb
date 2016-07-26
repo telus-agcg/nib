@@ -19,7 +19,7 @@ module Nib::Command
   end
 
   def execute
-    system(script)
+    exec(script)
   end
 
   def script

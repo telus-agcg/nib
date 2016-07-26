@@ -5,7 +5,7 @@ RSpec.describe Nib::Console do
 
   context 'temporary directory' do
     before do
-      allow(subject).to receive(:system).with(/docker-compose/)
+      allow(subject).to receive(:exec).with(/docker-compose/)
     end
 
     it 'is created to store history' do
