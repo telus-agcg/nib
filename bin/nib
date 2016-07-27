@@ -149,6 +149,12 @@ desc 'Wraps normal \'docker-compose run\' to ensure that --rm is always passed'
 arg :service
 arg :command, %i(optional multiple)
 command :run do |c|
+  c.switch(
+    'service-ports',
+    negatable: false,
+    desc: 'Run command with the service\'s ports enabled and mapped to the host'
+  )
+
   c.action do |global, options, args|
     Nib::Run.execute(options, args)
   end
