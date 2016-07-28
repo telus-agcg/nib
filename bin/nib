@@ -53,7 +53,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :bundle do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :bundle))
+    Nib::Run.execute(args.insert(1, :bundle))
   end
 end
 
@@ -62,7 +62,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :codeclimate do |c|
   c.action do |global, options, args|
-    Nib::CodeClimate.execute(options, args)
+    Nib::CodeClimate.execute(args)
   end
 end
 
@@ -74,7 +74,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :console do |c|
   c.action do |global, options, args|
-    Nib::Console.execute(options, args)
+    Nib::Console.execute(args)
   end
 end
 
@@ -87,7 +87,7 @@ long_desc 'This command requires a little extra setup.
 arg :service
 command :debug do |c|
   c.action do |global, options, args|
-    Nib::Debug.execute(options, args)
+    Nib::Debug.execute(args)
   end
 end
 
@@ -95,8 +95,10 @@ desc 'Attach an interactive shell session to a running container'
 arg :service
 arg :command, %i(optional multiple)
 command :exec do |c|
+  Nib::Options::Augmenter.augment(c)
+
   c.action do |global, options, args|
-    Nib::Exec.execute(options, args)
+    Nib::Exec.execute(args, Nib::Options::Parser.parse(options))
   end
 end
 
@@ -105,7 +107,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :guard do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :guard))
+    Nib::Run.execute(args.insert(1, :guard))
   end
 end
 
@@ -114,7 +116,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rails do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :rails))
+    Nib::Run.execute(args.insert(1, :rails))
   end
 end
 
@@ -123,7 +125,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rake do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :rake))
+    Nib::Run.execute(args.insert(1, :rake))
   end
 end
 
@@ -132,7 +134,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rspec do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :rspec))
+    Nib::Run.execute(args.insert(1, :rspec))
   end
 end
 
@@ -141,7 +143,7 @@ arg :service
 arg :command, %i(optional multiple)
 command :rubocop do |c|
   c.action do |global, options, args|
-    Nib::Run.execute(options, args.insert(1, :rubocop))
+    Nib::Run.execute(args.insert(1, :rubocop))
   end
 end
 
@@ -149,8 +151,10 @@ desc 'Wraps normal \'docker-compose run\' to ensure that --rm is always passed'
 arg :service
 arg :command, %i(optional multiple)
 command :run do |c|
+  Nib::Options::Augmenter.augment(c)
+
   c.action do |global, options, args|
-    Nib::Run.execute(options, args)
+    Nib::Run.execute(args, Nib::Options::Parser.parse(options))
   end
 end
 
@@ -163,7 +167,7 @@ $pwd/bin/setup.after. This allows for extending the default behavior without hav
 arg :service
 command :setup do |c|
   c.action do |global, options, args|
-    Nib::Setup.execute(options, args)
+    Nib::Setup.execute(args)
   end
 end
 
@@ -172,14 +176,14 @@ arg :service
 arg :command, %i(optional multiple)
 command :shell do |c|
   c.action do |global, options, args|
-    Nib::Shell.execute(options, args)
+    Nib::Shell.execute(args)
   end
 end
 
 desc 'Download the latest version of the nib tool'
 command :update do |c|
   c.action do |global, options, args|
-    Nib::Update.execute(options, args)
+    Nib::Update.execute(args)
   end
 end
 
