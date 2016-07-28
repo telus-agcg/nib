@@ -1,4 +1,5 @@
 # nib
+[ ![Codeship Status for technekes/nib](https://codeship.com/projects/89937b80-302b-0134-3df6-029c728c3af4/status?branch=master)](https://codeship.com/projects/164133)
 
 `nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
 
