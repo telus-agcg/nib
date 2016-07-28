@@ -1,21 +1,22 @@
 module Nib::Command
   def self.included(base)
     base.instance_eval do
-      attr_reader :service, :command
+      attr_reader :service, :command, :options
 
       extend ClassMethods
     end
   end
 
   module ClassMethods
-    def execute(_, args)
-      new(args.shift, args.join(' ')).execute
+    def execute(args, options = '')
+      new(args.shift, args.join(' '), options).execute
     end
   end
 
-  def initialize(service, command)
+  def initialize(service, command, options = '')
     @service = service
     @command = command
+    @options = options
   end
 
   def execute
@@ -27,6 +28,7 @@ module Nib::Command
       docker-compose \
         run \
         --rm \
+        #{options} \
         #{service} \
         #{command}
     SCRIPT

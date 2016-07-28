@@ -5,6 +5,7 @@ class Nib::Exec
     @script ||= <<~SCRIPT
       docker-compose \
         exec \
+        #{options} \
         #{service} \
         /bin/sh -c "#{entrypoint}"
     SCRIPT
