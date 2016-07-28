@@ -11,17 +11,6 @@ class Nib::Debug
     super
   end
 
-  def script
-    @script ||= <<~SCRIPT
-      docker-compose \
-        run \
-        --rm \
-        --no-deps \
-        #{service} \
-        #{command}
-    SCRIPT
-  end
-
   private
 
   def command

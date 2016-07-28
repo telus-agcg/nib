@@ -3,11 +3,11 @@ require 'tempfile'
 class Nib::CodeClimate
   include Nib::Command
 
-  def self.execute(args)
+  def self.execute(args, options = '')
     # Discard service name because codeclimate is run on local path
     args.shift
 
-    new(nil, args.join(' ')).execute
+    new(nil, args.join(' '), options).execute
   end
 
   def script

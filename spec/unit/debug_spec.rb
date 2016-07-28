@@ -1,7 +1,7 @@
 RSpec.describe Nib::Debug do
   let(:service) { 'web' }
 
-  subject { described_class.new(service, nil) }
+  subject { described_class.new(service, nil, '--no-deps') }
 
   before do
     allow(subject).to receive(:compose_file) do
