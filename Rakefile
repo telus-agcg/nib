@@ -20,6 +20,6 @@ begin
 
   task spec: %w(rspec:unit rspec:integration)
   task default: %i(spec)
-rescue LoadError
+rescue LoadError # rubocop:disable Lint/HandleExceptions
   # no rspec available
 end

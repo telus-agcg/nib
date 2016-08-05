@@ -1,6 +1,6 @@
-require File.join([File.dirname(__FILE__),'lib','nib','version.rb'])
+require File.join([File.dirname(__FILE__), 'lib', 'nib', 'version.rb'])
 
-spec = Gem::Specification.new do |s| 
+Gem::Specification.new do |s|
   s.name = 'nib'
   s.version = Nib::VERSION
   s.authors = ['John Allen', 'Zach Blankenship']
@@ -13,15 +13,17 @@ spec = Gem::Specification.new do |s|
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
 
-  s.files = Dir['lib/**/*.rb'] | ['VERSION']
+  s.files = Dir['lib/**/*.rb'] | Dir['config/**/*'] | ['VERSION']
   s.require_paths << 'lib'
   s.bindir = 'bin'
   s.executables << 'nib'
 
-  s.add_runtime_dependency('gli','2.14.0')
+  s.add_runtime_dependency('gli', '2.14.0')
 
   s.add_development_dependency('pry')
   s.add_development_dependency('serverspec')
   s.add_development_dependency('guard')
   s.add_development_dependency('guard-rspec')
+  s.add_development_dependency('guard-rubocop')
+  s.add_development_dependency('codeclimate-test-reporter')
 end

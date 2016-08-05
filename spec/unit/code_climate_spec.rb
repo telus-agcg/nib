@@ -1,5 +1,5 @@
 RSpec.describe Nib::CodeClimate do
-  let(:service) { ''}
+  let(:service) { '' }
   let(:command) { 'analyze' }
 
   subject { described_class.new(service, command) }

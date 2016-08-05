@@ -1,7 +1,7 @@
 class Nib::Shell
   include Nib::Command
 
-  SCRIPT="
+  SCRIPT = <<~SH.freeze
     if hash bash 2>/dev/null ; then
       bash
     elif hash ash 2>/dev/null ; then
@@ -9,7 +9,7 @@ class Nib::Shell
     else
       sh
     fi
-  "
+  SH
 
   def execute
     system('mkdir', '-p', './tmp')

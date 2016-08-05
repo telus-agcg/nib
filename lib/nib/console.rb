@@ -1,7 +1,7 @@
 class Nib::Console
   include Nib::Command
 
-  IRBRC=<<~'IRB'
+  IRBRC = <<~'IRB'.freeze
     require \"rubygems\"
     require \"irb/completion\"
     require \"irb/ext/save-history\"
@@ -14,9 +14,9 @@ class Nib::Console
     IRB.conf[:HISTORY_FILE] = \"#{Dir.pwd}/tmp/irb_history\"
   IRB
 
-  PRYRC='Pry.config.history.file = \"#{Dir.pwd}/tmp/irb_history\"'
+  PRYRC = 'Pry.config.history.file = \"#{Dir.pwd}/tmp/irb_history\"'.freeze
 
-  SCRIPT=<<~SH
+  SCRIPT = <<~SH.freeze
     echo '#{IRBRC}' > /root/.irbrc
     echo '#{PRYRC}' > /root/.pryrc
     has_pry=false

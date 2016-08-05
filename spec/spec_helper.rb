@@ -1,3 +1,8 @@
+# These must be the first lines for coverage to report correctly
+# https://github.com/codeclimate/ruby-test-reporter#installation
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 require 'pry'
 require 'nib'
 
@@ -55,7 +60,7 @@ RSpec.configure do |config|
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend
   # you configure your source control system to ignore this file.
-  config.example_status_persistence_file_path = "spec/examples.txt"
+  config.example_status_persistence_file_path = 'spec/examples.txt'
 
   # Limits the available syntax to the non-monkey patched syntax that is
   # recommended. For more details, see:

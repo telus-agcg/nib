@@ -1,3 +1,5 @@
+codeship.aes
+codeship.env
 keys/*
 tmp/*
 .DS_Store

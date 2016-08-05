@@ -1,7 +1,7 @@
 class Nib::Setup
   include Nib::Command
 
-  SCRIPT="
+  SCRIPT = <<~SH.freeze
     if [ -f bin/setup.before ]; then
       bin/setup.before
     fi
@@ -16,7 +16,7 @@ class Nib::Setup
     if [ -f bin/setup.after ]; then
       bin/setup.after
     fi
-  "
+  SH
 
   private
 

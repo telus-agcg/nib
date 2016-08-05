@@ -1,5 +1,8 @@
 - type: parallel
   steps:
+    - name: rubocop
+      service: app
+      command: rubocop -D
     - name: unit specs
       service: app
       command: rake rspec:unit

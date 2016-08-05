@@ -30,15 +30,14 @@ class Nib::Debug
   end
 
   def port
-    regexp = %r{
+    regexp = /
       #{service}:     # start with the service key (web:)
       (?:.|\n)*?      # search through all characters including new lines
       RUBY_DEBUG_PORT # target the env var we defined
       \D*             # expect non-numeric characters (':', ': ', '=', '="')
       (?<port>\d+)    # capture numeric value of the port
-    }x                # x allows for multiple lines and comments
+    /x
 
     compose_file.match(regexp)&.send(:[], :port)
   end
 end
-

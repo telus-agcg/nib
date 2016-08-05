@@ -1,0 +1,118 @@
+---
+- :names:
+  - :d
+  :type: :switch
+  :commands:
+  - :exec
+  - :run
+  :options:
+    :negatable: false
+    :desc: 'Detached mode: Run container in the background, print new container name.'
+- :names:
+  - :no-deps
+  :type: :switch
+  :commands:
+  - :run
+  :options:
+    :negatable: false
+    :desc: Don't start linked services.
+- :names:
+  - :service-ports
+  :type: :switch
+  :commands:
+  - :run
+  :options:
+    :negatable: false
+    :desc: Run command with the service's ports enabled and mapped to the host
+- :names:
+  - :privileged
+  :type: :switch
+  :commands:
+  - :exec
+  :options:
+    :negatable: false
+    :desc: Give extended privileges to the process.
+- :names:
+  - :T
+  :type: :switch
+  :commands:
+  - :exec
+  - :run
+  :options:
+    :negatable: false
+    :desc: Disable pseudo-tty allocation. By default `docker-compose run` allocates
+      a TTY.
+- :names:
+  - :name
+  :type: :flag
+  :commands:
+  - :run
+  :options:
+    :arg_name: NAME
+    :desc: Assign a name to the container
+    :multiple: false
+    :type: &1 !ruby/class 'String'
+- :names:
+  - :entrypoint
+  :type: :flag
+  :commands:
+  - :run
+  :options:
+    :arg_name: CMD
+    :desc: Override the entrypoint of the image.
+    :multiple: false
+    :type: *1
+- :names:
+  - :e
+  :type: :flag
+  :commands:
+  - :run
+  :options:
+    :arg_name: KEY=VAL
+    :desc: Set an environment variable
+    :multiple: true
+    :type: *1
+- :names:
+  - :u
+  - :user
+  :type: :flag
+  :commands:
+  - :exec
+  - :run
+  :options:
+    :arg_name: '""'
+    :desc: Run as specified username or uid
+    :multiple: false
+    :type: *1
+- :names:
+  - :p
+  - :publish
+  :type: :flag
+  :commands:
+  - :run
+  :options:
+    :arg_name: "[]"
+    :desc: Publish a container's port(s) to the host
+    :multiple: false
+    :type: !ruby/class 'Array'
+- :names:
+  - :workdir
+  :type: :flag
+  :commands:
+  - :run
+  :options:
+    :arg_name: '""'
+    :desc: Working directory inside the container
+    :multiple: false
+    :type: *1
+- :names:
+  - :index
+  :type: :flag
+  :commands:
+  - :exec
+  :options:
+    :arg_name: index
+    :desc: 'index of the container if there are multiple instances of a service [default:
+      1]'
+    :multiple: false
+    :type: *1

@@ -24,20 +24,7 @@ class Nib::CodeClimate
   private
 
   def config
-    <<~CONFIG
-      version: '2'
-
-      services:
-        codeclimate:
-          image: codeclimate/codeclimate
-          environment:
-            - CODECLIMATE_CODE=$PWD
-          volumes:
-            - $PWD:/code
-            - $PWD:$PWD
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /tmp/cc:/tmp/cc
-    CONFIG
+    @config ||= Nib.load_config(:codeclimate, 'docker-compose.yml')
   end
 
   def compose_file
