@@ -39,32 +39,4 @@ Please update the VERSION file, it currently matches the previous release"
   exit 1
 fi
 
-case $1 in
-  --pre)
-    echo "pre-release, not publishing \"latest\" tag"
-
-    release_type="beta"
-    ;;
-  *)
-    if [[ $(git symbolic-ref --short -q HEAD) != "master" ]]; then
-      echo "Tried to release from a branch other than master without --pre"
-      exit 0
-    fi
-    relase_type="latest"
-    ;;
-esac
-
-# delete local "latest" tag
-git tag -d "${release_type}"
-
-# delete remote "latest" tag
-git push origin ":refs/tags/${release_type}"
-
-# tag current commit with "latest"
-git tag "${release_type}"
-
-# tag with version from VERSION
-git tag "v$(cat VERSION)"
-
-# push to origin
-git push origin HEAD --tag
+rake release

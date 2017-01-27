@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Nib::CheckForUpdate
   def self.execute(_, _)
     return if installed == latest
@@ -5,7 +7,7 @@ class Nib::CheckForUpdate
     puts <<~MESSAGE
 
     An update is available for nib: #{latest}
-    Use 'nib update' to pull the latest version
+    Use 'gem update nib' to install the latest version
     MESSAGE
   end
 
@@ -14,6 +16,8 @@ class Nib::CheckForUpdate
   end
 
   def self.latest
-    `wget -qO- https://raw.githubusercontent.com/technekes/nib/latest/VERSION`
+    url = 'https://raw.githubusercontent.com/technekes/nib/latest/VERSION'
+
+    Net::HTTP.get(URI.parse(url)).chomp
   end
 end

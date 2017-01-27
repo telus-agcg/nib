@@ -101,13 +101,5 @@
     "long_description": "",
     "options": [],
     "service_options": ""
-  },
-  {
-    "name": "update",
-    "type": "custom",
-    "short_description": "Download the latest version of the nib tool",
-    "long_description": "",
-    "options": [],
-    "service_options": ""
   }
 ]

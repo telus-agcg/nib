@@ -18,10 +18,11 @@ Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables << 'nib'
 
-  s.add_runtime_dependency('gli', '2.14.0')
+  s.add_runtime_dependency('gli', '2.15.0')
 
   s.add_development_dependency('pry')
   s.add_development_dependency('serverspec')
+  s.add_development_dependency('rake')
   s.add_development_dependency('guard')
   s.add_development_dependency('guard-rspec')
   s.add_development_dependency('guard-rubocop')

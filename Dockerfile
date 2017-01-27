@@ -1,31 +1,24 @@
-FROM ruby:alpine
+FROM ruby
 
-ENV COMPOSE_VERSION 1.7.1
-
-RUN \
-  apk add --update \
-    openssl \
-    py-pip \
-    py-yaml && \
-  pip install -U docker-compose==${COMPOSE_VERSION} && \
-  rm /var/cache/apk/* && \
-  rm -rf `find / -regex '.*\.py[co]' -or -name apk`
-
-# RUN gem install nib
-
-# this is not ideal because these files will remain as part of the image,
-# we should explore a build pipline that compile the gem first and then leaves
-# an artifact to be installed by the next step in the process
-COPY . /usr/src/app
+ENV COMPOSE_VERSION 1.10.0
 
 RUN \
-  cd /usr/src/app && \
-  rake build && \
-  cp -r pkg /usr/local/pkg && \
-  cd /usr/local/pkg && \
-  gem install nib* && \
-  rm -rf /usr/src/app && \
-  rm -rf /usr/local/pkg
+  gem install rainbow -v '2.2.1' && \
+  curl -fsSL https://get.docker.com/ | sh && \
+  curl -L https://github.com/docker/compose/releases/download/$COMPOSE_VERSION/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+  chmod +x /usr/local/bin/docker-compose
 
-ENTRYPOINT ["nib"]
-CMD ["--help"]
+WORKDIR /usr/src/app
+
+COPY Gemfile* ./
+COPY VERSION ./VERSION
+COPY lib/nib/version.rb ./lib/nib/version.rb
+COPY nib.gemspec ./nib.gemspec
+
+RUN \
+  gem install bundler && \
+  bundle install -j4
+
+COPY . .
+
+CMD rspec spec

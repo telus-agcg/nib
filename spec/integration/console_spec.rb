@@ -2,7 +2,7 @@ require 'pty'
 require 'expect'
 
 RSpec.describe 'console', :interactive do
-  let(:command) { "cd #{spec_dir} && nibtest console web" }
+  let(:command) { "cd #{spec_dir} && nib console web" }
 
   context 'rails' do
     let(:spec_dir) { './spec/dummy/rails' }
@@ -20,7 +20,7 @@ RSpec.describe 'console', :interactive do
       let(:type) { :console }
 
       it 'starts an irb session and accepts input' do
-        tty(command) do |stdout, stdin|
+        tty(command, true) do |stdout, stdin|
           stdout.expect(/irb/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts \"foo\"/)
@@ -32,7 +32,7 @@ RSpec.describe 'console', :interactive do
       let(:type) { :rails }
 
       it 'detects rails and starts an interactive rails console' do
-        tty(command) do |stdout, stdin|
+        tty(command, true) do |stdout, stdin|
           stdout.expect(/rails/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts \"foo\"/)
@@ -46,7 +46,7 @@ RSpec.describe 'console', :interactive do
 
     context 'has pry' do
       it 'starts a pry session and accepts input' do
-        tty(command) do |stdout, stdin|
+        tty(command, true) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts \"foo\"/)
@@ -66,7 +66,7 @@ RSpec.describe 'console', :interactive do
       end
 
       it 'loads classes required by boot' do
-        tty(command) do |stdout, stdin|
+        tty(command, true) do |stdout, stdin|
           stdout.expect(/pry/, 5) { stdin.puts 'Foo' }
 
           expect(stdout.gets).to match(/Foo/)
