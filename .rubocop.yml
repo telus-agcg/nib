@@ -41,7 +41,7 @@ Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Lint/EndAlignment:
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 ClassAndModuleChildren:
   # ok to use compact style when modules are predefined.
@@ -50,3 +50,8 @@ ClassAndModuleChildren:
   #
   # class MDB::Person; end
   Enabled: false
+
+Metrics/BlockLength:
+  # Certain DSL use blocks and can be lengthy
+  Exclude:
+    - 'spec/**/*'
