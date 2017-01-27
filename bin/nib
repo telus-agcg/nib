@@ -16,6 +16,13 @@ preserve_argv true
 
 GLI::Commands::Help.skips_post = false
 
+flag(
+  %i(f file),
+  arg_name: 'FILE',
+  desc: 'Specify an alternate compose file',
+  default_value: 'docker-compose.yml'
+)
+
 pre do |global, command, options, args|
   # Pre logic here
   # Return true to proceed; false to abort and not call the
