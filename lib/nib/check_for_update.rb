@@ -18,6 +18,6 @@ class Nib::CheckForUpdate
   def self.latest
     url = 'https://raw.githubusercontent.com/technekes/nib/master/VERSION'
 
-    Net::HTTP.get(URI.parse(url)).chomp
+    Net::HTTP.get(URI.parse(url))
   end
 end

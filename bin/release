@@ -30,13 +30,6 @@ The VERSION file has changed but not been committed. \
 Please commit the changes and try again."
 
   exit 1
-elif [ "$NIB_VERSION" == "$LATEST" ]; then
-  # fail release if VERSION file has not been incremented
-  echo "ERROR:
-
-Please update the VERSION file, it currently matches the previous release"
-
-  exit 1
 fi
 
 rake release
