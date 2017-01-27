@@ -19,7 +19,7 @@ fi
 
 NIB_VERSION=$(cat VERSION)
 LATEST="$(
-  curl --silent https://raw.githubusercontent.com/technekes/nib/latest/VERSION
+  curl --silent https://raw.githubusercontent.com/technekes/nib/master/VERSION
 )"
 
 if [[ $(git status | grep VERSION) ]]; then
