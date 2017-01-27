@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-  app:
+  gem:
     build: .
     working_dir: $PWD
     volumes:

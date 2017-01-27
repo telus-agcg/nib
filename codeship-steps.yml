@@ -1,11 +1,11 @@
 - type: parallel
   steps:
     - name: rubocop
-      service: app
+      service: gem
       command: rubocop -D
     - name: unit specs
-      service: app
+      service: gem
       command: rake rspec:unit
     # - name: integration specs
-    #   service: app
+    #   service: gem
     #   command: rake rspec:integration
