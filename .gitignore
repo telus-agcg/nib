@@ -6,3 +6,5 @@ tmp/*
 spec/examples.txt
 spec/dummy/**/tmp
 spec/dummy/**/log
+coverage/
+pkg/

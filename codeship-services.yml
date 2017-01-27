@@ -1,7 +1,5 @@
 app:
-  build:
-    context: .
-    dockerfile: Dockerfile.test
+  build: .
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   encrypted_env_file: codeship.env.encrypted

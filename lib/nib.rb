@@ -16,7 +16,6 @@ require 'nib/exec'
 require 'nib/run'
 require 'nib/setup'
 require 'nib/shell'
-require 'nib/update'
 
 module Nib
   GEM_ROOT = File.expand_path('../..', __FILE__)

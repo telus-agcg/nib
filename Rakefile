@@ -13,7 +13,6 @@ begin
 
     desc 'Run integration specs'
     RSpec::Core::RakeTask.new(:integration) do |task|
-      ENV['INTEGRATION'] = 'true'
       task.rspec_opts = "--pattern '#{pattern}'"
     end
   end

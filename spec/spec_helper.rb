@@ -1,7 +1,5 @@
-# These must be the first lines for coverage to report correctly
-# https://github.com/codeclimate/ruby-test-reporter#installation
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start
 
 require 'pry'
 require 'nib'

@@ -10,7 +10,7 @@ RSpec.shared_context 'running rails server', :running_rails_server do
     `
       cd spec/dummy/rails
       docker-compose stop
-      docker-compose rm --all -f
+      docker-compose rm -f
     `
   end
 end
