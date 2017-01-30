@@ -30,6 +30,11 @@ Implement your feature or bug fix.
 
 Document any external behavior in the [README](README.md). The help system defines commands in [`./script/_help`](script/_help), if you're adding a new command pleas add it there as well.
 
+
+#### Update Changelog
+
+Add a line to [CHANGELOG](CHANGELOG.md) under *Next Release*. Make it look like every other line, including your name and link to your Github account.
+
 #### Commit Changes
 
 Make sure git knows your name and email address:
