@@ -1,11 +1,18 @@
-- type: parallel
+- type: serial
   steps:
-    - name: rubocop
-      service: gem
-      command: rubocop -D
-    - name: unit specs
-      service: gem
-      command: rake rspec:unit
-    # - name: integration specs
-    #   service: gem
-    #   command: rake rspec:integration
+  - type: parallel
+    steps:
+      - name: rubocop
+        service: gem
+        command: rubocop -D
+      - name: unit specs
+        service: gem
+        command: rake rspec:unit
+      # - name: integration specs
+      #   service: gem
+      #   command: rake rspec:integration
+  - type: serial
+    steps:
+      - name: report coverate
+        service: gem
+        command: rake report_coverage
