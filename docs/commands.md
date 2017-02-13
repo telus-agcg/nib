@@ -77,7 +77,7 @@ Wraps normal 'docker-compose run' to ensure that --rm is always passed
 
 Runs application specific setup for the given service
 
-By default the setup command will execute 'bundle install && rake db:create db:migrate'.
+By default the setup command will execute 'gem install bundler && bundle install'.
 
 This behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.
 Additionally the setup process can be augmented by providing either $pwd/bin/setup.before or

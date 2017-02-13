@@ -91,7 +91,7 @@
     "name": "setup",
     "type": "custom",
     "short_description": "Runs application specific setup for the given service",
-    "long_description": "By default the setup command will execute 'bundle install && rake db:create db:migrate'.\n\nThis behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.\nAdditionally the setup process can be augmented by providing either $pwd/bin/setup.before or\n$pwd/bin/setup.after. This allows for extending the default behavior without having to redefine it.",
+    "long_description": "By default the setup command will execute 'gem install bundler && bundle install'.\n\nThis behavior can be overriden by providing an executable file in the project at $pwd/bin/setup.\nAdditionally the setup process can be augmented by providing either $pwd/bin/setup.before or\n$pwd/bin/setup.after. This allows for extending the default behavior without having to redefine it.",
     "options": []
   },
   {
