@@ -161,6 +161,9 @@ command :run do |c|
   Nib::Options::Augmenter.augment(c)
 
   c.action do |global, options, args|
+    # work around an `OptionParser` limitation: https://git.io/vDKrh
+    options[:'no-deps'] = options['no-deps'] = ARGV.include?('--no-deps')
+
     Nib::Run.execute(args, Nib::Options::Parser.parse(options))
   end
 end
