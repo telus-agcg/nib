@@ -1,5 +1,6 @@
 class Nib::Exec
   include Nib::Command
+  prepend Nib::History
 
   def script
     @script ||= <<~SCRIPT
@@ -7,15 +8,15 @@ class Nib::Exec
         exec \
         #{options} \
         #{service} \
-        /bin/sh -c "#{entrypoint}"
+        #{command}
     SCRIPT
   end
 
   def action
-    command.to_s.empty? ? '' : "-c '#{command}'"
+    @command.to_s.empty? ? '' : "-c '#{@command}'"
   end
 
-  def entrypoint
+  def command
     "
       if hash bash 2>/dev/null ; then
         bash #{action}

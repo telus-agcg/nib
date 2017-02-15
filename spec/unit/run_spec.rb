@@ -14,8 +14,8 @@ RSpec.describe Nib::Run do
         --rm
         .*
         #{service}
-        .*
-        #{command}
+        (.|\n)*
+        #{command}$
       /x
     )
   end

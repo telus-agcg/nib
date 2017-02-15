@@ -1,5 +1,6 @@
 class Nib::Shell
   include Nib::Command
+  prepend Nib::History
 
   SCRIPT = <<~SH.freeze
     if hash bash 2>/dev/null ; then
@@ -11,25 +12,9 @@ class Nib::Shell
     fi
   SH
 
-  def execute
-    system('mkdir', '-p', './tmp')
-    super
-  end
-
-  def script
-    @script ||= <<~SCRIPT
-      docker-compose \
-        run \
-        --rm \
-        -e HISTFILE=./tmp/shell_history \
-        #{service} \
-        #{command}
-    SCRIPT
-  end
-
   private
 
   def command
-    "/bin/sh -c \"#{SCRIPT}\""
+    SCRIPT
   end
 end

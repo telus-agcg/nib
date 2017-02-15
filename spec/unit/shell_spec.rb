@@ -25,8 +25,6 @@ RSpec.describe Nib::Shell do
           .*
           --rm
           .*
-          -e\sHISTFILE=./tmp/shell_history
-          .*
           #{service}
           .*
           /bin/sh\s-c
