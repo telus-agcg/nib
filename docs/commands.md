@@ -89,3 +89,9 @@ Start a shell session in a one-off service container
 
 
 
+### `update`
+
+Download the latest version of nib
+
+
+

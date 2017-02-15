@@ -24,6 +24,12 @@ If there is an update available it's a good idea to remove the current version b
 > gem uninstall -ax nib && gem install nib
 ```
 
+... or let `nib` take care of that for your.
+
+```sh
+> nib update
+```
+
 ## Usage
 
 `nib` can be used as a replacement for `docker-compose` any commands that it does not recognize will be delegated to `docker-compose`.

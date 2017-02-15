@@ -190,4 +190,11 @@ command :shell do |c|
   end
 end
 
+desc 'Download the latest version of nib'
+command :update do |c|
+  c.action do |global, options, args|
+    Nib::Update.execute(options, args)
+  end
+end
+
 exit run(ARGV)

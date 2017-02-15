@@ -7,7 +7,7 @@ class Nib::CheckForUpdate
     puts <<~MESSAGE
 
     An update is available for nib: #{latest}
-    Use 'gem update nib' to install the latest version
+    Use 'nib update' to install the latest version
     MESSAGE
   end
 
