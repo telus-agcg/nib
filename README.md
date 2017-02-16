@@ -3,6 +3,8 @@
 [![Code Climate](https://codeclimate.com/github/technekes/nib/badges/gpa.svg)](https://codeclimate.com/github/technekes/nib)
 [![Test Coverage](https://codeclimate.com/github/technekes/nib/badges/coverage.svg)](https://codeclimate.com/github/technekes/nib/coverage)
 [![Gem Version](https://badge.fury.io/rb/nib.svg)](https://badge.fury.io/rb/nib)
+[![Dependency Status](https://gemnasium.com/badges/github.com/technekes/nib.svg)](https://gemnasium.com/github.com/technekes/nib)
+
 
 `nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
 
