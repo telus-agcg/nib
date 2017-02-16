@@ -17,10 +17,6 @@ begin
     end
   end
 
-  task :report_coverage do
-    `CI_COMMITED_AT=$CI_TIMESTAMP codeclimate-test-reporter`
-  end
-
   task spec: %w(rspec:unit rspec:integration)
   task default: %i(spec)
 rescue LoadError # rubocop:disable Lint/HandleExceptions

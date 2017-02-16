@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -e
+
+# https://git.io/vDywe
+export CI_COMMITED_AT=$CI_TIMESTAMP
+
+rake rspec:unit
+# rake rspec:integration
+codeclimate-test-reporter

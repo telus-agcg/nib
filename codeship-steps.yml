@@ -7,12 +7,4 @@
         command: rubocop -D
       - name: unit specs
         service: gem
-        command: rake rspec:unit
-      # - name: integration specs
-      #   service: gem
-      #   command: rake rspec:integration
-  - type: serial
-    steps:
-      - name: report coverate
-        service: gem
-        command: rake report_coverage
+        command: bin/ci
