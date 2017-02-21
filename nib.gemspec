@@ -9,9 +9,11 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'The tip of the pen (compose)'
 
-  s.description = <<~'DESCRIPTION'
+  s.description = <<-'DESCRIPTION'
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
+
+  s.required_ruby_version = '>= 2.2.0'
 
   s.files = Dir['lib/**/*.rb'] | Dir['config/**/*'] | ['VERSION']
   s.require_paths << 'lib'

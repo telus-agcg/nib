@@ -24,7 +24,7 @@ module Nib::Command
   end
 
   def script
-    @script ||= <<~SCRIPT
+    @script ||= <<-SCRIPT
       docker-compose \
         run \
         --rm \

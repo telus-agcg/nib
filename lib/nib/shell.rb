@@ -2,7 +2,7 @@ class Nib::Shell
   include Nib::Command
   prepend Nib::History
 
-  SCRIPT = <<~SH.freeze
+  SCRIPT = <<-SH.freeze
     if hash bash 2>/dev/null ; then
       bash
     elif hash ash 2>/dev/null ; then

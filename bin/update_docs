@@ -2,7 +2,7 @@
 
 require 'json'
 
-header = <<~'HEADER'
+header = <<-'HEADER'
   # Supported Commands
 
   The following commands are available:

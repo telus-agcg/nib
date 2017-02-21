@@ -38,6 +38,6 @@ class Nib::Debug
       (?<port>\d+)    # capture numeric value of the port
     /x
 
-    compose_file.match(regexp)&.send(:[], :port)
+    (compose_file.match(regexp) || {}).send(:[], :port)
   end
 end

@@ -11,7 +11,7 @@ class Nib::CodeClimate
   end
 
   def script
-    @script ||= <<~SCRIPT
+    @script ||= <<-SCRIPT
       docker-compose \
         -f #{compose_file.path} \
         run \

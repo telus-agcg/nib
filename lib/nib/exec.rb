@@ -3,7 +3,7 @@ class Nib::Exec
   prepend Nib::History
 
   def script
-    @script ||= <<~SCRIPT
+    @script ||= <<-SCRIPT
       docker-compose \
         exec \
         #{options} \

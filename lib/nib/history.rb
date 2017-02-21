@@ -1,5 +1,5 @@
 module Nib::History
-  IRBRC = <<~'IRB'.freeze
+  IRBRC = <<-'IRB'.freeze
     require \"rubygems\"
     require \"irb/completion\"
     require \"irb/ext/save-history\"
@@ -20,7 +20,7 @@ module Nib::History
   end
 
   def command
-    <<~COMMAND
+    <<-COMMAND
       /bin/sh -c \"
         export HISTFILE=./tmp/shell_history
         echo '#{IRBRC}' > /root/.irbrc

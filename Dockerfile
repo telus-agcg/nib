@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby:2.2
 
 ENV COMPOSE_VERSION 1.10.0
 

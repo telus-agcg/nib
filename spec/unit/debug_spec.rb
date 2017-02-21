@@ -13,7 +13,7 @@ RSpec.describe Nib::Debug do
     it 'runs a container with bybug on the appropriate port' do
       expect(subject.script).to match(
         /
-          ^docker-compose
+          docker-compose
           .*
           run
           .*

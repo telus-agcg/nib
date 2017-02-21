@@ -2,7 +2,7 @@ class Nib::Console
   include Nib::Command
   prepend Nib::History
 
-  SCRIPT = <<~SH.freeze
+  SCRIPT = <<-SH.freeze
     has_pry=false
     has_boot=false
     if hash pry 2>/dev/null ; then
