@@ -2,6 +2,10 @@
 
 * Your contribution here.
 
+# 1.4.1 (2017-02-21)
+
+### Hotfixes
+
 * [#120](https://github.com/technekes/nib/pull/120) Support prior versions or Ruby - [@johnallen3d](https://github.com/johnallen3d).
 
 # 1.4.0 (2017-02-15)
