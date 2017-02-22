@@ -27,4 +27,8 @@ module Nib
   def load_config(command, file_name)
     File.read("#{GEM_ROOT}/config/commands/#{command}/#{file_name}")
   end
+
+  def load_default_config(command, file_name)
+    load_config(command, file_name)
+  end
 end

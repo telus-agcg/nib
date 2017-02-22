@@ -1,0 +1,11 @@
+require 'rubygems'
+require 'irb/completion'
+require 'irb/ext/save-history'
+
+# irb configuration
+IRB.conf[:PROMPT_MODE] = :SIMPLE
+IRB.conf[:AUTO_INDENT] = true
+
+# irb history
+IRB.conf[:EVAL_HISTORY] = 10
+IRB.conf[:SAVE_HISTORY] = 1000
