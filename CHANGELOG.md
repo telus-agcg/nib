@@ -2,6 +2,8 @@
 
 * Your contribution here.
 
+* [#123](https://github.com/technekes/nib/pull/123) Favor Docker over Compose for CodeClimate command - [@johnallen3d](https://github.com/johnallen3d).
+
 # 1.4.2 (2017-02-23)
 
 ### Features

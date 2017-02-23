@@ -10,18 +10,14 @@ RSpec.describe Nib::CodeClimate do
 
   it 'runs the codeclimate docker image' do
     expect(subject.script).to match(
-      /
-        docker-compose
+      %r{
         .*
-        run
+        docker\srun
         .*
-        --rm.*
-        #{service}
+        codeclimate\/codeclimate
         .*
-        codeclimate
-        .*
-        #{command}
-      /x
+        analyze
+      }x
     )
   end
 end
