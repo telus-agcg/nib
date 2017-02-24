@@ -1,5 +1,3 @@
-require 'tempfile'
-
 class Nib::CodeClimate
   include Nib::Command
 

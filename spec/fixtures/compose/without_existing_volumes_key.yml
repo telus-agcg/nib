@@ -1,0 +1,13 @@
+networks: {}
+services:
+  redis:
+    image: redis:alpine
+    network_mode: bridge
+    ports:
+    - 6379:6379
+  web:
+    build:
+      context: /dev/nib
+    network_mode: bridge
+version: '2.1'
+volumes: {}

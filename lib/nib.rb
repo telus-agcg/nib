@@ -8,6 +8,8 @@ require 'nib/options/parser'
 
 require 'nib/command'
 require 'nib/history'
+require 'nib/history/compose'
+require 'nib/history/config'
 require 'nib/check_for_update'
 require 'nib/unrecognized_help'
 require 'nib/code_climate'

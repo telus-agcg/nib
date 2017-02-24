@@ -26,6 +26,7 @@ module Nib::Command
   def script
     @script ||= <<-SCRIPT
       docker-compose \
+        #{alternate_compose_file} \
         run \
         --rm \
         #{options} \
@@ -33,4 +34,6 @@ module Nib::Command
         #{command}
     SCRIPT
   end
+
+  def alternate_compose_file; end
 end
