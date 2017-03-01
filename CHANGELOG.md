@@ -4,6 +4,7 @@
 
 * [#123](https://github.com/technekes/nib/pull/123) Favor Docker over Compose for CodeClimate command - [@johnallen3d](https://github.com/johnallen3d).
 * [#129](https://github.com/technekes/nib/pull/129) Upgrade `shell` command - [@johnallen3d](https://github.com/johnallen3d).
+* [#130](https://github.com/technekes/nib/pull/130) Use CMD if argument not passed to `run` - [@johnallen3d](https://github.com/johnallen3d).
 
 # 1.4.2 (2017-02-23)
 

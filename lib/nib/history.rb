@@ -1,7 +1,25 @@
 require 'fileutils'
 
 module Nib::History
+  def self.prepended(base)
+    base.instance_eval do
+      extend ClassMethods
+    end
+  end
+
+  module ClassMethods
+    def history_requires_command(value)
+      @history_requires_command = value
+    end
+
+    def history_requires_command?
+      @history_requires_command
+    end
+  end
+
   def command
+    return if self.class.history_requires_command? && @command.to_s.empty?
+
     <<-COMMAND
       /bin/sh -c \"
         export HISTFILE=./tmp/shell_history
