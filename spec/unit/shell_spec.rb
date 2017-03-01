@@ -17,6 +17,8 @@ RSpec.describe Nib::Shell do
           .*
           /bin/sh\s-c
           (.|\n)*
+          bin\/shell
+          (.|\n)*
           zsh
           (.|\n)*
           bash
