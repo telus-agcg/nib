@@ -2,7 +2,7 @@ require 'pty'
 require 'expect'
 
 RSpec.describe 'console', :interactive do
-  let(:command) { "cd #{spec_dir} && nib console web" }
+  let(:command) { "cd #{spec_dir} && #{NIB_BIN} console web" }
 
   context 'rails' do
     let(:spec_dir) { './spec/dummy/rails' }

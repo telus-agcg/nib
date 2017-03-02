@@ -1,4 +1,4 @@
-cmd = 'cd spec/dummy/rails; nib setup web'
+cmd = "cd spec/dummy/rails; #{NIB_BIN} setup web"
 
 RSpec.describe 'setup' do
   let(:bin_path) { './spec/dummy/rails/bin' }

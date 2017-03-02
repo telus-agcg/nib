@@ -2,7 +2,7 @@ require 'pty'
 require 'expect'
 
 RSpec.describe 'shell', :interactive do
-  let(:command) { "cd #{spec_dir} && nib shell web" }
+  let(:command) { "cd #{spec_dir} && #{NIB_BIN} shell web" }
 
   context 'binstub shell override' do
     let(:spec_dir) { './spec/dummy/rails' }
