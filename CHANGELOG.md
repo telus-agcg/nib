@@ -2,10 +2,21 @@
 
 * Your contribution here.
 
+# 1.5.0 (2017-03-08)
+
+### Features
+
 * [#123](https://github.com/technekes/nib/pull/123) Favor Docker over Compose for CodeClimate command - [@johnallen3d](https://github.com/johnallen3d).
 * [#129](https://github.com/technekes/nib/pull/129) Upgrade `shell` command - [@johnallen3d](https://github.com/johnallen3d).
-* [#130](https://github.com/technekes/nib/pull/130) Use CMD if argument not passed to `run` - [@johnallen3d](https://github.com/johnallen3d).
 * [#124](https://github.com/technekes/nib/pull/124) Use a Docker volume to store history - [@johnallen3d](https://github.com/johnallen3d).
+
+### Hotfixes
+
+* [#130](https://github.com/technekes/nib/pull/130) Use CMD if argument not passed to `run` - [@johnallen3d](https://github.com/johnallen3d).
+
+### Maintenance
+
+* [#131](https://github.com/technekes/nib/pull/131) Viva la Alpine image! - [@johnallen3d](https://github.com/johnallen3d).
 
 # 1.4.2 (2017-02-23)
 
