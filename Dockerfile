@@ -19,6 +19,7 @@ RUN \
     ruby \
     ruby-bundler \
     ruby-dev \
+    openssh \
     wget && \
 
   # install docker
@@ -62,7 +63,6 @@ RUN \
     bash \
     build-base \
     ca-certificates \
-    git \
     libffi-dev \
     py-pip \
     python \
