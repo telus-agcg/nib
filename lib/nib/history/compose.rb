@@ -23,8 +23,12 @@ class Nib::History::Compose
 
   private
 
+  def docker_compose_config
+    @docker_compose_config ||= `docker-compose config`
+  end
+
   def original_config
-    @original_config ||= YAML.safe_load(`docker-compose config`)
+    @original_config ||= YAML.safe_load(docker_compose_config.gsub(/\$/, '$$'))
   end
 
   def file
