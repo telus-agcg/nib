@@ -2,6 +2,12 @@
 
 * Your contribution here.
 
+# 1.5.1 (2017-03-21)
+
+### Hotfixes
+
+* [#135](https://github.com/technekes/nib/pull/135) Handle `$` in docker-compose config - [@johnallen3d](https://github.com/johnallen3d).
+
 # 1.5.0 (2017-03-08)
 
 ### Features
