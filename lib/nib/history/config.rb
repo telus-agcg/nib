@@ -1,6 +1,8 @@
 require 'fileutils'
 
 class Nib::History::Config
+  PATH = '/tmp/nib/config'.freeze
+
   attr_reader :type, :history_command, :host_path
 
   def initialize(type, history_command)
@@ -8,7 +10,7 @@ class Nib::History::Config
     @history_command = history_command
     @host_path = "#{ENV['HOME']}/.#{type}"
 
-    FileUtils.mkdir_p './tmp'
+    FileUtils.mkdir_p PATH
   end
 
   def container_path
@@ -26,7 +28,7 @@ class Nib::History::Config
   end
 
   def config_file
-    @config_file ||= File.open("./tmp/#{type}", 'w+') do |file|
+    @config_file ||= File.open("#{PATH}/#{type}", 'w+') do |file|
       file.write(config)
       file.write(history_command + "\n")
       file

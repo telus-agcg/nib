@@ -70,7 +70,9 @@ class Nib::History::Compose
     end
 
     def config
-      original_config.merge('volumes' => volumes_config << history_config)
+      original_config.merge(
+        'volumes' => volumes_config | [history_config, rc_config]
+      )
     end
 
     private
@@ -81,6 +83,10 @@ class Nib::History::Compose
 
     def history_config
       "#{volume_name}:#{Nib::History::PATH}"
+    end
+
+    def rc_config
+      "#{Nib::History::Config::PATH}:#{Nib::History::Config::PATH}"
     end
   end
 
