@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables << 'nib'
 
-  s.add_runtime_dependency('gli', '2.15.0')
+  s.add_runtime_dependency('gli', '~> 2.16')
 
   s.add_development_dependency('pry')
   s.add_development_dependency('serverspec')
