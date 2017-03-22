@@ -2,6 +2,12 @@
 
 * Your contribution here.
 
+# 1.6.0 (2017-03-22)
+
+### Features
+
+* [9584810](https://github.com/technekes/nib/commit/95848101e7b85f5f7c14f7663552003af9c14199) Remove dependency on `./tmp` - [@johnallen3d](https://github.com/johnallen3d).
+
 # 1.5.1 (2017-03-21)
 
 ### Hotfixes
