@@ -1,5 +1,0 @@
-gem:
-  build: .
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-  encrypted_env_file: codeship.env.encrypted

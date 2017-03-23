@@ -1,7 +1,7 @@
 version: "2"
 
 services:
-  gem:
+  gem: &default
     build: .
     working_dir: $PWD
     volumes:
@@ -14,3 +14,16 @@ services:
       - $HOME/.ssh:/root/.ssh
       - $HOME/.gitconfig:/root/.gitconfig
       - $HOME/.gem/credentials:/root/.gem/credentials
+
+  ci:
+    <<: *default
+    command: bin/ci
+    working_dir: /usr/src/app
+    volumes: []
+    # https://git.io/vSJF6
+    environment:
+      CODECLIMATE_REPO_TOKEN: $CODECLIMATE_REPO_TOKEN
+      CIRCLECI: $CIRCLECI
+      CIRCLE_BUILD_NUM: $CIRCLE_BUILD_NUM
+      CIRCLE_BRANCH: $CIRCLE_BRANCH
+      CIRCLE_SHA1: $CIRCLE_SHA1

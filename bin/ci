@@ -1,10 +1,12 @@
 #! /bin/sh
 
-set -e
-
 # https://git.io/vDywe
-export CI_COMMITED_AT=$CI_TIMESTAMP
+export CI_COMMITED_AT=$(date +%s)
 
+set -e
+set -x
+
+rubocop -D
 rake rspec:unit
 # rake rspec:integration
-codeclimate-test-reporter
+# codeclimate-test-reporter

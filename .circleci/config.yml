@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: technekes/circleci:latest
+
+    working_directory: /tmp/nib
+
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run:
+          name: Build the image(s)
+          command: |
+            docker-compose build
+
+      - run:
+          name: Run tests
+          command: |
+            docker-compose run ci

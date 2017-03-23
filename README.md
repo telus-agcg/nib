@@ -1,6 +1,6 @@
 ![nib logo](nib.png)
 
-[![Codeship Status for technekes/nib](https://codeship.com/projects/89937b80-302b-0134-3df6-029c728c3af4/status?branch=master)](https://codeship.com/projects/164133)
+[![CircleCI](https://circleci.com/gh/technekes/nib.svg?style=svg)](https://circleci.com/gh/technekes/nib)
 [![Code Climate](https://codeclimate.com/github/technekes/nib/badges/gpa.svg)](https://codeclimate.com/github/technekes/nib)
 [![Test Coverage](https://codeclimate.com/github/technekes/nib/badges/coverage.svg)](https://codeclimate.com/github/technekes/nib/coverage)
 [![Gem Version](https://badge.fury.io/rb/nib.svg)](https://badge.fury.io/rb/nib)
