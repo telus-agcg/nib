@@ -64,3 +64,11 @@ Style/PercentLiteralDelimiters:
     default: ()
     "%i": ()
     "%w": ()
+
+Style/FileName:
+  Exclude:
+    - Dangerfile
+
+Style/SignalException:
+  Exclude:
+    - Dangerfile
