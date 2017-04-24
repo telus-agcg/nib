@@ -55,3 +55,12 @@ Metrics/BlockLength:
   # Certain DSL use blocks and can be lengthy
   Exclude:
     - 'spec/**/*'
+
+Style/PercentLiteralDelimiters:
+  # use the traidtional style for percent arrays
+  #
+  # %w(foo bar)
+  PreferredDelimiters:
+    default: ()
+    "%i": ()
+    "%w": ()
