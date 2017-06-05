@@ -13,9 +13,11 @@ RSpec.describe Nib::Shell do
           .*
           --rm
           .*
-          #{service}
-          .*
+          --entrypoint=
+          (.|\n)*
           /bin/sh\s-c
+          (.|\n)*
+          export\sHISTFILE
           (.|\n)*
           bin\/shell
           (.|\n)*
@@ -26,6 +28,8 @@ RSpec.describe Nib::Shell do
           ash
           (.|\n)*
           sh
+          (.|\n)*
+          #{service}
         }x
       )
     end

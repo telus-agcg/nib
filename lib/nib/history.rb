@@ -17,17 +17,21 @@ module Nib::History
     end
   end
 
-  def command
-    return if self.class.history_requires_command? && @command.to_s.empty?
-
+  def wrap(executable)
     <<-COMMAND
       /bin/sh -c \"
         export HISTFILE=#{PATH}/shell_history
         cp #{irbrc.container_path} /root/.irbrc 2>/dev/null
         cp #{pryrc.container_path} /root/.pryrc 2>/dev/null
-        #{super}
+        #{executable}
       \"
     COMMAND
+  end
+
+  def command
+    return if self.class.history_requires_command? && @command.to_s.empty?
+
+    wrap(super)
   end
 
   def alternate_compose_file

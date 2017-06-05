@@ -29,6 +29,7 @@ module Nib::Command
         #{alternate_compose_file} \
         run \
         --rm \
+        #{entrypoint} \
         #{options} \
         #{service} \
         #{command}
@@ -36,4 +37,6 @@ module Nib::Command
   end
 
   def alternate_compose_file; end
+
+  def entrypoint; end
 end
