@@ -47,7 +47,7 @@ on_error do |exception|
   case exception
   when GLI::UnknownCommand
     # delegate unknown commands over to `docker-compose`
-    exec("docker-compose #{ARGV.join(' ')}")
+    exec("docker-compose -f #{Nib::History::Compose.new.path} #{ARGV.join(' ')}")
 
     false
   else
