@@ -2,6 +2,16 @@
 
 * Your contribution here.
 
+# 1.6.1 (2017-06-06)
+
+### Features
+
+* [145](https://github.com/technekes/nib/pull/145) Support images with an ENTRYPOINT for `shell` command - [@johnallen3d](https://github.com/johnallen3d).
+
+### Hotfixes
+
+* [146](https://github.com/technekes/nib/pull/146) Add history volume for delegated commands - [@johnallen3d](https://github.com/johnallen3d).
+
 # 1.6.0 (2017-03-22)
 
 ### Features
