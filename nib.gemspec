@@ -22,12 +22,12 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('gli', '~> 2.16')
 
-  s.add_development_dependency('pry')
-  s.add_development_dependency('serverspec')
-  s.add_development_dependency('rake')
+  s.add_development_dependency('codeclimate-test-reporter', '~> 1.0.7')
   s.add_development_dependency('guard')
   s.add_development_dependency('guard-rspec')
   s.add_development_dependency('guard-rubocop')
+  s.add_development_dependency('pry')
+  s.add_development_dependency('rake')
+  s.add_development_dependency('serverspec')
   s.add_development_dependency('simplecov')
-  s.add_development_dependency('codeclimate-test-reporter', '~> 1.0.7')
 end

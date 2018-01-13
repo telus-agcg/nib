@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.2
   Exclude:
     - vendor/**
     - bin/**
@@ -29,7 +29,7 @@ AlignParameters:
   # )
   EnforcedStyle: with_fixed_indentation
 
-Style/AlignParameters:
+Layout/AlignParameters:
   # allow for end of if to be aligned with a variable.
   # for example:
   #
@@ -40,7 +40,7 @@ Style/AlignParameters:
   # end
   EnforcedStyle: with_fixed_indentation
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   # allow for multi-line method chaining to have normal indentation.
   # for example:
   #
@@ -74,7 +74,7 @@ Style/PercentLiteralDelimiters:
     "%i": ()
     "%w": ()
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - Dangerfile
 

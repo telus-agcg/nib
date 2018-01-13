@@ -14,13 +14,13 @@ RSpec.describe Nib::History::Compose do
 
   context 'with existing volumes key' do
     it 'adds the history volume' do
-      subject.config['services'].each do |_, definition|
+      subject.config['services'].each_value do |definition|
         expect(definition['volumes']).to include(history_config)
       end
     end
 
     it 'adds the rc config' do
-      subject.config['services'].each do |_, definition|
+      subject.config['services'].each_value do |definition|
         expect(definition['volumes']).to include(rc_config)
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe Nib::History::Compose do
 
   context 'without existing volumes key' do
     it 'adds the history volume' do
-      subject.config['services'].each do |_, definition|
+      subject.config['services'].each_value do |definition|
         expect(definition['volumes']).to include(history_config)
       end
     end
