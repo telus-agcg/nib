@@ -2,7 +2,13 @@
 
 * Your contribution here.
 
-# 1.6.1 (2017-06-06)
+# 2.0.0 (2018-01-15)
+
+### Features
+
+* [151](https://github.com/technekes/nib/pull/151) Add support for external plugins - [@johnallen3d](https://github.com/johnallen3d).
+
+# 1.7.0 (2017-06-06)
 
 ### Features
 
