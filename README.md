@@ -93,6 +93,52 @@ Once all of this is in place and the web service is up and running (`nib up`) yo
 > nib debug web
 ```
 
+## Plugins
+
+nib is pluggable via additional gems. The plugin system is loosely based on that of [minitest](https://github.com/seattlerb/minitest#writing-extensions) extensions. There are three requirements for a nib plugin:
+
+1. A Ruby gem that relies on [gli](https://github.com/davetron5000/gli) for defining it's CLI interface following the naming convention `bin/nib-*`
+1. It puts a file on the `LOAD_PATH` that ends with `_plugin.rb` following the naming convention `./lib/nib_*_plugin.rb`
+1. Implements `#applies?`, which allows the plugin to "self-select" (ie. was this command run in what appears to be an applicable project)
+
+### Plugin Example
+
+As an example let's define a plugin for nib that caters to Ruby developers.
+
+```ruby
+# ./bin/nib-ruby
+
+#!/usr/bin/env ruby
+
+command :hello do |c|
+  c.action do |_global_options, _options, _args|
+    puts 'from nib-ruby'
+  end
+end
+```
+
+```ruby
+# ./lib/nib_ruby_plugin.rb
+
+module Nib
+  module Ruby
+    def self.applies?
+      !Dir.glob('Gemfile').empty?
+    end
+  end
+end
+```
+
+```ruby
+# ./nib-ruby.gemspec
+
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+...
+```
+
+If nib-ruby has been installed and a nib command is run from a directory containing a `Gemfile` nib will append gli commands from `bin/nib-ruby`.
+
 ## Running Specs
 
 This project includes [rspec](http://rspec.info/) and [serverspec](http://serverspec.org/) to help facilitate execution of automated tests. Running the tests is as simple as:
