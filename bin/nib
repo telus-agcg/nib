@@ -197,4 +197,8 @@ command :update do |c|
   end
 end
 
+Nib.available_plugins.each do |plugin|
+  load plugin
+end
+
 exit run(ARGV)
