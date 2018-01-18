@@ -22,7 +22,6 @@ services:
     volumes: []
     # https://git.io/vSJF6
     environment:
-      CODECLIMATE_REPO_TOKEN: $CODECLIMATE_REPO_TOKEN
       CIRCLECI: $CIRCLECI
       CIRCLE_BUILD_NUM: $CIRCLE_BUILD_NUM
       CIRCLE_BRANCH: $CIRCLE_BRANCH
