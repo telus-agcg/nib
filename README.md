@@ -1,8 +1,8 @@
 ![nib logo](nib.png)
 
 [![CircleCI](https://circleci.com/gh/technekes/nib.svg?style=svg)](https://circleci.com/gh/technekes/nib)
-[![Code Climate](https://codeclimate.com/github/technekes/nib/badges/gpa.svg)](https://codeclimate.com/github/technekes/nib)
-[![Test Coverage](https://codeclimate.com/github/technekes/nib/badges/coverage.svg)](https://codeclimate.com/github/technekes/nib/coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2e5c36dbc83ff63575f7/maintainability)](https://codeclimate.com/github/technekes/nib/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2e5c36dbc83ff63575f7/test_coverage)](https://codeclimate.com/github/technekes/nib/test_coverage)
 [![Gem Version](https://badge.fury.io/rb/nib.svg)](https://badge.fury.io/rb/nib)
 [![Dependency Status](https://gemnasium.com/badges/github.com/technekes/nib.svg)](https://gemnasium.com/github.com/technekes/nib)
 
