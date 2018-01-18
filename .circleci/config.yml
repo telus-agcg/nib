@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: technekes/circleci:latest
 
-    working_directory: /tmp/nib
+    working_directory: /usr/src/app
 
     steps:
       - checkout
@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Run tests
           command: |
+            set -x
             # notify code climate that a build is starting
             ./cc before-build
             # run the specs
