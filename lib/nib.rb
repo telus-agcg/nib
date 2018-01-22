@@ -7,6 +7,9 @@ require 'nib/options'
 require 'nib/options/augmenter'
 require 'nib/options/parser'
 
+require 'nib/plugins'
+require 'nib/plugin'
+
 require 'nib/command'
 require 'nib/history'
 require 'nib/history/compose'
@@ -27,22 +30,12 @@ module Nib
 
   module_function
 
-  def available_plugins
-    Gem.find_files('nib*_plugin.rb').sort.map do |plugin_path|
-      name = File.basename plugin_path, '_plugin.rb'
-
-      require plugin_path
-
-      next unless const_for(name).applies?
-
-      plugin_base_path = plugin_path[0..-"/lib/#{name}_plugin.rb".length]
-
-      "#{plugin_base_path}bin/#{name.tr('_', '-')}"
-    end.compact
+  def installed_plugins
+    Nib::Plugins.potential_plugins.map(&:name)
   end
 
-  def const_for(name)
-    Nib.const_get(name.split('_').map(&:capitalize).join('::'))
+  def available_plugins
+    Nib::Plugins.available_plugins.map(&:binstub)
   end
 
   def load_default_config(command, file_name)
