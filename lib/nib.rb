@@ -1,6 +1,7 @@
 require 'nib/version'
 
 require 'core_extensions/hash'
+require 'core_extensions/string'
 
 require 'nib/options'
 require 'nib/options/augmenter'
