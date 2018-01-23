@@ -12,6 +12,12 @@ RSpec.describe Nib do
   it 'search gems to find installed plugins' do
     allow(Gem).to receive(:find_files) { plugins }
 
+    expect(subject.installed_plugins).to include('nib-ruby')
+  end
+
+  it 'search gems to find available plugins' do
+    allow(Gem).to receive(:find_files) { plugins }
+
     expect(subject.available_plugins).to include(nib_ruby)
   end
 end

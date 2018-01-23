@@ -37,6 +37,7 @@ post do |global, command, options, args|
   # Use skips_post before a command to skip this
   # block on that command only
   if command.is_a? GLI::Commands::Help
+    Nib::Plugins.execute(options, args)
     Nib::UnrecognizedHelp.execute(options, args)
     Nib::CheckForUpdate.execute(options, args)
   end
