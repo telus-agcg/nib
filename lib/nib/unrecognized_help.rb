@@ -1,6 +1,6 @@
 class Nib::UnrecognizedHelp
   def self.execute(_, _)
-    puts <<-MESSAGE
+    puts <<-MESSAGE.strip_heredoc
 
       Note:
         Unrecognized commands will be delegated to docker-compose.
