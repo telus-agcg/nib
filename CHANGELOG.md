@@ -2,6 +2,13 @@
 
 * Your contribution here.
 
+# 2.0.1 (2018-02-02)
+
+### Features
+
+* [155](https://github.com/technekes/nib/pull/155) Print a list of installed plugins with help - [@johnallen3d](https://github.com/johnallen3d).
+* [154](https://github.com/technekes/nib/pull/154) Strip indentation from heredocs - [@johnallen3d](https://github.com/johnallen3d).
+
 # 2.0.0 (2018-01-15)
 
 ### Features
