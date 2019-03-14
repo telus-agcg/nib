@@ -1,4 +1,3 @@
-# rubocop:disable Naming/UncommunicativeMethodParamName
 class Nib::Plugins
   def self.execute(_, _)
     puts ''
@@ -19,4 +18,3 @@ class Nib::Plugins
     @available_plugins ||= potential_plugins.select(&:applies?)
   end
 end
-# rubocop:enable Naming/UncommunicativeMethodParamName

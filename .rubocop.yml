@@ -81,6 +81,10 @@ Naming/FileName:
   Exclude:
     - Dangerfile
 
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - _
+
 Style/SignalException:
   Exclude:
     - Dangerfile

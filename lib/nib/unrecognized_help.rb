@@ -1,4 +1,3 @@
-# rubocop:disable Naming/UncommunicativeMethodParamName
 class Nib::UnrecognizedHelp
   def self.execute(_, _)
     puts <<-MESSAGE.strip_heredoc
@@ -11,4 +10,3 @@ class Nib::UnrecognizedHelp
     MESSAGE
   end
 end
-# rubocop:enable Naming/UncommunicativeMethodParamName
