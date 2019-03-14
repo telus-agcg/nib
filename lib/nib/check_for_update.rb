@@ -1,3 +1,4 @@
+# rubocop:disable Naming/UncommunicativeMethodParamName
 require 'net/http'
 
 class Nib::CheckForUpdate
@@ -21,3 +22,4 @@ class Nib::CheckForUpdate
     Net::HTTP.get(URI.parse(url))
   end
 end
+# rubocop:enable Naming/UncommunicativeMethodParamName
