@@ -1,6 +1,7 @@
 # Next Release
 
 * [159](https://github.com/technekes/nib/pull/159) Updates rubocop styles - [@scookdev](https://github.com/scookdev).
+* [158](https://github.com/technekes/nib/pull/158) Fixes pry pager error - [@scookdev](https://github.com/scookdev).
 
 # 2.0.1 (2018-02-02)
 
