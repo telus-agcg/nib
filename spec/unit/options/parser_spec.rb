@@ -12,12 +12,12 @@ RSpec.describe Nib::Options::Parser do
 
   let(:flag_options) do
     {
-      'name'           => 'banana',
-      :name            => 'banana',
-      'e'              => %i(FOO=bar RAILS_ENV=development),
-      :e               => %i(FOO=bar RAILS_ENV=development),
-      'entrypoint'     => '/sh',
-      :entrypoint      => '/sh'
+      'name'       => 'banana',
+      :name        => 'banana',
+      'e'          => %i(FOO=bar RAILS_ENV=development),
+      :e           => %i(FOO=bar RAILS_ENV=development),
+      'entrypoint' => '/sh',
+      :entrypoint  => '/sh'
     }
   end
 

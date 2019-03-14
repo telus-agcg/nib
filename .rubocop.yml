@@ -40,6 +40,9 @@ Layout/AlignParameters:
   # end
   EnforcedStyle: with_fixed_indentation
 
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+
 Layout/MultilineMethodCallIndentation:
   # allow for multi-line method chaining to have normal indentation.
   # for example:
@@ -49,7 +52,7 @@ Layout/MultilineMethodCallIndentation:
   #   .not(last_name: 'foolery')
   EnforcedStyle: indented
 
-Lint/EndAlignment:
+Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
 ClassAndModuleChildren:
@@ -77,6 +80,10 @@ Style/PercentLiteralDelimiters:
 Naming/FileName:
   Exclude:
     - Dangerfile
+
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - _
 
 Style/SignalException:
   Exclude:
