@@ -1,5 +1,9 @@
 # Next Release
 
+# 2.0.2 (2019-09-05)
+
+## Hotfixes
+
 * [159](https://github.com/technekes/nib/pull/159) Updates rubocop styles - [@scookdev](https://github.com/scookdev).
 * [158](https://github.com/technekes/nib/pull/158) Fixes pry pager error - [@scookdev](https://github.com/scookdev).
 
