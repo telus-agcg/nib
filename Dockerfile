@@ -1,4 +1,4 @@
-FROM docker/compose:1.19.0
+FROM docker/compose:1.26.0
 
 WORKDIR /usr/src/app
 
@@ -18,7 +18,7 @@ RUN \
     ruby-json
 
 RUN \
-  bundle install --gemfile=/usr/src/app/Gemfile --clean -j4
+  bundle install --gemfile=/usr/src/app/Gemfile --clean --force -j4
 
 ENTRYPOINT []
 
