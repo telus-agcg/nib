@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   Exclude:
     - vendor/**
     - bin/**
@@ -19,17 +19,7 @@ Style/FrozenStringLiteralComment:
   # in each file to enable/check for it
   Enabled: false
 
-AlignParameters:
-  # allow for multi-line methods to have normal indentation.
-  # for example:
-  #
-  # Person.where(
-  #   first_name: 'tom',
-  #   last_name: 'foolery'
-  # )
-  EnforcedStyle: with_fixed_indentation
-
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   # allow for end of if to be aligned with a variable.
   # for example:
   #
@@ -40,7 +30,7 @@ Layout/AlignParameters:
   # end
   EnforcedStyle: with_fixed_indentation
 
-Layout/AlignHash:
+Layout/HashAlignment:
   EnforcedHashRocketStyle: table
 
 Layout/MultilineMethodCallIndentation:
@@ -81,7 +71,7 @@ Naming/FileName:
   Exclude:
     - Dangerfile
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   AllowedNames:
     - _
 
