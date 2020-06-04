@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
 
-  s.required_ruby_version = '>= 2.3.0'
+  s.required_ruby_version = '>= 2.4.0'
 
   s.files = Dir['lib/**/*.rb'] | Dir['config/**/*'] | ['VERSION']
   s.require_paths << 'lib'
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency('gli', '~> 2.16')
 
   s.add_development_dependency('codeclimate-test-reporter', '~> 1.0.7')
+  s.add_development_dependency('did_you_mean')
   s.add_development_dependency('guard')
   s.add_development_dependency('guard-rspec')
   s.add_development_dependency('guard-rubocop')
