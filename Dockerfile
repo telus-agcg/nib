@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN \
+  mkdir -p /usr/src/app/.bundle/config && \
   bundle install -j4
 
 ENTRYPOINT []
