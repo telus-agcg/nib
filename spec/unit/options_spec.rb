@@ -1,7 +1,7 @@
 RSpec.describe Nib::Options do
   subject { described_class }
 
-  it 'finds options by name' do
+  it 'finds options by name', :focus do
     options = subject.options_for(:names, :'service-ports')
 
     options.each do |option|

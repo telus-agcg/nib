@@ -25,7 +25,7 @@ RSpec.describe Nib::Debug do
           .*
           byebug\s-R\s
           ([0-9]{1,3}\.){3}[0-9]{1,3}   # host ip address
-          :3001$                        # ruby debug port
+          :3001                         # ruby debug port
         /x
       )
     end

@@ -19,7 +19,7 @@ RSpec.describe Nib::Shell do
           (.|\n)*
           export\sHISTFILE
           (.|\n)*
-          bin\/shell
+          bin/shell
           (.|\n)*
           zsh
           (.|\n)*
