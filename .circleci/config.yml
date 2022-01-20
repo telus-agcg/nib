@@ -8,11 +8,7 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker:
-          # pinned to work around incompatibilities between older Docker
-          # runtimes and Alpine
-          # https://github.com/docker-library/ruby/issues/351#issuecomment-899096462
-          version: 20.10.11
+      - setup_remote_docker
 
       - run:
           name: Setup Code Climate test-reporter
