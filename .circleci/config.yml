@@ -42,6 +42,7 @@ jobs:
       - run:
           name: Run danger checks
           command: |
+            gem install danger --no-document
             danger --verbose
 
       - store_artifacts:
