@@ -1,5 +1,7 @@
 FROM cimg/ruby:3.1
 
+USER root
+
 WORKDIR /usr/src/app
 
 COPY . .
