@@ -46,7 +46,7 @@ RSpec.describe 'console', :interactive do
     let(:spec_dir) { './spec/dummy/sinatra' }
 
     context 'has pry' do
-      it 'starts a pry session and accepts input', :focus do
+      it 'starts a pry session and accepts input' do
         tty(command, true) do |stdout, stdin|
           puts stdout.class
           stdout.expect(/pry/, 5) { stdin.puts 'puts "foo"' }
