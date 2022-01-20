@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN \
-  bundle install --gemfile=/usr/src/app/Gemfile --clean --force -j4
+  bundle install -j4
 
 ENTRYPOINT []
 

@@ -17,7 +17,6 @@ services:
   ci:
     <<: *default
     command: bin/ci
-    working_dir: /usr/src/app
     volumes: []
     # https://git.io/vSJF6
     environment:

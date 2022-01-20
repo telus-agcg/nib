@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: technekes/circleci:latest
+      - image: cimg/ruby:3.1
 
-    working_directory: /usr/src/app
+    working_directory: ~/repo
 
     steps:
       - checkout
