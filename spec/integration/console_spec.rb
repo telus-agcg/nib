@@ -33,7 +33,7 @@ RSpec.describe 'console', :interactive do
       let(:type) { :rails }
 
       it 'detects rails and starts an interactive rails console' do
-        tty(command, true do |stdout, stdin|
+        tty(command, true) do |stdout, stdin|
           stdout.expect(/rails/, 5) { stdin.puts 'puts "foo"' }
 
           expect(stdout.gets).to match(/puts "foo"/)
