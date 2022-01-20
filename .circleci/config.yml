@@ -37,7 +37,7 @@ jobs:
             # copy coverage results out of the container
             docker cp tests:/usr/src/app/coverage ./coverage
             # notify code climate build is finished
-            ./cc after-build -t simplecov
+            ./cc after-build -t simplecov --prefix /usr/src/app/
 
       - run:
           name: Run danger checks
