@@ -18,11 +18,15 @@ class Nib::Debug
   end
 
   def host
-    if ENV.key?('DOCKER_HOST_URL') && ENV['DOCKER_HOST_URL'] != ''
+    return @host if @host
+
+    @host = if ENV.key?('DOCKER_HOST_URL') && ENV['DOCKER_HOST_URL'] != ''
       URI.parse(ENV['DOCKER_HOST_URL']).host
     else
-      `ip route | awk 'NR==1 {print $3}'`.chomp
+      `ip route | head -n 1`.chomp
     end
+
+    @host = @host == '' ? '0.0.0.0' : @host
   end
 
   def compose_file

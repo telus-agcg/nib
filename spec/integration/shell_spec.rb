@@ -31,7 +31,7 @@ RSpec.describe 'shell', :interactive do
 
       it 'starts an interactive shell session' do
         tty(command, true) do |stdout, stdin|
-          stdout.expect(%r{\/usr\/src\/app}, 5) { stdin.puts 'echo $0' }
+          stdout.expect(%r{/usr/src/app}, 5) { stdin.puts 'echo $0' }
 
           stdout.gets # why extra #gets necessary?
           expect(stdout.gets).to match(/#{shell}/)

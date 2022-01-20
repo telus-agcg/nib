@@ -1,16 +1,20 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 3.1
+  NewCops: enable
   Exclude:
     - vendor/**
     - bin/**
     - config/environments/**
     - spec/dummy/**/*
 
-Documentation:
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Style/Documentation:
   # don't require classes to be documented
   Enabled: false
 
-Encoding:
+Style/Encoding:
   # no need to always specify encoding
   Enabled: false
 
@@ -45,7 +49,7 @@ Layout/MultilineMethodCallIndentation:
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
-ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
   # ok to use compact style when modules are predefined.
   # for example the following is fine so long as we're sure that
   # module MDB has already been required/defined.
@@ -57,6 +61,7 @@ Metrics/BlockLength:
   # Certain DSL use blocks and can be lengthy
   Exclude:
     - 'spec/**/*'
+    - nib.gemspec
 
 Style/PercentLiteralDelimiters:
   # use the traidtional style for percent arrays

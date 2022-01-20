@@ -30,7 +30,7 @@ class Nib::History::Config
   def config_file
     @config_file ||= File.open("#{PATH}/#{type}", 'w+') do |file|
       file.write(config)
-      file.write(history_command + "\n")
+      file.write("#{history_command}\n")
       file
     end
   end

@@ -1,5 +1,9 @@
 # Next Release
 
+## Maintenance
+
+* [165](https://github.com/technekes/nib/pull/165) Upgrade dependencies - [@johnallen3d](https://github.com/johnallen3d).
+
 # 2.0.2 (2019-09-05)
 
 ## Hotfixes

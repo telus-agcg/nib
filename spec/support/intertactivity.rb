@@ -1,5 +1,5 @@
 module Interactivity
-  def tty(command, needs_killing = false)
+  def tty(command, needs_killing)
     PTY.spawn(command) do |stdout, stdin, pid|
       stdin.sync = true
 

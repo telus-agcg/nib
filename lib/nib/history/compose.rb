@@ -55,8 +55,8 @@ class Nib::History::Compose
     end
 
     def config
-      original_config.each_with_object({}) do |(name, definition), extended|
-        extended[name] = Service.new(volume_name, definition).config
+      original_config.transform_values do |definition|
+        Service.new(volume_name, definition).config
       end
     end
   end

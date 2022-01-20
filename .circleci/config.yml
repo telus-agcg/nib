@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: technekes/circleci:latest
+      - image: cimg/ruby:3.1
 
-    working_directory: /usr/src/app
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Build the image(s)
           command: |
-            docker-compose build
+            docker-compose build ci
 
       - run:
           name: Run tests
@@ -33,11 +33,12 @@ jobs:
             # copy coverage results out of the container
             docker cp tests:/usr/src/app/coverage ./coverage
             # notify code climate build is finished
-            ./cc after-build -t simplecov
+            ./cc after-build -t simplecov --prefix /usr/src/app/
 
       - run:
           name: Run danger checks
           command: |
+            gem install danger --no-document
             danger --verbose
 
       - store_artifacts:

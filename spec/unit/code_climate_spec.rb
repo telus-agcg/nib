@@ -14,7 +14,7 @@ RSpec.describe Nib::CodeClimate do
         .*
         docker\srun
         .*
-        codeclimate\/codeclimate
+        codeclimate/codeclimate
         .*
         analyze
       }x
