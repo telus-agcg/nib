@@ -8,7 +8,6 @@ services:
       # in dev/test the nib binstub points to this path
       - .:/usr/src/app
       # for running integration specs
-      - $PWD:$PWD
       - /var/run/docker.sock:/var/run/docker.sock
       # for purposes of release
       - $HOME/.ssh:/root/.ssh
