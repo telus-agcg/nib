@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Build the image(s)
           command: |
-            docker-compose build
+            docker-compose build ci
 
       - run:
           name: Run tests
