@@ -1,5 +1,7 @@
 # Next Release
 
+# 2.1.0 (2022-01-20)
+
 ## Maintenance
 
 * [165](https://github.com/technekes/nib/pull/165) Upgrade dependencies - [@johnallen3d](https://github.com/johnallen3d).
