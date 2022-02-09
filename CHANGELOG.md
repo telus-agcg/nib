@@ -1,5 +1,9 @@
 # Next Release
 
+# 2.1.1 (2022-02-09)
+
+* [169](https://github.com/technekes/nib/pull/169) Handle varied Psych load API's - [@johnallen3d](https://github.com/johnallen3d).
+
 # 2.1.0 (2022-01-20)
 
 ## Maintenance
