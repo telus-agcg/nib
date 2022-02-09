@@ -1,5 +1,3 @@
-require 'yaml'
-
 class Nib::Debug
   include Nib::Command
 

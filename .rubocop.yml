@@ -10,6 +10,9 @@ AllCops:
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
+Security/YAMLLoad:
+  Enabled: false
+
 Style/Documentation:
   # don't require classes to be documented
   Enabled: false

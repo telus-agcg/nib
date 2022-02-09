@@ -28,7 +28,9 @@ class Nib::History::Compose
   end
 
   def original_config
-    @original_config ||= YAML.safe_load(docker_compose_config.gsub(/\$/, '$$'))
+    @original_config ||= Psych.flexible_load(
+      docker_compose_config.gsub(/\$/, '$$')
+    )
   end
 
   def file
