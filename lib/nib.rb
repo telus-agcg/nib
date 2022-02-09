@@ -2,6 +2,7 @@ require 'nib/version'
 
 require 'core_extensions/hash'
 require 'core_extensions/string'
+require 'core_extensions/psych'
 
 require 'nib/options'
 require 'nib/options/augmenter'

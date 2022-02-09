@@ -4,13 +4,7 @@ module Nib::Options
   def config
     return @config if @config
 
-    load_with = if YAML.respond_to?(:unsafe_load_file)
-      :unsafe_load_file
-    else
-      :load_file
-    end
-
-    @config = YAML.send(load_with, "#{Nib::GEM_ROOT}/config/options.yml")
+    @config = Psych.flexible_load_file("#{Nib::GEM_ROOT}/config/options.yml")
   end
 
   def options_for(type, name)
