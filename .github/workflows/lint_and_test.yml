@@ -11,8 +11,17 @@ on:
 jobs:
   build-lint-test:
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['2.7', '3.0', '3.1']
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Set Ruby Version
+      run: sed -i 's/:3.1-alpine/:${{ matrix.ruby }}-alpine/' Dockerfile
 
     - name: Build
       run: docker-compose -p ci build --pull
@@ -21,10 +30,10 @@ jobs:
         DOCKER_BUILDKIT: 1
 
     - name: Test
-      run: docker-compose -p ci run --name=test test
+      run: docker-compose -p ci run --name=test gem rake rspec:unit
 
     - name: Lint
-      run: docker-compose -p ci run --name=lint lint
+      run: docker-compose -p ci run --name=lint gem rubocop .
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v2

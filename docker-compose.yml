@@ -1,18 +1,7 @@
 version: "2"
 
 services:
-  gem: &default
+  gem:
     build: .
     volumes:
-      # in dev/test the nib binstub points to this path
       - .:/usr/src/app
-      # for running integration specs
-      - /var/run/docker.sock:/var/run/docker.sock
-
-  test:
-    <<: *default
-    command: rake rspec:unit
-
-  lint:
-    <<: *default
-    command: rubocop .
