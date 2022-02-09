@@ -1,10 +1,7 @@
 ![nib logo](nib.png)
 
-[![CircleCI](https://circleci.com/gh/technekes/nib.svg?style=svg)](https://circleci.com/gh/technekes/nib)
-[![Maintainability](https://api.codeclimate.com/v1/badges/2e5c36dbc83ff63575f7/maintainability)](https://codeclimate.com/github/technekes/nib/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2e5c36dbc83ff63575f7/test_coverage)](https://codeclimate.com/github/technekes/nib/test_coverage)
+[![Lint and Test](https://github.com/technekes/nib/actions/workflows/lint_and_test.yml/badge.svg)](https://github.com/technekes/nib/actions/workflows/lint_and_test.yml)
 [![Gem Version](https://badge.fury.io/rb/nib.svg)](https://badge.fury.io/rb/nib)
-[![Dependency Status](https://gemnasium.com/badges/github.com/technekes/nib.svg)](https://gemnasium.com/github.com/technekes/nib)
 
 
 `nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
