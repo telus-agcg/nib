@@ -33,15 +33,18 @@ jobs:
       run: docker-compose -p ci run --name=test gem rake rspec:unit
 
     - name: Lint
+      if: matrix.ruby  == '3.1'
       run: docker-compose -p ci run --name=lint gem rubocop .
 
     - name: Archive code coverage results
+      if: matrix.ruby  == '3.1'
       uses: actions/upload-artifact@v2
       with:
         name: code-coverage-report
         path: ./coverage
 
     - name: Report on coverage
+      if: matrix.ruby  == '3.1'
       uses: aki77/simplecov-report-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
