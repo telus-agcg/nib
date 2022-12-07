@@ -3,10 +3,10 @@ name: Lint and Test
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   build-lint-test:
@@ -18,34 +18,34 @@ jobs:
         ruby: ['2.7', '3.0', '3.1']
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Set Ruby Version
-      run: sed -i 's/:3.1-alpine/:${{ matrix.ruby }}-alpine/' Dockerfile
+      - name: Set Ruby Version
+        run: sed -i 's/:3.1-alpine/:${{ matrix.ruby }}-alpine/' Dockerfile
 
-    - name: Build
-      run: docker-compose -p ci build --pull
-      env:
-        COMPOSE_DOCKER_CLI_BUILD: 1
-        DOCKER_BUILDKIT: 1
+      - name: Build
+        run: docker-compose -p ci build --pull
+        env:
+          COMPOSE_DOCKER_CLI_BUILD: 1
+          DOCKER_BUILDKIT: 1
 
-    - name: Test
-      run: docker-compose -p ci run --name=test gem rake rspec:unit
+      - name: Test
+        run: docker-compose -p ci run --name=test gem rake rspec:unit
 
-    - name: Lint
-      if: matrix.ruby  == '3.1'
-      run: docker-compose -p ci run --name=lint gem rubocop .
+      - name: Lint
+        if: matrix.ruby  == '3.1'
+        run: docker-compose -p ci run --name=lint gem rubocop .
 
-    - name: Archive code coverage results
-      if: matrix.ruby  == '3.1'
-      uses: actions/upload-artifact@v2
-      with:
-        name: code-coverage-report
-        path: ./coverage
+      - name: Archive code coverage results
+        if: matrix.ruby  == '3.1'
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ./coverage
 
-    - name: Report on coverage
-      if: matrix.ruby  == '3.1'
-      uses: aki77/simplecov-report-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        failedThreshold: 93
+      - name: Report on coverage
+        if: matrix.ruby  == '3.1'
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 93
