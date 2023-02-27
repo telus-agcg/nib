@@ -1,8 +1,8 @@
-FROM ruby:3.0-alpine
+FROM ruby:3.2-alpine
 
 WORKDIR /usr/src/app
 
 COPY . .
 
 RUN \
-  bundle install -j4
+  bundle install -j5

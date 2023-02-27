@@ -7,6 +7,9 @@ AllCops:
     - config/environments/**
     - spec/dummy/**/*
 
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
 Gemspec/RequiredRubyVersion:
   Enabled: false
 

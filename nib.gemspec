@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'The tip of the pen (compose)'
 
-  s.description = <<-'DESCRIPTION'
+  s.description = <<-DESCRIPTION
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
 

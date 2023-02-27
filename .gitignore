@@ -3,6 +3,7 @@ codeship.env
 keys/*
 tmp/*
 .DS_Store
+.idea
 spec/examples.txt
 spec/dummy/**/tmp
 spec/dummy/**/log

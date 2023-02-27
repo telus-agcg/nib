@@ -19,12 +19,12 @@ module Nib::History
 
   def wrap(executable)
     <<-COMMAND
-      /bin/sh -c \"
+      /bin/sh -c "
         export HISTFILE=#{PATH}/shell_history
         cp #{irbrc.container_path} /root/.irbrc 2>/dev/null
         cp #{pryrc.container_path} /root/.pryrc 2>/dev/null
         #{executable}
-      \"
+      "
     COMMAND
   end
 
