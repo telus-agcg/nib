@@ -8,7 +8,7 @@ class Nib::History::Config
   def initialize(type, history_command)
     @type = type
     @history_command = history_command
-    @host_path = "#{ENV['HOME']}/.#{type}"
+    @host_path = "#{Dir.home}/.#{type}"
 
     FileUtils.mkdir_p PATH
   end
