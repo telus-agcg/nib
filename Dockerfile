@@ -1,5 +1,4 @@
-FROM ruby:3.0-alpine
-
+FROM ruby:3.3.0
 WORKDIR /usr/src/app
 
 COPY . .
