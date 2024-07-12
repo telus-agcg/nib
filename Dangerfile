@@ -1,4 +1,4 @@
 danger.import_dangerfile(
-  github: 'technekes/danger',
+  github: 'telus-agcg/danger',
   path: 'gems/Dangerfile'
 )
