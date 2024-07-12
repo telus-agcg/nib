@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'The tip of the pen (compose)'
 
-  s.description = <<-'DESCRIPTION'
+  s.description = <<-DESCRIPTION
     nib is a docker-compose wrapper geared towards Ruby/Rails development.
   DESCRIPTION
 
@@ -23,10 +23,4 @@ Gem::Specification.new do |s|
   s.metadata['rubygems_mfa_required'] = 'true'
 
   s.add_runtime_dependency('gli', '~> 2.16')
-
-  s.add_development_dependency('pry')
-  s.add_development_dependency('rake')
-  s.add_development_dependency('rubocop')
-  s.add_development_dependency('serverspec')
-  s.add_development_dependency('simplecov')
 end
