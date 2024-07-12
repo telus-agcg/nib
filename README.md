@@ -154,7 +154,7 @@ docker run \
   --rm \
   -v $PWD:/usr/src/app \
   -w /usr/src/app \
-  ruby:alpine bin/update_docs
+  ruby:3.3.0 bin/update_docs
 ```
 
 ## Contributing

@@ -20,7 +20,7 @@ jobs:
         bundler-cache: true
 
     - name: Run Danger checks
-      uses: MeilCli/danger-action@v5
+      uses: MeilCli/danger-action@v5.5.15
       with:
         install_path: 'vendor/bundle'
         danger_file: 'Dangerfile'

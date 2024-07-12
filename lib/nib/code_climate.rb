@@ -8,6 +8,7 @@ class Nib::CodeClimate
     new(nil, args.join(' '), options).execute
   end
 
+  # rubocop:disable Metrics/MethodLength
   def script
     @script ||= <<-SCRIPT
       docker run \
@@ -21,4 +22,5 @@ class Nib::CodeClimate
         codeclimate/codeclimate #{command || 'help'}
     SCRIPT
   end
+  # rubocop:enable Metrics/MethodLength
 end

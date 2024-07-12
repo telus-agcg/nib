@@ -19,7 +19,7 @@ class Nib::Debug
     return @host if @host
 
     @host = if ENV.key?('DOCKER_HOST_URL') && ENV['DOCKER_HOST_URL'] != ''
-      URI.parse(ENV['DOCKER_HOST_URL']).host
+      URI.parse(ENV.fetch('DOCKER_HOST_URL', nil)).host
     else
       `ip route | awk 'NR==1 {print $3}'`.chomp
     end

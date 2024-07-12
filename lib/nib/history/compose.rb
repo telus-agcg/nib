@@ -29,7 +29,7 @@ class Nib::History::Compose
 
   def original_config
     @original_config ||= Psych.flexible_load(
-      docker_compose_config.gsub(/\$/, '$$')
+      docker_compose_config.gsub('$', '$$')
     )
   end
 
