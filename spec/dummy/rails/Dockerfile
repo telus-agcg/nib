@@ -1,4 +1,4 @@
-FROM ruby:2.3
+FROM ruby:3.3.0
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
