@@ -24,21 +24,21 @@ jobs:
       run: sed -i 's/:3.1-alpine/:${{ matrix.ruby }}-alpine/' Dockerfile
 
     - name: Build
-      run: docker-compose -p ci build --pull
+      run: docker compose -p ci build --pull
       env:
         COMPOSE_DOCKER_CLI_BUILD: 1
         DOCKER_BUILDKIT: 1
 
     - name: Test
-      run: docker-compose -p ci run --name=test gem rake rspec:unit
+      run: docker compose -p ci run --name=test gem rake rspec:unit
 
     - name: Lint
       if: matrix.ruby  == '3.1'
-      run: docker-compose -p ci run --name=lint gem rubocop .
+      run: docker compose -p ci run --name=lint gem rubocop .
 
     - name: Archive code coverage results
       if: matrix.ruby  == '3.1'
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: code-coverage-report
         path: ./coverage
