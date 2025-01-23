@@ -1,0 +1,23 @@
+name: Feature Workflow
+
+on:
+  push:
+    branches:
+      - "*feature/*"
+      - "*dependabot/**"
+
+jobs:
+  build:
+    name: Build Gem
+    uses: telus-agcg/ci-pipeline-templates/.github/workflows/docker-deploy-gem-template.yml@version/1.4
+    with:
+      testingMode: "docker"
+      lintingMode: "docker"
+      gemDirectory: "./"
+      gemService: "ci"
+      sourceOwner: "telus-agcg"
+      dryRun: true
+    secrets:
+      encryptionKey: ${{ secrets.ENCRYPTION_KEY }}
+      buildArgs: ${{ secrets.BUILD_ARGS }}
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
