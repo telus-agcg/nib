@@ -16,7 +16,7 @@ SCRIPT="
     bin/setup ${@}
   else
     gem install bundler
-    bundle install --jobs 4
+    bundle install --jobs 5
   fi
 
   if [ -f bin/setup.after ]; then
@@ -24,7 +24,7 @@ SCRIPT="
   fi
 "
 
-docker-compose run \
+docker compose run \
   --rm \
   $service \
   /bin/sh -c "$SCRIPT"

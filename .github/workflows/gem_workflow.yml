@@ -37,14 +37,14 @@ jobs:
           name: code-coverage-report
           path: ./coverage
 
-      - name: Send Code Coverage to Pull Request
+      - name: Publish Code Coverage Results
         if: ${{ github.event_name == 'pull_request' }}
         uses: aki77/simplecov-report-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           failedThreshold: 93
 
-      #- name: Deploy Gem
-      #  if: github.event_name  == 'push'
-      #  run: |
-      #    GH_TOKEN=${{ secrets.GITHUB_TOKEN }} docker compose -p ci run deploy
+      - name: Deploy Gem
+        if: ${{ github.event_name  == 'push' }}
+        run: |
+          GH_TOKEN=${{ secrets.GITHUB_TOKEN }} docker compose run deploy
