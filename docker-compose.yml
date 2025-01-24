@@ -8,11 +8,11 @@ services:
 
   test:
     <<: *base
-    command: gem rake rspec:unit
+    command: rake rspec:unit
 
   lint:
     <<: *base
-    command: gem rubocop .
+    command: rubocop
 
   deploy:
     <<: *base
