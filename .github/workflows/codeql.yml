@@ -1,8 +1,10 @@
-name: "CodeQL Workflow"
+name: CodeQL Workflow
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
+  push:
+    branches: ["master"]
   schedule:
     - cron: "0 16 * * *"
 
@@ -18,16 +20,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'ruby' ]
+        language: ["ruby"]
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
 
-    - name: Run CodeQL Scan
-      uses: github/codeql-action/analyze@v2
+      - name: Run CodeQL Scan
+        uses: github/codeql-action/analyze@v3

@@ -16,7 +16,7 @@ class Nib::CheckForUpdate
   end
 
   def self.latest
-    url = 'https://raw.githubusercontent.com/technekes/nib/master/VERSION'
+    url = 'https://raw.githubusercontent.com/telus-agcg/nib/master/VERSION'
 
     Net::HTTP.get(URI.parse(url))
   end

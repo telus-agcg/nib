@@ -1,15 +1,15 @@
 # Contributing to nib
 
-nib is work of [several contributors](https://github.com/technekes/nib/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/technekes/nib/pulls), [propose features and discuss issues](https://github.com/technekes/nib/issues).
+nib is work of [several contributors](https://github.com/telus-agcg/nib/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/telus-agcg/nib/pulls), [propose features and discuss issues](https://github.com/telus-agcg/nib/issues).
 
 #### Fork the Project
 
-Fork the [project on Github](https://github.com/technekes/nib) and check out your copy.
+Fork the [project on Github](https://github.com/telus-agcg/nib) and check out your copy.
 
 ```
 git clone https://github.com/contributor/nib.git
 cd nib
-git remote add upstream https://github.com/technekes/nib.git
+git remote add upstream https://github.com/telus-agcg/nib.git
 ```
 
 #### Create a Topic Branch
@@ -59,7 +59,7 @@ git push origin my-feature-branch
 
 #### Make a Pull Request
 
-Go to https://github.com/technekes/nib/compare and select your feature branch. Click the 'Create pull request' button and fill out the form. Pull requests are usually reviewed within a few days.
+Go to https://github.com/telus-agcg/nib/compare and select your feature branch. Click the 'Create pull request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
 #### Rebase
 
