@@ -1,0 +1,50 @@
+name: Gem Workflow
+
+on:
+  pull_request:
+    branches: ["master"]
+  push:
+    branches: ["master"]
+
+jobs:
+  gem:
+    name: Build Gem
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker compose build --pull
+
+      - name: Run Tests
+        run: |
+          docker compose run test
+
+      - name: Run Linting
+        run: |
+          docker compose run lint
+
+      #- name: Archive code coverage results
+      #  if: matrix.ruby  == '3.1'
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: code-coverage-report
+      #    path: ./coverage
+
+      #- name: Report on coverage
+      #  if: matrix.ruby  == '3.1'
+      #  uses: aki77/simplecov-report-action@v1
+      #  with:
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    failedThreshold: 93
+
+      #- name: Deploy Gem
+      #  if: github.event_name  == 'push'
+      #  run: |
+      #    GH_TOKEN=${{ secrets.GITHUB_TOKEN }} docker compose -p ci run deploy
