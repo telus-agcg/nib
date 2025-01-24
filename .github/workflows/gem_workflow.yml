@@ -30,19 +30,19 @@ jobs:
         run: |
           docker compose run lint
 
-      #- name: Archive code coverage results
-      #  if: matrix.ruby  == '3.1'
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: code-coverage-report
-      #    path: ./coverage
+      - name: Upload Code Coverage Artifact
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: ./coverage
 
-      #- name: Report on coverage
-      #  if: matrix.ruby  == '3.1'
-      #  uses: aki77/simplecov-report-action@v1
-      #  with:
-      #    token: ${{ secrets.GITHUB_TOKEN }}
-      #    failedThreshold: 93
+      - name: Send Code Coverage to Pull Request
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 93
 
       #- name: Deploy Gem
       #  if: github.event_name  == 'push'
