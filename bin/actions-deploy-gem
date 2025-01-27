@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir ~/.gem/ && echo -e "---\n:github: Bearer $GH_TOKEN\n" >> ~/.gem/credentials
+
+chmod 0600 ~/.gem/credentials
+
+gem build nib.gemspec
+
+gem push --key github --host https://rubygems.pkg.github.com/telus-agcg "nib-$(cat VERSION).gem"

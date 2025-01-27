@@ -1,9 +1,5 @@
 ![nib logo](nib.png)
 
-[![Lint and Test](https://github.com/technekes/nib/actions/workflows/lint_and_test.yml/badge.svg)](https://github.com/technekes/nib/actions/workflows/lint_and_test.yml)
-[![Gem Version](https://badge.fury.io/rb/nib.svg)](https://badge.fury.io/rb/nib)
-
-
 `nib` is a `docker-compose` wrapper geared towards Ruby/Rails development.
 
 ## Install

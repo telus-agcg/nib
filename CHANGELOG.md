@@ -1,5 +1,12 @@
 # Next Release
 
+# 2.1.2 (2025-01-23)
+
+## Maintenance
+
+* [190](https://github.com/technekes/nib/pull/190) Fix vulnerabilities.
+* [191](https://github.com/technekes/nib/pull/191) Update github workflows.
+
 # 2.1.1 (2022-02-09)
 
 * [169](https://github.com/technekes/nib/pull/169) Handle varied Psych load API's - [@johnallen3d](https://github.com/johnallen3d).

@@ -9,7 +9,3 @@ updates:
   commit-message:
     prefix: "build:"
   open-pull-requests-limit: 6
-  reviewers:
-  - johnallen3d
-  assignees:
-  - johnallen3d

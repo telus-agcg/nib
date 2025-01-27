@@ -1,7 +1,21 @@
-version: "2"
-
 services:
-  gem:
-    build: .
+  gem: &base
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
+
+  test:
+    <<: *base
+    command: rake rspec:unit
+
+  lint:
+    <<: *base
+    command: rubocop
+
+  deploy:
+    <<: *base
+    command: ./bin/actions-deploy-gem
+    environment:
+      GH_TOKEN: $GH_TOKEN
