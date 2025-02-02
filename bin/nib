@@ -86,6 +86,22 @@ command :console do |c|
   end
 end
 
+desc 'Start a Database REPL session for the given service'
+long_desc <<-"DESC"
+  This command, for now, will simply run the file supplied at $pwd/bin/dbconsole.
+  We recommend someting as simple as:
+
+  #! /bin/sh\n
+  psql "$@"
+DESC
+arg :service
+arg :command, %i(optional multiple)
+command :dbconsole do |c|
+  c.action do |global, options, args|
+    Nib::Run.execute(args.insert(1, './bin/dbconsole'))
+  end
+end
+
 desc 'Connect to a running byebug server for a given service'
 long_desc 'This command requires a little extra setup.
 
